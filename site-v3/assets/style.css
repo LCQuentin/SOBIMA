@@ -1,0 +1,188 @@
+/* ============================================================
+   SOBIMA v3 — fidèle à DESIGN.md (plaquette [P] + logo [L] + carte [C])
+   - Hex certains : uniquement ceux du code carte [C].
+   - PROVISOIRE (DESIGN §8) : --gold et --rust, à remplacer au pipetage.
+     Ne rien ajouter d'autre sans trancher §8.
+   ============================================================ */
+:root {
+  /* [C] valeurs littérales */
+  --sand-50: #FBF8F2;
+  --sand-100: #F5EFE3;
+  --sand-200: #EBE0CE;
+  --sand-300: #DCCBB0;
+  --sand-400: #C9B393;
+  --cacao-500: #8A6E52;
+  --cacao-600: #6E5540;
+  --cacao-700: #5B4636;
+  --cacao-800: #463528;
+  --cacao-900: #2E231B;
+  /* PROVISOIRE — DESIGN §8.1 */
+  --gold: #B08D57; /* filets, pastilles, liseré RSE */
+  --rust: #A2542F; /* filets blocs Test Fit [P p.4] */
+  --serif: "Fraunces", ui-serif, Georgia, serif; /* [C] */
+  --sans: "Lexend", ui-sans-serif, system-ui, sans-serif; /* [C] */
+  --shell: 78rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { background: var(--sand-100); color: var(--cacao-900); font-family: var(--sans); font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+::selection { background: var(--cacao-700); color: var(--sand-100); } /* [C] */
+:focus-visible { outline: 2px solid var(--cacao-700); outline-offset: 3px; border-radius: 6px; } /* [C] */
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.sr-only:focus { position: fixed; left: 1rem; top: 1rem; width: auto; height: auto; margin: 0; padding: .8rem 1.25rem; clip: auto; white-space: normal; z-index: 200; border-radius: 9999px; background: var(--cacao-900); color: var(--sand-50); font-size: .875rem; }
+
+.v3-shell { width: 100%; max-width: var(--shell); margin-inline: auto; padding-inline: 1.5rem; }
+@media (min-width: 64rem) { .v3-shell { padding-inline: 3rem; } }
+.v3-section { padding-block: 4.5rem; }
+@media (min-width: 64rem) { .v3-section { padding-block: 6.5rem; } }
+
+/* Titres [P] : grands, graisse légère + filet doré */
+.v3-display { font-weight: 300; letter-spacing: -.01em; color: var(--cacao-900); }
+.v3-h1 { font-size: clamp(2.2rem, 4.5vw, 3.9rem); line-height: 1.05; }
+.v3-h2 { font-size: clamp(1.7rem, 3vw, 2.6rem); line-height: 1.1; }
+.v3-h3 { font-size: 1.25rem; line-height: 1.3; font-weight: 500; }
+.v3-rule { display: block; width: 3.5rem; height: 3px; border-radius: 9999px; background: var(--gold); margin-top: 1.25rem; } /* [P] filet doré */
+.v3-kicker { font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: var(--cacao-600); } /* [P] capitales espacées */
+.v3-lede { font-size: 1.1rem; color: var(--cacao-600); max-width: 44rem; }
+.v3-body { color: var(--cacao-600); }
+.v3-display strong, .v3-lede strong { font-weight: 600; } /* [P] gras du chapeau */
+
+/* Header crème */
+.v3-top { position: fixed; inset-inline: 0; top: 0; z-index: 100; border-bottom: 1px solid transparent; transition: background .4s, border-color .4s; }
+.v3-top--solid { background: rgba(245, 239, 227, .94); backdrop-filter: blur(8px); border-color: var(--sand-300); }
+.v3-top__bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 4.5rem; }
+.v3-brand { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; }
+.v3-brand__name { font-size: .85rem; font-weight: 500; letter-spacing: .34em; text-transform: uppercase; } /* [C] wordmark */
+.v3-nav { display: none; align-items: center; gap: 1.75rem; }
+@media (min-width: 64rem) { .v3-nav { display: inline-flex; } }
+.v3-nav a { font-size: .85rem; text-decoration: none; }
+.v3-nav a:hover { color: var(--cacao-600); text-decoration: underline; text-underline-offset: 4px; }
+.v3-cta-top { display: none; }
+@media (min-width: 40rem) { .v3-cta-top { display: inline-flex; } }
+.v3-burger { display: inline-flex; }
+@media (min-width: 64rem) { .v3-burger { display: none; } }
+.v3-mmenu { background: var(--sand-100); border-bottom: 1px solid var(--sand-300); }
+.v3-mmenu[hidden] { display: none; }
+.v3-mmenu nav { display: flex; flex-direction: column; padding-block: 1rem 1.5rem; }
+.v3-mmenu a:not(.v3-btn) { padding-block: .9rem; border-bottom: 1px solid var(--sand-200); font-size: 1.1rem; text-decoration: none; }
+
+/* Boutons : texte + CTA restent cacao [§1] */
+.v3-btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; border-radius: 9999px; padding: .85rem 1.75rem; font-size: .875rem; font-weight: 500; text-decoration: none; background: var(--cacao-700); color: var(--sand-50); border: 1px solid transparent; cursor: pointer; transition: background .3s, transform .3s; }
+.v3-btn:hover { background: var(--cacao-900); transform: translateY(-2px); }
+.v3-btn--ghost { background: transparent; color: var(--cacao-800); border-color: var(--sand-400); }
+.v3-btn--ghost:hover { background: var(--cacao-700); color: var(--sand-50); border-color: var(--cacao-700); }
+.v3-link { font-size: .875rem; font-weight: 500; color: var(--cacao-800); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Schéma Test Fit annoté (section preuve : schéma illustratif, pas un faux projet) */
+.v3-plan { border: 1px solid var(--sand-300); border-radius: 4px; background: var(--sand-50); padding: 1.25rem; }
+.v3-plan svg { width: 100%; height: auto; display: block; }
+.v3-plan figcaption { margin-top: 1rem; font-size: .8rem; color: var(--cacao-600); }
+.v3-callouts { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 1rem; }
+.v3-callouts li { display: grid; grid-template-columns: auto 1fr; gap: .9rem; align-items: start; }
+.v3-callouts .v3-pastille { margin: 0; }
+.v3-callouts strong { display: block; }
+.v3-callouts p { font-size: .9rem; color: var(--cacao-600); }
+
+/* CTA sticky mobile (Casey : action à portée de pouce) */
+.v3-sticky { position: fixed; left: 1rem; right: 1rem; bottom: 1rem; z-index: 90; display: flex; }
+.v3-sticky a { flex: 1; box-shadow: 0 10px 26px -12px rgba(46, 35, 27, .65); }
+@media (min-width: 40rem) { .v3-sticky { display: none; } }
+@media (max-width: 39.99rem) { body { padding-bottom: 4.5rem; } }
+
+/* Bandeaux sombres, capitales blanches espacées [P p.1-2] */
+.v3-band { background: var(--cacao-900); color: var(--sand-100); }
+.v3-band__list { display: flex; flex-wrap: wrap; gap: .75rem 2.5rem; justify-content: center; padding-block: 1.3rem; font-size: .8rem; letter-spacing: .22em; text-transform: uppercase; list-style: none; padding-inline: 1.5rem; margin: 0; }
+
+/* 3 colonnes à filets verticaux [P p.2] */
+.v3-cols3 { display: grid; gap: 2rem; margin-top: 3rem; }
+@media (min-width: 64rem) { .v3-cols3 { grid-template-columns: 1fr 1fr 1fr; gap: 0; } .v3-cols3 > div { padding-inline: 2.5rem; } .v3-cols3 > div:first-child { padding-left: 0; } .v3-cols3 > div + div { border-left: 1px solid var(--gold); } }
+
+/* Méthode : timeline verticale (robuste, aucun chevauchement possible) */
+.v3-timeline { list-style: none; margin: 3rem 0 0; padding: 0; }
+.v3-timeline li { position: relative; margin-left: .9rem; padding: 0 0 2.5rem 3rem; border-left: 2px solid var(--sand-300); }
+.v3-timeline li:last-child { padding-bottom: .5rem; }
+.v3-timeline .v3-pastille { position: absolute; left: -1rem; top: -.1rem; margin: 0; }
+.v3-timeline h2 { font-size: 1.3rem; font-weight: 600; }
+.v3-timeline h3 { font-size: 1.15rem; font-weight: 600; }
+.v3-timeline p { color: var(--cacao-600); margin-top: .5rem; max-width: 40rem; }
+.v3-pastille { display: inline-grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 9999px; background: var(--gold); color: var(--cacao-900); font-size: .8rem; font-weight: 700; margin-bottom: .5rem; } /* [P] pastilles dorées — texte cacao-900 pour un contraste ≥ 4.5:1 */
+.v3-hint { margin-top: 2rem; font-size: .85rem; color: var(--cacao-600); }
+
+/* Mini-glossaire (acronymes chantier, 1 ligne chacun) */
+.v3-gloss { margin-top: 2.5rem; border: 1px solid var(--sand-300); border-radius: 4px; background: var(--sand-50); padding: 1.25rem 1.5rem; display: grid; gap: .6rem; font-size: .85rem; }
+.v3-gloss div { display: grid; grid-template-columns: 11rem 1fr; gap: 1rem; }
+.v3-gloss dt { font-weight: 600; }
+.v3-gloss dd { margin: 0; color: var(--cacao-600); }
+@media (max-width: 39.99rem) { .v3-gloss div { grid-template-columns: 1fr; gap: 0; } }
+
+/* Blocs Test Fit à filets rouille [P p.4] */
+.v3-tfblock { border-top: 2px solid var(--rust); padding-top: 1.25rem; margin-top: 2rem; }
+.v3-tfblock h3 { font-size: 1.15rem; font-weight: 600; }
+.v3-tfblock p { color: var(--cacao-600); margin-top: .5rem; }
+
+/* Encadré RSE [P p.5] */
+.v3-rse { margin-top: 3rem; background: var(--sand-50); border-left: 4px solid var(--gold); border-radius: 2px; padding: 1.5rem 1.75rem; }
+.v3-rse h3 { font-size: 1rem; font-weight: 600; }
+.v3-rse p { margin-top: .5rem; color: var(--cacao-600); font-size: .95rem; }
+
+/* Double carte contact [P p.6] : panneau CTA + panneau interlocuteur */
+.v3-duo { display: grid; gap: 1.5rem; margin-top: 3rem; }
+@media (min-width: 64rem) { .v3-duo { grid-template-columns: 1fr 1fr; } }
+.v3-duo__card { background: rgba(251, 248, 242, .94); border: 1px solid var(--sand-300); border-radius: 12px; padding: 2.25rem 2rem; }
+@media (min-width: 64rem) { .v3-duo__card { padding: 3rem; } }
+.v3-flash { display: inline-block; background: var(--gold); color: var(--cacao-900); font-weight: 600; padding: .15rem .6rem; border-radius: 2px; } /* [P] pastille or p.6 */
+.v3-avatar { width: 7rem; height: 7rem; border-radius: 9999px; object-fit: cover; filter: grayscale(1); } /* [P p.6][C] photo N&B ronde */
+.v3-contactline { display: flex; align-items: center; gap: .75rem; background: var(--sand-100); border: 1px solid var(--sand-200); border-radius: 12px; padding: .7rem .9rem; text-decoration: none; font-weight: 500; } /* [C] lignes contact */
+.v3-contactline:hover { background: var(--cacao-700); color: var(--sand-50); } /* [C] inversion survol */
+.v3-qr { border: 1px dashed var(--sand-400); border-radius: 8px; padding: 1rem; font-size: .8rem; color: var(--cacao-500); text-align: center; } /* Encadré d'attente QR (DESIGN §8.4) */
+
+/* FAQ */
+.v3-faq { border-top: 1px solid var(--sand-300); border-bottom: 1px solid var(--sand-300); margin-top: 3rem; }
+.v3-faq details { border-top: 1px solid var(--sand-300); }
+.v3-faq details:first-child { border-top: 0; }
+.v3-faq summary { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding-block: 1.25rem; cursor: pointer; list-style: none; font-size: 1.15rem; font-weight: 500; }
+.v3-faq summary::-webkit-details-marker { display: none; }
+.v3-faq summary .plus { color: var(--gold); font-size: 1.5rem; transition: transform .3s; }
+.v3-faq details[open] summary .plus { transform: rotate(45deg); }
+.v3-faq .a { color: var(--cacao-600); padding-bottom: 1.5rem; padding-right: 2rem; }
+
+/* Formulaire : champs carte [C] */
+.v3-form { display: grid; gap: 1.25rem; }
+@media (min-width: 40rem) { .v3-form { grid-template-columns: 1fr 1fr; } .v3-form .span { grid-column: 1 / -1; } }
+.v3-field label { display: block; margin-bottom: .5rem; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--cacao-600); }
+.v3-field input, .v3-field select, .v3-field textarea { width: 100%; border: 1px solid var(--sand-300); background: var(--sand-50); border-radius: 2px; padding: .8rem 1rem; font: inherit; font-size: .875rem; color: var(--cacao-900); }
+.v3-field input:focus, .v3-field select:focus, .v3-field textarea:focus { border-color: var(--cacao-700); outline: 2px solid var(--cacao-700); outline-offset: 2px; }
+
+/* Fil d'Ariane */
+.v3-crumb { font-size: .8rem; color: var(--cacao-500); padding-top: 6.5rem; }
+.v3-crumb ol { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; padding: 0; margin: 0; }
+.v3-crumb a { text-decoration: none; }
+.v3-crumb a:hover { text-decoration: underline; }
+
+/* Placeholder photo honnête (en attendant les photos Redoine) */
+.v3-ph { display: flex; align-items: center; justify-content: center; background: var(--sand-200); border-radius: 2px; }
+.v3-ph span { font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(110, 85, 64, .7); text-align: center; padding: 1.5rem; }
+
+/* Footer sombre [P bandes] */
+.v3-footer { background: var(--cacao-900); color: var(--sand-200); }
+.v3-footer__grid { display: grid; gap: 3rem; padding-block: 4rem 3rem; }
+@media (min-width: 64rem) { .v3-footer__grid { grid-template-columns: 5fr 3fr 4fr; } }
+.v3-footer h2 { font-size: .72rem; letter-spacing: .24em; text-transform: uppercase; color: var(--sand-300); font-weight: 500; }
+.v3-footer ul { list-style: none; margin-top: 1.25rem; padding: 0; display: grid; gap: .75rem; font-size: .9rem; }
+.v3-footer a { text-decoration: none; }
+.v3-footer a:hover { text-decoration: underline; }
+.v3-footer__base { display: flex; flex-direction: column; gap: 1rem; border-top: 1px solid rgba(245, 239, 227, .16); padding-block: 2rem; font-size: .75rem; color: var(--sand-300); }
+@media (min-width: 40rem) { .v3-footer__base { flex-direction: row; justify-content: space-between; align-items: center; } }
+.v3-footer__base ul { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; list-style: none; margin: 0; padding: 0; }
+
+/* Révélation : visible par défaut (sans-JS = page lisible) ; masquée uniquement si JS actif */
+[data-reveal] { opacity: 1; }
+html.js [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
+html.js [data-reveal].is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  html.js [data-reveal] { opacity: 1; transform: none; transition: none; }
+}
