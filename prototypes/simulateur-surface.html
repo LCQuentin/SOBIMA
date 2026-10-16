@@ -1,0 +1,326 @@
+<title>Simulateur de surface SOBIMA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..400;1,9..144,300..400&family=Lexend:wght@300;400;500;600&display=swap">
+<style>
+/* Layout : une section « Avant de vous engager » du site SOBIMA ; formulaire à gauche, résultat sur panneau cacao à droite, puis hypothèses et CTA Test Fit.
+   Tokens repris de site-v3/assets/style.css (carte [C]) + caramel officiel du logo. Un seul thème, celui du site. */
+:root {
+  --sand-50: #FBF8F2;
+  --sand-100: #F5EFE3;
+  --sand-200: #EBE0CE;
+  --sand-300: #DCCBB0;
+  --cacao-500: #8A6E52;
+  --cacao-600: #6E5540;
+  --cacao-700: #5B4636;
+  --cacao-900: #2E231B;
+  --caramel: #C49E5F;   /* fond officiel du logo */
+  --rust: #A2542F;      /* PROVISOIRE (DESIGN §8), filets Test Fit */
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Lexend", system-ui, sans-serif;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--sand-100); color: var(--cacao-900); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; padding-inline: 16px; padding-block: 0 48px; }
+:focus-visible { outline: 2px solid var(--cacao-700); outline-offset: 3px; border-radius: 6px; }
+.shell { max-width: 1120px; margin-inline: auto; }
+
+/* Bandeau prototype */
+.proto { margin-inline: -16px; background: var(--cacao-900); color: var(--sand-200); font-size: 13px; padding: 10px 16px; text-align: center; letter-spacing: .02em; }
+.proto b { color: var(--caramel); font-weight: 500; }
+
+/* En-tête */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 24px; border-bottom: 1px solid var(--sand-300); }
+.brand { display: inline-flex; align-items: center; gap: 12px; }
+.brand svg { width: 40px; height: 40px; display: block; }
+.brand span { font-size: 13px; font-weight: 500; letter-spacing: .34em; text-transform: uppercase; }
+.top a { font-size: 14px; color: var(--cacao-600); text-decoration: none; border-bottom: 1px solid var(--sand-300); }
+
+/* Intro */
+.intro { padding-block: 56px 32px; display: grid; gap: 16px; max-width: 720px; }
+.kicker { font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--cacao-600); margin: 0; }
+h1 { font-family: var(--serif); font-weight: 300; font-size: clamp(34px, 5vw, 56px); line-height: 1.05; margin: 0; text-wrap: balance; letter-spacing: -.01em; }
+h1 em { font-style: italic; color: var(--cacao-600); }
+.rule { width: 56px; height: 3px; border-radius: 99px; background: var(--caramel); }
+.lede { margin: 0; color: var(--cacao-600); font-size: 18px; max-width: 60ch; }
+
+/* Simulateur */
+.sim { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); background: var(--sand-50); border: 1px solid var(--sand-300); border-radius: 20px; overflow: hidden; }
+.inputs { padding: 32px; display: grid; gap: 28px; align-content: start; min-width: 0; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 12px; min-width: 0; }
+legend, .lbl { font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--cacao-600); padding: 0; margin-bottom: 12px; }
+.seg { display: grid; grid-template-columns: 1fr 1fr; background: var(--sand-200); border-radius: 999px; padding: 4px; }
+.seg label { position: relative; text-align: center; padding: 10px 12px; border-radius: 999px; cursor: pointer; font-size: 15px; color: var(--cacao-600); transition: background .2s, color .2s; }
+.seg input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.seg label:has(input:checked) { background: var(--cacao-900); color: var(--sand-50); }
+.seg label:has(input:focus-visible) { outline: 2px solid var(--cacao-700); outline-offset: 2px; }
+
+.qty { display: grid; gap: 12px; }
+.qty-row { display: flex; align-items: baseline; gap: 10px; }
+.qty input[type=number] { width: 7ch; font: 300 44px/1 var(--serif); color: var(--cacao-900); background: transparent; border: 0; border-bottom: 2px solid var(--sand-300); padding: 0 0 4px; -moz-appearance: textfield; }
+.qty input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+.qty input[type=number]:focus { border-color: var(--caramel); outline: none; }
+.qty .unit { font-size: 18px; color: var(--cacao-600); }
+input[type=range] { width: 100%; accent-color: var(--cacao-700); }
+.hint { font-size: 13px; color: var(--cacao-500); margin: 0; }
+
+.types { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.type { position: relative; display: grid; gap: 8px; padding: 14px; border: 1px solid var(--sand-300); border-radius: 14px; background: var(--sand-100); cursor: pointer; transition: border-color .2s, background .2s; }
+.type input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.type svg { width: 100%; height: auto; display: block; }
+.type b { font-weight: 500; font-size: 14px; line-height: 1.25; }
+.type small { font-size: 12px; color: var(--cacao-500); }
+.type:has(input:checked) { border-color: var(--cacao-900); background: var(--sand-50); box-shadow: inset 0 0 0 1px var(--cacao-900); }
+.type:has(input:focus-visible) { outline: 2px solid var(--cacao-700); outline-offset: 2px; }
+
+.flex-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.flex-row output { font-family: var(--serif); font-size: 22px; }
+
+/* Résultat */
+.result { background: var(--cacao-900); color: var(--sand-100); padding: 32px; display: grid; gap: 20px; align-content: start; min-width: 0; position: relative; }
+.result::before { content: ""; position: absolute; left: 32px; top: 0; width: 56px; height: 3px; background: var(--caramel); }
+.result .lbl { color: var(--sand-300); margin: 0; }
+.big { font-family: var(--serif); font-weight: 300; font-size: clamp(52px, 7vw, 84px); line-height: 1; letter-spacing: -.02em; font-variant-numeric: lining-nums tabular-nums; }
+.big .sep { color: var(--caramel); padding-inline: .12em; }
+.big-unit { font-size: 18px; color: var(--sand-200); margin-top: -8px; }
+.extra { margin: 0; font-size: 15px; color: var(--sand-200); }
+.extra strong { color: var(--sand-50); font-weight: 500; }
+.desks { display: grid; grid-template-columns: repeat(auto-fill, 14px); gap: 5px; min-height: 14px; }
+.desks i { width: 14px; height: 14px; border-radius: 3px; background: var(--caramel); opacity: .95; }
+.desks i.range { background: transparent; border: 1.5px solid var(--caramel); opacity: .9; }
+.desks .more { grid-column: span 6; font-size: 12px; color: var(--sand-300); align-self: center; white-space: nowrap; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--sand-300); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 10px; height: 10px; border-radius: 2px; background: var(--caramel); }
+.legend i.range { background: transparent; border: 1.5px solid var(--caramel); }
+.assume { margin: 0; font-size: 13px; color: var(--sand-300); border-top: 1px solid rgba(220,203,176,.25); padding-top: 16px; }
+.cta { display: inline-flex; justify-content: center; align-items: center; gap: 10px; background: var(--caramel); color: var(--cacao-900); font: 500 16px/1.2 var(--sans); padding: 16px 22px; border-radius: 999px; border: 0; cursor: pointer; text-decoration: none; transition: transform .15s, background .2s; }
+.cta:hover { background: #D2AE72; }
+.cta:active { transform: translateY(1px); }
+
+/* Demande Test Fit */
+.ask { margin-top: 24px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 32px; background: var(--sand-50); border: 1px solid var(--sand-300); border-top: 3px solid var(--rust); border-radius: 20px; padding: 32px; }
+.ask h2 { font-family: var(--serif); font-weight: 300; font-size: 32px; line-height: 1.1; margin: 0 0 12px; }
+.ask p { margin: 0; color: var(--cacao-600); }
+.recap { margin-top: 16px !important; padding: 12px 16px; background: var(--sand-200); border-radius: 12px; color: var(--cacao-900) !important; font-size: 14px; }
+form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+form label { display: grid; gap: 6px; font-size: 13px; color: var(--cacao-600); }
+form input { font: 400 16px var(--sans); color: var(--cacao-900); background: var(--sand-100); border: 1px solid var(--sand-300); border-radius: 10px; padding: 12px 14px; width: 100%; }
+form input:focus { outline: 2px solid var(--cacao-700); outline-offset: 1px; }
+form .full { grid-column: 1 / -1; }
+.done { grid-column: 1 / -1; margin: 0; padding: 12px 16px; border-radius: 12px; background: var(--sand-200); font-size: 14px; color: var(--cacao-900); }
+
+/* Hypothèses */
+.hyp { margin-top: 24px; display: grid; gap: 12px; }
+.hyp h3 { font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--cacao-600); margin: 0; }
+.tbl { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--sand-300); }
+th { font-weight: 500; color: var(--cacao-600); }
+td.num { font-variant-numeric: tabular-nums; }
+.todo { display: inline-block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; background: var(--sand-200); color: var(--rust); padding: 2px 8px; border-radius: 99px; }
+
+@media (max-width: 860px) {
+  .sim, .ask { grid-template-columns: 1fr; }
+  form { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .inputs, .result, .ask { padding: 22px; }
+  .result::before { left: 22px; }
+  .types { grid-template-columns: 1fr; }
+  .type { grid-template-columns: 72px 1fr; align-items: center; }
+  .type svg { grid-row: span 2; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="proto"><b>Prototype</b> · ratios provisoires, à valider par Redoine · aucune donnée n’est envoyée</div>
+
+<div class="shell">
+  <header class="top">
+    <div class="brand" aria-label="SOBIMA">
+      <svg viewBox="0 0 512 499" aria-hidden="true"><rect width="512" height="499" rx="120" fill="#C49E5F"/><defs><clipPath id="in"><rect x="40" y="23" width="437" height="452" rx="107"/></clipPath></defs><g fill="none" stroke="#FDFDFD" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"><rect x="29" y="12" width="459" height="474" rx="125" stroke-width="17"/><path d="M 470 80 L 298 80 L 298 138 L 282 138 A 40 40 0 1 0 282 200 L 298 200 L 298 294"/><path d="M 298 294 L 392 294 A 40 40 0 1 1 440 294 L 486 294"/><path d="M 298 294 L 298 360 L 314 360 A 40 40 0 1 1 314 420 L 298 420 L 298 484"/><path d="M 298 294 L 216 294 A 40 40 0 1 1 164 294 L 80 294 L 80 452"/><g clip-path="url(#in)"><path transform="translate(122 104) rotate(22) scale(0.78) translate(-189 -187)" d="M 80 80 L 298 80 L 298 138 L 282 138 A 40 40 0 1 0 282 200 L 298 200 L 298 294 L 216 294 A 40 40 0 1 1 164 294 L 80 294 Z"/></g></g></svg>
+      <span>Sobima</span>
+    </div>
+    <a href="#demande">Test Fit 48 h offert</a>
+  </header>
+
+  <section class="intro">
+    <p class="kicker">Avant de vous engager</p>
+    <h1>Combien de postes dans vos <em>futurs bureaux</em> ?</h1>
+    <div class="rule"></div>
+    <p class="lede">Indiquez une surface ou un effectif et choisissez un type d’aménagement. Vous obtenez une première estimation, que SOBIMA vérifie ensuite sur votre plan, gratuitement, en 48 h.</p>
+  </section>
+
+  <section class="sim" aria-label="Simulateur de surface">
+    <div class="inputs">
+      <fieldset>
+        <legend>Je pars de</legend>
+        <div class="seg">
+          <label><input type="radio" name="mode" id="mode-surface" value="surface" checked>Une surface</label>
+          <label><input type="radio" name="mode" id="mode-team" value="team">Une équipe</label>
+        </div>
+      </fieldset>
+
+      <div class="qty">
+        <label class="lbl" for="qty" id="qty-label">Surface des bureaux</label>
+        <div class="qty-row">
+          <input type="number" id="qty" inputmode="numeric" min="20" max="5000" step="10" value="400" aria-describedby="qty-hint">
+          <span class="unit" id="qty-unit">m²</span>
+        </div>
+        <input type="range" id="qty-range" min="50" max="3000" step="10" value="400" aria-label="Ajuster la valeur">
+        <p class="hint" id="qty-hint">Surface utile du plateau, espaces communs compris.</p>
+      </div>
+
+      <fieldset>
+        <legend>Type d’aménagement</legend>
+        <div class="types" id="types"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Flex office</legend>
+        <div class="flex-row">
+          <label for="presence" class="hint" style="font-size:14px;color:var(--cacao-600)">Taux de présence moyen sur site</label>
+          <output id="presence-out" for="presence">100 %</output>
+        </div>
+        <input type="range" id="presence" min="50" max="100" step="5" value="100">
+        <p class="hint" id="presence-hint">100 % : un poste attitré par personne.</p>
+      </fieldset>
+    </div>
+
+    <div class="result" aria-live="polite">
+      <p class="lbl" id="res-label">Estimation</p>
+      <div>
+        <div class="big" id="res-big">33<span class="sep">–</span>40</div>
+        <div class="big-unit" id="res-unit">postes de travail</div>
+      </div>
+      <p class="extra" id="res-extra"></p>
+      <div class="desks" id="desks" aria-hidden="true"></div>
+      <div class="legend" aria-hidden="true"><span><i></i>estimation basse</span><span><i class="range"></i>jusqu’à l’estimation haute</span></div>
+      <p class="assume" id="res-assume"></p>
+      <a class="cta" href="#demande">Vérifier sur mon plan · Test Fit 48 h offert</a>
+    </div>
+  </section>
+
+  <section class="ask" id="demande">
+    <div>
+      <h2>Le Test Fit 48 h, offert</h2>
+      <p>Une estimation ne remplace pas un plan : poteaux, façades, circulations et règles de sécurité changent la capacité réelle. Envoyez votre plan, SOBIMA vous renvoie une implantation sous 48 h, sans engagement.</p>
+      <p class="recap" id="recap"></p>
+    </div>
+    <form id="form" novalidate>
+      <label>Société<input id="f-company" name="company" autocomplete="organization" required></label>
+      <label>Nom<input id="f-name" name="name" autocomplete="name" required></label>
+      <label>Email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
+      <label>Téléphone<input id="f-phone" name="phone" type="tel" autocomplete="tel"></label>
+      <label class="full">Adresse ou quartier des bureaux visés<input id="f-place" name="place" placeholder="Ex. : Paris 9e, La Défense…"></label>
+      <button class="cta full" type="submit">Demander mon Test Fit</button>
+      <p class="done" id="done" hidden></p>
+    </form>
+  </section>
+
+  <section class="hyp">
+    <h3>Hypothèses de calcul <span class="todo">à valider</span></h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Aménagement</th><th>Surface par poste</th><th>Pour qui</th></tr></thead>
+        <tbody id="hyp-body"></tbody>
+      </table>
+    </div>
+    <p class="hint">Surface utile par poste, espaces communs compris (accueil, réunion, tisanerie, circulations). Les fourchettes sont indicatives et ne tiennent pas compte de la forme du plateau.</p>
+  </section>
+</div>
+
+<script>
+/* ============================================================
+   RATIOS — À VALIDER PAR REDOINE (m² de surface utile par poste,
+   espaces communs compris). Seul endroit à modifier.
+   ============================================================ */
+const TYPES = [
+  { id: "ferme", name: "Bureaux fermés", min: 15, max: 20, who: "Cabinets, directions, métiers confidentiels",
+    pic: '<svg viewBox="0 0 90 48"><rect x="1" y="1" width="88" height="46" rx="4" fill="none" stroke="#8A6E52" stroke-width="1.5"/><path d="M30 1v46M60 1v46M1 24h88" stroke="#8A6E52" stroke-width="1.5"/><rect x="11" y="9" width="10" height="6" rx="1" fill="#C49E5F"/><rect x="41" y="9" width="10" height="6" rx="1" fill="#C49E5F"/><rect x="71" y="9" width="10" height="6" rx="1" fill="#C49E5F"/><rect x="11" y="32" width="10" height="6" rx="1" fill="#C49E5F"/><rect x="41" y="32" width="10" height="6" rx="1" fill="#C49E5F"/><rect x="71" y="32" width="10" height="6" rx="1" fill="#C49E5F"/></svg>' },
+  { id: "open", name: "Open space", min: 10, max: 12, who: "PME, équipes projet, startups",
+    pic: '<svg viewBox="0 0 90 48"><rect x="1" y="1" width="88" height="46" rx="4" fill="none" stroke="#8A6E52" stroke-width="1.5"/><path d="M62 1v20h27" fill="none" stroke="#8A6E52" stroke-width="1.5"/>' + [10,24,38].map(x=>[10,30].map(y=>`<rect x="${x}" y="${y}" width="10" height="7" rx="1" fill="#C49E5F"/>`).join("")).join("") + '<rect x="68" y="30" width="14" height="10" rx="5" fill="none" stroke="#C49E5F" stroke-width="1.5"/></svg>' },
+  { id: "dense", name: "Dense, type centre d’appels", min: 7, max: 9, who: "Plateaux de relation client, production",
+    pic: '<svg viewBox="0 0 90 48"><rect x="1" y="1" width="88" height="46" rx="4" fill="none" stroke="#8A6E52" stroke-width="1.5"/>' + [8,20,32,44,56,68].map(x=>[8,20,32].map(y=>`<rect x="${x}" y="${y}" width="9" height="6" rx="1" fill="#C49E5F"/>`).join("")).join("") + '</svg>' }
+];
+
+const $ = id => document.getElementById(id);
+const fmt = n => n.toLocaleString("fr-FR");
+const state = { mode: "surface", surface: 400, team: 40, type: "open", presence: 100 };
+
+// Types d'aménagement
+$("types").innerHTML = TYPES.map(t => `
+  <label class="type">${t.pic}<input type="radio" name="type" id="type-${t.id}" value="${t.id}" ${t.id === state.type ? "checked" : ""}>
+    <b>${t.name}</b><small>${t.min} à ${t.max} m² / poste</small></label>`).join("");
+$("hyp-body").innerHTML = TYPES.map(t => `<tr><td>${t.name}</td><td class="num">${t.min} à ${t.max} m²</td><td>${t.who}</td></tr>`).join("");
+
+const LIMITS = { surface: { min: 20, max: 5000, rmin: 50, rmax: 3000, step: 10 }, team: { min: 1, max: 500, rmin: 1, rmax: 300, step: 1 } };
+
+function syncInputs() {
+  const L = LIMITS[state.mode], v = state[state.mode];
+  Object.assign($("qty"), { min: L.min, max: L.max, step: L.step, value: v });
+  Object.assign($("qty-range"), { min: L.rmin, max: L.rmax, step: L.step, value: Math.min(Math.max(v, L.rmin), L.rmax) });
+  $("qty-label").textContent = state.mode === "surface" ? "Surface des bureaux" : "Nombre de personnes à loger";
+  $("qty-unit").textContent = state.mode === "surface" ? "m²" : "personnes";
+  $("qty-hint").textContent = state.mode === "surface" ? "Surface utile du plateau, espaces communs compris." : "Effectif total, présents ou non.";
+}
+
+const ceil5 = x => Math.ceil(x / 5) * 5;
+
+function compute() {
+  const t = TYPES.find(x => x.id === state.type), p = state.presence / 100;
+  if (state.mode === "surface") {
+    const lo = Math.floor(state.surface / t.max), hi = Math.floor(state.surface / t.min);
+    return { lo, hi, unit: hi > 1 ? "postes de travail" : "poste de travail", label: `Pour ${fmt(state.surface)} m²`,
+      extra: p < 1 ? `En flex office à ${state.presence} %, de quoi accueillir <strong>${fmt(Math.floor(lo / p))} à ${fmt(Math.floor(hi / p))} personnes</strong>.` : `Un poste attitré par personne.`,
+      desks: [lo, hi], t,
+      recap: `${fmt(state.surface)} m² · ${t.name.toLowerCase()} · ${fmt(lo)} à ${fmt(hi)} postes${p < 1 ? ` · présence ${state.presence} %` : ""}` };
+  }
+  const posts = Math.max(1, Math.ceil(state.team * p));
+  const lo = ceil5(posts * t.min), hi = ceil5(posts * t.max);
+  return { lo, hi, unit: "m² de surface utile", label: `Pour ${fmt(state.team)} personne${state.team > 1 ? "s" : ""}`,
+    extra: p < 1 ? `En flex office à ${state.presence} %, <strong>${fmt(posts)} postes</strong> suffisent pour ${fmt(state.team)} personnes.` : `<strong>${fmt(posts)} postes</strong>, un par personne.`,
+    desks: [posts, posts], t,
+    recap: `${fmt(state.team)} personnes · ${t.name.toLowerCase()} · ${fmt(lo)} à ${fmt(hi)} m²${p < 1 ? ` · présence ${state.presence} %` : ""}` };
+}
+
+function render() {
+  const r = compute();
+  $("res-label").textContent = r.label;
+  $("res-big").innerHTML = r.lo === r.hi ? fmt(r.lo) : `${fmt(r.lo)}<span class="sep">–</span>${fmt(r.hi)}`;
+  $("res-unit").textContent = r.unit;
+  $("res-extra").innerHTML = r.extra;
+  $("res-assume").textContent = `Hypothèse : ${r.t.min} à ${r.t.max} m² par poste en ${r.t.name.toLowerCase()}, espaces communs compris. Estimation indicative, à confirmer sur plan.`;
+  const CAP = 96, [a, b] = r.desks, full = Math.min(a, CAP), extra = Math.min(b, CAP) - full;
+  $("desks").innerHTML = "<i></i>".repeat(full) + '<i class="range"></i>'.repeat(Math.max(0, extra)) + (b > CAP ? `<span class="more">+ ${fmt(b - CAP)} postes</span>` : "");
+  $("presence-out").textContent = `${state.presence} %`;
+  $("presence-hint").textContent = state.presence === 100 ? "100 % : un poste attitré par personne." : `${state.presence} % : en moyenne, ${state.presence} personnes sur 100 sont au bureau.`;
+  $("recap").textContent = `Votre simulation : ${r.recap}`;
+}
+
+function setQty(v) {
+  const L = LIMITS[state.mode];
+  if (!Number.isFinite(v)) return;
+  state[state.mode] = Math.min(Math.max(Math.round(v), L.min), L.max);
+}
+
+document.querySelectorAll('input[name=mode]').forEach(el => el.addEventListener("change", e => { state.mode = e.target.value; syncInputs(); render(); }));
+$("qty").addEventListener("input", e => { setQty(parseFloat(e.target.value)); $("qty-range").value = state[state.mode]; render(); });
+$("qty").addEventListener("blur", () => { $("qty").value = state[state.mode]; });
+$("qty-range").addEventListener("input", e => { setQty(parseFloat(e.target.value)); $("qty").value = state[state.mode]; render(); });
+$("types").addEventListener("change", e => { if (e.target.name === "type") { state.type = e.target.value; render(); } });
+$("presence").addEventListener("input", e => { state.presence = parseInt(e.target.value, 10); render(); });
+
+$("form").addEventListener("submit", e => {
+  e.preventDefault();
+  const missing = ["f-company", "f-name", "f-email"].filter(id => !$(id).value.trim());
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($("f-email").value.trim());
+  const done = $("done"); done.hidden = false;
+  if (missing.length) { done.textContent = "Renseignez la société, votre nom et votre email."; $(missing[0]).focus(); return; }
+  if (!emailOk) { done.textContent = "L’adresse email semble incomplète. Exemple : nom@societe.fr"; $("f-email").focus(); return; }
+  done.textContent = "Prototype : rien n’a été envoyé. Sur le site, la demande arrivera chez Redoine avec votre simulation : " + compute().recap + ".";
+});
+
+syncInputs(); render();
+</script>

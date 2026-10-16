@@ -167,5 +167,13 @@
       document.getElementById('annee').textContent = new Date().getFullYear();
     })();
   </script>
+  <script>
+    /* Pré-remplissage depuis le simulateur (test-fit-48h.html#simulateur) */
+    (function () {
+      var q = new URLSearchParams(location.search), sim = q.get('simulation'), surf = q.get('surface');
+      if (surf && !document.getElementById('surface').value) document.getElementById('surface').value = surf;
+      if (sim) { var m = document.getElementById('message'); if (!m.value) m.value = 'Demande de Test Fit 48h.\nMa simulation : ' + sim + '\n\nLieu, travaux, délai souhaité : '; }
+    })();
+  </script>
 </body>
 </html>
