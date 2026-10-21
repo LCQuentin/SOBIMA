@@ -220,3 +220,4 @@ mark.a-confirmer { background: transparent; color: var(--caramel-texte); font-fa
 @media (max-width: 800px) { .pied__grille { grid-template-columns: 1fr; gap: var(--space-6); } }
 
 .sb-hero p.ariane { margin: 0 0 var(--space-6); font-size: 12px; line-height: 16px; color: var(--encre-douce); max-width: none; }
+.duo > .section__tete { margin-bottom: 0; }

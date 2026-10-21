@@ -30,10 +30,10 @@ Le thème sombre suit le réglage du système (`prefers-color-scheme`). Ses vale
 
 ## Avant la mise en ligne
 
-- **Supprimer tous les repères `<mark class="a-confirmer">`** (22 au 2026-10-21) : `grep -c a-confirmer *.html`.
+- **Supprimer tous les repères `<mark class="a-confirmer">`** (19 au 2026-10-21) : `grep -c a-confirmer *.html`.
 - Ajouter les fichiers de licence OFL des trois polices dans `assets/fonts/`.
 - Confirmer le domaine (`www.sobima.fr` partout).
-- Vérifier les mentions sensibles, y compris dans les `<title>` et meta descriptions : `grep -n "CBRE\|Montreuil\|La Défense" *.html` — à valider avec Redoine (clause de confidentialité CBRE) ou à retirer.
+- Vérifier les mentions sensibles, y compris dans les `<title>` et meta descriptions : `grep -n "CBRE\|Montreuil\|La Défense" *.html` — seule la mention « trois ans chez CBRE » est validée ; aucune référence de projet CBRE.
 
 ## Changer une coordonnée ou un chiffre
 
@@ -58,8 +58,8 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 
 ## Problèmes connus
 
-- 22 repères `a-confirmer` affichés à l'écran (voulu pour la démo, à retirer avant la mise en ligne).
-- Mentions de CBRE (dont `title` et meta de `a-propos.html`) non validées par Redoine.
+- 19 repères `a-confirmer` affichés à l'écran (voulu pour la démo, à retirer avant la mise en ligne).
+- Citer La Défense, l'immeuble haussmannien et le projet de Montreuil reste à valider par Redoine (« trois ans chez CBRE » validé le 2026-10-21 ; aucune référence de projet CBRE).
 - Licences OFL des polices absentes de `assets/fonts/`.
 - Pas d'image de partage `og:image` (PNG ou JPG 1200 × 630 à créer).
 - Pas de formulaire : contact par téléphone et e-mail pré-rempli.
@@ -69,3 +69,4 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 ## Journal
 
 - 2026-10-21 — Création de la v4 : 10 pages HTML/CSS pur, design system piste A, textes v1 tirés des notes de l'entretien du 21/10. Vérifié en local : 375 / 768 / 1 100 / 1 280 px, thèmes clair et sombre, sans débordement horizontal, polices chargées, liens internes et JSON-LD valides.
+- 2026-10-21 — Textes mis à jour d'après la transcription de l'entretien : « contractant général » relégué au rôle d'explication, deux façons de chiffrer, trois devis BC/SPS, déménagement coordonné, architecte du client, propriétaires et investisseurs, suivi hebdomadaire, encart base vie, réemploi complété, deux questions FAQ ; mention CBRE validée.
