@@ -80,11 +80,6 @@ p, li, dd { text-wrap: pretty; }
 .ariane a { color: var(--encre-douce); }
 
 /* Bandeau des quatre métiers */
-.bandeau { border-block: var(--trait-plan) solid var(--encre); background: var(--calque); }
-.bandeau ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); }
-.bandeau li { font-family: var(--font-cote); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; text-align: center; padding: var(--space-4) var(--space-2); }
-.bandeau li + li { border-left: var(--trait-fin) solid var(--trame); }
-@media (max-width: 600px) { .bandeau ul { grid-template-columns: repeat(2, 1fr); } .bandeau li:nth-child(3) { border-left: 0; } .bandeau li:nth-child(n+3) { border-top: var(--trait-fin) solid var(--trame); } }
 
 /* Plan d'implantation (SVG) */
 .plan { margin: 0; background: var(--calque-releve); border: var(--trait-plan) solid var(--encre); border-radius: var(--radius-trait); padding: var(--space-4); }
@@ -123,8 +118,7 @@ p, li, dd { text-wrap: pretty; }
 
 /* Deux colonnes texte + visuel */
 .duo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-12); align-items: start; }
-.duo--inverse > :first-child { order: 2; }
-@media (max-width: 900px) { .duo { grid-template-columns: 1fr; gap: var(--space-8); } .duo--inverse > :first-child { order: 0; } }
+@media (max-width: 900px) { .duo { grid-template-columns: 1fr; gap: var(--space-8); } }
 
 /* Tableau craintes / réponses */
 .tableau { width: 100%; border-collapse: collapse; background: var(--calque-releve); border: var(--trait-plan) solid var(--encre); }
@@ -193,16 +187,6 @@ p, li, dd { text-wrap: pretty; }
 a.valeur:hover { color: var(--bleu-plan); }
 @media (max-width: 640px) { .contact-carte { padding: var(--space-5); } .contact-carte .valeur { font-size: 18px; } }
 
-/* Formulaire maquetté (non branché en v1) */
-.formulaire { display: grid; gap: var(--space-5); padding: var(--space-8); background: var(--calque-releve); border: var(--trait-fin) solid var(--trame); border-radius: var(--radius-trait); }
-.formulaire fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: var(--space-4); }
-.formulaire legend { padding: 0; margin-bottom: var(--space-3); }
-.champs-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
-@media (max-width: 640px) { .champs-2 { grid-template-columns: 1fr; } .formulaire { padding: var(--space-5); } }
-.champ { display: grid; gap: var(--space-1); }
-.champ label, .champ .libelle { font-size: 14px; font-weight: 600; }
-.champ input, .champ select, .champ textarea { font: inherit; color: var(--encre); background: var(--calque); border: var(--trait-plan) solid var(--encre); border-radius: var(--radius-bouton); padding: 10px 12px; width: 100%; }
-.champ input:disabled, .champ select:disabled, .champ textarea:disabled { opacity: .6; cursor: not-allowed; }
 
 /* Repères [À CONFIRMER] : visibles en démo, à supprimer avant la mise en ligne (rechercher « a-confirmer ») */
 mark.a-confirmer { background: transparent; color: var(--caramel-texte); font-family: var(--font-cote); font-size: .78em; letter-spacing: .01em; border: var(--trait-fin) dashed var(--caramel-texte); padding: 1px 6px; border-radius: var(--radius-trait); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
@@ -242,7 +226,7 @@ html { scrollbar-color: var(--trame) var(--calque); caret-color: var(--bleu-plan
 
 /* Bandeau des métiers : une ligne de légende, pas des onglets */
 p.bandeau .cadre { display: block; }
-p.bandeau { margin: 0; padding: var(--space-4) 0; text-align: center; font-family: var(--font-cote); font-size: 12px; line-height: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--encre-douce); }
+p.bandeau { border-block: var(--trait-plan) solid var(--encre); background: var(--calque); margin: 0; padding: var(--space-4) 0; text-align: center; font-family: var(--font-cote); font-size: 12px; line-height: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--encre-douce); }
 
 /* Fondateur */
 .fondateur { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: var(--space-12); align-items: center; }
@@ -272,3 +256,10 @@ p.bandeau { margin: 0; padding: var(--space-4) 0; text-align: center; font-famil
   :root { --bascule-bas: 84px; }
 }
 @media (max-width: 480px) { p.bandeau { letter-spacing: .04em; font-size: 11px; } }
+
+/* Passe polish */
+.texte > .titre-section:not(:first-child) { margin-top: var(--space-12); }
+.texte > .titre-section { margin-bottom: var(--space-3); }
+@media (max-width: 800px) { .pied ul { gap: 0; } .pied li a { display: inline-block; padding: 11px 0; } }
+@media (max-width: 1080px) { .sb-marque { min-height: 44px; } .lien-fort { display: inline-block; padding: 12px 0; } a.valeur { display: inline-block; padding: 8px 0; } .pied__legal a { display: inline-block; padding: 12px 0; } }
+.pied p.pied__signature { max-width: none; }
