@@ -66,8 +66,8 @@ p, li, dd { text-wrap: pretty; }
 .hero { padding-block: var(--space-16) var(--space-12); }
 .hero__grille { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: var(--space-12); align-items: center; }
 .hero .sb-row { margin-top: var(--space-8); }
-.hero__voile { background: color-mix(in srgb, var(--calque) 88%, transparent); padding: var(--space-5); margin-inline: calc(-1 * var(--space-5)); }
-@media (max-width: 720px) { .hero__voile { padding: var(--space-4); margin-inline: calc(-1 * var(--space-4)); } }
+/* Trame atténuée uniformément sur tout le premier écran, comme dans les sections */
+.hero { background: color-mix(in srgb, var(--calque) 72%, transparent); }
 @media (max-width: 960px) { .hero__grille { grid-template-columns: 1fr; gap: var(--space-8); } .hero__grille .plan { max-width: 560px; } .hero { padding-block: var(--space-12) var(--space-8); } }
 
 .tete-page { padding-block: var(--space-12) var(--space-8); }
@@ -89,7 +89,7 @@ p, li, dd { text-wrap: pretty; }
 .plan .porte { stroke: var(--encre); fill: none; stroke-width: 1; stroke-dasharray: 3 3; }
 .plan .poste { fill: var(--caramel); }
 .plan .meuble { fill: none; stroke: var(--encre); stroke-width: 1.5; }
-.plan .table { fill: var(--caramel); opacity: .55; }
+.plan .table { fill: none; stroke: var(--caramel); stroke-width: 2; }
 .plan .cote-trait { stroke: var(--bleu-plan); stroke-width: 1; fill: none; }
 .plan .cote-texte { fill: var(--bleu-plan); font-family: var(--font-cote); font-size: 11px; letter-spacing: .02em; }
 .plan .zone-texte { fill: var(--encre-douce); font-family: var(--font-cote); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; }
@@ -113,7 +113,6 @@ p, li, dd { text-wrap: pretty; }
 .colonne-filet h3 { margin: 0 0 var(--space-2); font-family: var(--font-titre); font-size: 20px; line-height: 26px; font-weight: 600; }
 .colonne-filet p { margin: 0; color: var(--encre-douce); }
 
-.sb-etape p.numero { font-family: var(--font-cote); font-size: 12px; color: var(--bleu-plan); letter-spacing: .04em; }
 .sb-carte p:not(.sb-etiquette) { margin: 0; font-size: 14px; line-height: 22px; color: var(--encre-douce); }
 
 /* Deux colonnes texte + visuel */
@@ -221,7 +220,7 @@ html { scrollbar-color: var(--trame) var(--calque); caret-color: var(--bleu-plan
 
 /* Accroche */
 .sb-hero p.hero__note { margin: var(--space-5) 0 0; font-family: var(--font-cote); font-size: 12px; line-height: 18px; letter-spacing: .02em; color: var(--encre-douce); max-width: 52ch; }
-.lien-fort { font-weight: 600; color: var(--encre); text-decoration-color: var(--caramel); text-decoration-thickness: 2px; text-underline-offset: 5px; }
+.lien-fort { font-weight: 600; color: var(--encre); text-decoration-color: var(--encre); text-decoration-thickness: 2px; text-underline-offset: 5px; }
 .lien-fort:hover { color: var(--bleu-plan); }
 
 /* Bandeau des métiers : une ligne de légende, pas des onglets */
@@ -263,3 +262,26 @@ p.bandeau { border-block: var(--trait-plan) solid var(--encre); background: var(
 @media (max-width: 800px) { .pied ul { gap: 0; } .pied li a { display: inline-block; padding: 11px 0; } }
 @media (max-width: 1080px) { .sb-marque { min-height: 44px; } .lien-fort { display: inline-block; padding: 12px 0; } a.valeur { display: inline-block; padding: 8px 0; } .pied__legal a { display: inline-block; padding: 12px 0; } }
 .pied p.pied__signature { max-width: none; }
+
+/* Passe critique 2 */
+.sb-hero p.hero__preuve { margin: var(--space-6) 0 0; padding-top: var(--space-4); border-top: var(--trait-fin) solid var(--trame); font-family: var(--font-cote); font-size: 13px; line-height: 18px; letter-spacing: .02em; color: var(--encre); max-width: none; }
+.sb-hero p.hero__note { margin-top: var(--space-2); }
+.fondateur__fiche { font-size: 14px; line-height: 22px; gap: 6px 16px; }
+
+.piliers { margin: var(--space-6) 0 0; padding: var(--space-4) 0; border-block: var(--trait-fin) solid var(--trame); display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-8); font-family: var(--font-titre); font-weight: 600; font-size: 18px; line-height: 26px; }
+.piliers span { position: relative; padding-left: var(--space-5); }
+.piliers span::before { content: ""; position: absolute; left: 0; top: 9px; width: 10px; height: 10px; background: var(--caramel); }
+
+/* Méthode : nomenclature façon cartouche de plan */
+.nomenclature { list-style: none; margin: 0; padding: 0; border: var(--trait-plan) solid var(--encre); border-radius: var(--radius-trait); background: var(--calque-releve); }
+.nomenclature li { display: grid; grid-template-columns: 56px minmax(0, 18rem) minmax(0, 1fr); gap: var(--space-5); align-items: baseline; padding: var(--space-4) var(--space-5); }
+.nomenclature li + li { border-top: var(--trait-fin) solid var(--trame); }
+.nomenclature__num { font-family: var(--font-cote); font-size: 13px; color: var(--bleu-plan); letter-spacing: .04em; }
+.nomenclature h3 { margin: 0; font-family: var(--font-titre); font-size: 18px; line-height: 24px; font-weight: 600; }
+.nomenclature p { margin: 0; font-size: 15px; line-height: 24px; color: var(--encre-douce); }
+@media (max-width: 720px) { .nomenclature li { grid-template-columns: 40px minmax(0, 1fr); gap: var(--space-1) var(--space-3); padding: var(--space-4); } .nomenclature p { grid-column: 2; } }
+
+/* Envoi du plan dans le bloc bleu */
+.sb-testfit p.testfit__envoi { margin-top: var(--space-4); padding-top: var(--space-4); border-top: var(--trait-fin) solid color-mix(in srgb, var(--sur-bleu-plan) 30%, transparent); font-size: 15px; }
+.sb-testfit a:not(.sb-bouton) { color: var(--sur-bleu-plan); text-decoration-color: var(--sur-bleu-plan-doux); }
+.sb-testfit a:focus-visible { outline-color: var(--sur-bleu-plan); }
