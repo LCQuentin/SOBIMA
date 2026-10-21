@@ -221,3 +221,9 @@ mark.a-confirmer { background: transparent; color: var(--caramel-texte); font-fa
 
 .sb-hero p.ariane { margin: 0 0 var(--space-6); font-size: 12px; line-height: 16px; color: var(--encre-douce); max-width: none; }
 .duo > .section__tete { margin-bottom: 0; }
+
+/* TEMPORAIRE : bouton jour / nuit (assets/theme-temporaire.js). À supprimer avec le script. */
+[data-theme="dark"] { color-scheme: dark; }
+.bascule-theme { position: fixed; left: var(--space-4); bottom: var(--space-4); z-index: 30; font-family: var(--font-cote); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; padding: 10px 14px; border: var(--trait-plan) solid var(--encre); border-radius: var(--radius-bouton); background: var(--calque-releve); color: var(--encre); cursor: pointer; }
+.bascule-theme:hover { background: var(--encre); color: var(--calque); }
+.bascule-theme:focus-visible { outline: 2px solid var(--bleu-plan); outline-offset: 3px; }

@@ -26,11 +26,12 @@ Cloudflare Pages sert `prestations.html` à l'adresse `/prestations` : les balis
 | `assets/fonts/` | Montserrat, Schibsted Grotesk, JetBrains Mono (SIL OFL 1.1) |
 | `assets/img/` | logo officiel, portrait |
 
-Le thème sombre suit le réglage du système (`prefers-color-scheme`). Ses valeurs sont recopiées en tête de `site.css` : les modifier aussi dans `tokens.css`.
+Le thème sombre suit le réglage du système (`prefers-color-scheme`). Pour la démo, un bouton temporaire « Mode jour / Mode nuit » (seul JavaScript du site) force l'un ou l'autre et mémorise le choix dans le navigateur. Ses valeurs sont recopiées en tête de `site.css` : les modifier aussi dans `tokens.css`.
 
 ## Avant la mise en ligne
 
 - **Supprimer tous les repères `<mark class="a-confirmer">`** (19 au 2026-10-21) : `grep -c a-confirmer *.html`.
+- **Retirer le bouton jour / nuit temporaire** : supprimer `assets/theme-temporaire.js`, la ligne `<script src="assets/theme-temporaire.js">` des 10 pages et le bloc « TEMPORAIRE » en fin de `site.css`.
 - Ajouter les fichiers de licence OFL des trois polices dans `assets/fonts/`.
 - Confirmer le domaine (`www.sobima.fr` partout).
 - Vérifier les mentions sensibles, y compris dans les `<title>` et meta descriptions : `grep -n "CBRE\|Montreuil\|La Défense" *.html` — seule la mention « trois ans chez CBRE » est validée ; aucune référence de projet CBRE.
@@ -62,6 +63,7 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - Citer La Défense, l'immeuble haussmannien et le projet de Montreuil reste à valider par Redoine (« trois ans chez CBRE » validé le 2026-10-21 ; aucune référence de projet CBRE).
 - Licences OFL des polices absentes de `assets/fonts/`.
 - Pas d'image de partage `og:image` (PNG ou JPG 1200 × 630 à créer).
+- Bouton jour / nuit temporaire (JavaScript) à retirer avant la mise en ligne.
 - Pas de formulaire : contact par téléphone et e-mail pré-rempli.
 - Pas de photos de chantiers : visuels hachurés en attente.
 - Le plan d'implantation de l'accueil et du test fit est un exemple illustratif (cotes marquées « exemple »).
@@ -70,3 +72,4 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 
 - 2026-10-21 — Création de la v4 : 10 pages HTML/CSS pur, design system piste A, textes v1 tirés des notes de l'entretien du 21/10. Vérifié en local : 375 / 768 / 1 100 / 1 280 px, thèmes clair et sombre, sans débordement horizontal, polices chargées, liens internes et JSON-LD valides.
 - 2026-10-21 — Textes mis à jour d'après la transcription de l'entretien : « contractant général » relégué au rôle d'explication, deux façons de chiffrer, trois devis BC/SPS, déménagement coordonné, architecte du client, propriétaires et investisseurs, suivi hebdomadaire, encart base vie, réemploi complété, deux questions FAQ ; mention CBRE validée.
+- 2026-10-21 — Ajout d'un bouton temporaire jour / nuit pour la démo (`assets/theme-temporaire.js`).
