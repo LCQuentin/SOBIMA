@@ -1,0 +1,71 @@
+# Site SOBIMA — v4
+
+Site vitrine de SOBIMA, contractant général en aménagement de bureaux à Paris et en Île-de-France. HTML et CSS statiques, sans outil de build ni JavaScript.
+
+## Démarrage rapide
+
+```sh
+cd site-v4
+python3 -m http.server 8765
+# puis ouvrir http://localhost:8765/
+```
+
+## Déploiement (Cloudflare Pages, offre gratuite)
+
+Déposer le dossier `site-v4/` tel quel (dépôt Git ou envoi direct). Aucune commande de build, dossier de sortie = racine.
+Cloudflare Pages sert `prestations.html` à l'adresse `/prestations` : les balises `canonical`, `og:url` et `sitemap.xml` utilisent déjà cette forme. À vérifier au premier déploiement.
+
+## Structure
+
+| Fichier | Rôle |
+|---|---|
+| `*.html` (10 pages) | accueil, prestations, méthode, expérience (`references.html`), à propos, test fit, réemploi, FAQ, contact, mentions légales |
+| `assets/tokens.css` | couleurs, polices, espacements du design system (piste A « Plan d'implantation ») — **ne pas modifier ici**, la source est `documents/charte/tokens.json` |
+| `assets/bundle.css` | composants `sb-` du design system — même règle |
+| `assets/site.css` | mise en page du site, uniquement à partir des tokens |
+| `assets/fonts/` | Montserrat, Schibsted Grotesk, JetBrains Mono (SIL OFL 1.1) |
+| `assets/img/` | logo officiel, portrait |
+
+Le thème sombre suit le réglage du système (`prefers-color-scheme`). Ses valeurs sont recopiées en tête de `site.css` : les modifier aussi dans `tokens.css`.
+
+## Avant la mise en ligne
+
+- **Supprimer tous les repères `<mark class="a-confirmer">`** (22 au 2026-10-21) : `grep -c a-confirmer *.html`.
+- Ajouter les fichiers de licence OFL des trois polices dans `assets/fonts/`.
+- Confirmer le domaine (`www.sobima.fr` partout).
+- Vérifier les mentions sensibles, y compris dans les `<title>` et meta descriptions : `grep -n "CBRE\|Montreuil\|La Défense" *.html` — à valider avec Redoine (clause de confidentialité CBRE) ou à retirer.
+
+## Changer une coordonnée ou un chiffre
+
+Il n'y a pas de fichier de données unique (choix d'un site sans build) : chercher la valeur dans toutes les pages et la remplacer partout.
+
+| Donnée | Rechercher |
+|---|---|
+| Téléphone | `06 58 94 36 97` et `+33658943697` |
+| E-mail | `redoine@sobima.fr` |
+| Adresse | `173 rue de Courcelles` |
+| Capital, RCS | `1 000 €`, `130 822 281` |
+| Ratio d'occupation | `10 m²` |
+| Durée des travaux | `deux à trois mois` |
+| Délai du test fit | `48 h` |
+| Expérience | `quarantaine`, `1 500 m²` |
+
+La source des faits et chiffres est la note du vault Cortex `02_Projets/SOBIMA/Contenus du site - SOBIMA (v1).md` (§ 2).
+
+## Formulaire
+
+Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails pré-remplis. Un formulaire pourra être branché plus tard avec une Cloudflare Pages Function, selon l'hébergement des e-mails de `sobima.fr`.
+
+## Problèmes connus
+
+- 22 repères `a-confirmer` affichés à l'écran (voulu pour la démo, à retirer avant la mise en ligne).
+- Mentions de CBRE (dont `title` et meta de `a-propos.html`) non validées par Redoine.
+- Licences OFL des polices absentes de `assets/fonts/`.
+- Pas d'image de partage `og:image` (PNG ou JPG 1200 × 630 à créer).
+- Pas de formulaire : contact par téléphone et e-mail pré-rempli.
+- Pas de photos de chantiers : visuels hachurés en attente.
+- Le plan d'implantation de l'accueil et du test fit est un exemple illustratif (cotes marquées « exemple »).
+
+## Journal
+
+- 2026-10-21 — Création de la v4 : 10 pages HTML/CSS pur, design system piste A, textes v1 tirés des notes de l'entretien du 21/10. Vérifié en local : 375 / 768 / 1 100 / 1 280 px, thèmes clair et sombre, sans débordement horizontal, polices chargées, liens internes et JSON-LD valides.

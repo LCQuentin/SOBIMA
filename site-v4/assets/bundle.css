@@ -1,0 +1,60 @@
+/* SOBIMA, piste A « Plan d'implantation » : composants en CSS seul (site statique). Préfixe sb-. Toutes les valeurs viennent de tokens.css. */
+body { margin: 0; font-family: var(--font-texte); font-size: 16px; line-height: 26px; background: var(--calque); color: var(--encre); -webkit-font-smoothing: antialiased; }
+.sb-pad { padding: var(--space-5); }
+.sb-row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+
+/* Trame : quadrillage 32 px du plan, voilé pour garder le texte lisible */
+.sb-trame { background-color: var(--calque); background-image: linear-gradient(var(--trame) var(--trait-fin), transparent var(--trait-fin)), linear-gradient(90deg, var(--trame) var(--trait-fin), transparent var(--trait-fin)); background-size: var(--space-8) var(--space-8); background-position: -1px -1px; }
+.sb-trame > .sb-voile { background: color-mix(in srgb, var(--calque) 88%, transparent); }
+
+/* Étiquette et cote (JetBrains Mono) */
+.sb-etiquette { font-family: var(--font-cote); font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: var(--bleu-plan); margin: 0; }
+.sb-cote { display: inline-grid; gap: var(--space-1); font-family: var(--font-cote); font-size: 11px; line-height: 14px; letter-spacing: .02em; color: var(--bleu-plan); text-align: center; }
+.sb-cote::before { content: ""; height: 8px; border-left: var(--trait-fin) solid var(--bleu-plan); border-right: var(--trait-fin) solid var(--bleu-plan); background: linear-gradient(var(--bleu-plan), var(--bleu-plan)) center / 100% var(--trait-fin) no-repeat; }
+
+/* Bouton */
+.sb-bouton { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-texte); font-size: 15px; line-height: 20px; font-weight: 600; padding: 12px 18px; border-radius: var(--radius-bouton); border: var(--trait-plan) solid var(--encre); background: var(--encre); color: var(--calque); text-decoration: none; cursor: pointer; }
+.sb-bouton:hover { background: transparent; color: var(--encre); }
+.sb-bouton--contour { background: transparent; color: var(--encre); }
+.sb-bouton--contour:hover { background: var(--encre); color: var(--calque); }
+.sb-bouton--testfit { background: var(--caramel); border-color: var(--caramel); color: var(--sur-caramel); }
+.sb-bouton--testfit:hover { background: transparent; border-color: var(--encre); color: var(--encre); }
+.sb-bouton:focus-visible { outline: 2px solid var(--bleu-plan); outline-offset: 3px; }
+
+/* En-tête */
+.sb-entete { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); padding: var(--space-4) var(--space-8); border-bottom: var(--trait-fin) solid var(--trame); background: var(--calque); }
+.sb-marque { display: flex; align-items: center; gap: 10px; font-family: var(--font-titre); font-weight: 700; font-size: 18px; letter-spacing: .04em; color: var(--encre); text-decoration: none; }
+.sb-marque img { width: 32px; height: auto; display: block; }
+.sb-nav { display: flex; flex-wrap: wrap; gap: 22px; font-size: 14px; }
+.sb-nav a { color: var(--encre-douce); text-decoration: none; }
+.sb-nav a:hover, .sb-nav a[aria-current="page"] { color: var(--encre); text-decoration: underline; text-decoration-color: var(--caramel); text-underline-offset: 6px; text-decoration-thickness: 2px; }
+
+/* Carte expérience */
+.sb-carte { display: grid; gap: 10px; padding: var(--space-5); background: var(--calque-releve); border: var(--trait-plan) solid var(--encre); border-radius: var(--radius-trait); }
+.sb-carte__visuel { height: 96px; border: var(--trait-plan) solid var(--encre); border-radius: var(--radius-0); background: repeating-linear-gradient(135deg, transparent 0 9px, color-mix(in srgb, var(--bleu-plan) 16%, transparent) 9px 10px); }
+.sb-carte h3 { margin: 0; font-family: var(--font-titre); font-size: 20px; line-height: 26px; font-weight: 600; }
+.sb-fiche { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; font-family: var(--font-cote); font-size: 11.5px; line-height: 16px; }
+.sb-fiche dt { color: var(--encre-douce); } .sb-fiche dd { margin: 0; }
+
+/* Étape de méthode */
+.sb-etape { display: grid; gap: 10px; padding: var(--space-5); background: var(--calque-releve); border: var(--trait-fin) solid var(--trame); border-radius: var(--radius-trait); }
+.sb-etape h3 { margin: 0; font-family: var(--font-titre); font-size: 20px; line-height: 26px; font-weight: 600; }
+.sb-etape p:not(.sb-etiquette) { margin: 0; font-size: 14px; line-height: 22px; color: var(--encre-douce); }
+.sb-avancement { height: 4px; background: var(--trame); position: relative; }
+.sb-avancement > span { position: absolute; inset: 0 auto 0 0; background: var(--bleu-plan); }
+
+/* Bloc Test Fit */
+.sb-testfit { display: grid; gap: 12px; padding: var(--space-5); background: var(--bleu-plan-fond); color: var(--sur-bleu-plan); border-radius: var(--radius-trait); }
+.sb-testfit .sb-etiquette { color: var(--sur-bleu-plan-doux); }
+.sb-testfit h3 { margin: 0; font-family: var(--font-titre); font-size: 24px; line-height: 28px; font-weight: 700; letter-spacing: -.01em; }
+.sb-testfit p:not(.sb-etiquette) { margin: 0; font-size: 14px; line-height: 22px; }
+.sb-testfit .sb-bouton { justify-self: start; }
+.sb-testfit .sb-bouton--testfit:hover { border-color: var(--sur-bleu-plan); color: var(--sur-bleu-plan); }
+.sb-testfit .sb-bouton:focus-visible { outline-color: var(--sur-bleu-plan); }
+
+/* Titre d'accueil */
+.sb-hero h1 { margin: var(--space-2) 0 0; font-family: var(--font-titre); font-size: clamp(36px, 5vw, 56px); line-height: 1.04; font-weight: 700; letter-spacing: -.02em; text-wrap: balance; }
+.sb-hero h1 em { font-style: normal; color: var(--bleu-plan); }
+.sb-hero p:not(.sb-etiquette) { margin: var(--space-4) 0 0; font-size: 18px; line-height: 28px; color: var(--encre-douce); max-width: 44ch; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }

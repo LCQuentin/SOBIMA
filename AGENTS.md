@@ -1,10 +1,11 @@
 # Consignes pour les IA — site SOBIMA
 
-Site internet de SOBIMA (contractant général en travaux), en HTML et CSS statiques, non déployé.
+Site internet de SOBIMA (contractant général en aménagement de bureaux), en HTML et CSS statiques, non déployé. Cible de déploiement : Cloudflare Pages gratuit, sans build ni JavaScript (promesse faite au client).
 
 - `site/` : maquette d'accueil v1 (Tailwind), puis site v2 (vanilla CSS, 7 pages) ; contient les assets partagés (`site/assets/` : logos, portrait, `social-deeplink.js`).
 - `site-v2/` : variante v2.
-- `site-v3/` : version « SPEC + DESIGN stricts », 9 pages.
+- `site-v3/` : version « SPEC + DESIGN stricts », 9 pages. **Gelé.**
+- `site-v4/` : **version courante** (2026-10-21). Design system piste A (`documents/charte/`), textes v1 issus de l'entretien du 2026-10-21, 10 pages. Lire `site-v4/README.md` (déploiement, repères `a-confirmer`, liste des chaînes à rechercher quand un chiffre change).
 
 ## À lire dans le vault Cortex avant toute tâche
 
