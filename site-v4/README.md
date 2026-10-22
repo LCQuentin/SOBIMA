@@ -103,3 +103,4 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-22 — Logo et puzzle intégrés dans les pages (symboles SVG) au lieu d'un masque CSS et de `<use>` externes, que Chrome bloque quand le site est ouvert en `file://`.
 - 2026-10-22 — Animation du puzzle refaite : déclenchée une fois à l'entrée à l'écran (puzzle.js + transitions) au lieu d'être liée au défilement (état intermédiaire figé sur Chrome, rien sur Firefox).
 - 2026-10-22 — Démo publiée sur https://sobima-demo.bonjour-cf3.workers.dev ; `_headers` : cache des polices sans cumul avec la règle générale.
+- 2026-10-22 — Ruban des quatre métiers en défilement continu (séparateurs en lignes de cote, pause au survol, ligne fixe en mouvement réduit) ; fiche fondateur : « +40 » chantiers (Redoine a dit « à peu près une quarantaine » : à confirmer).

@@ -232,9 +232,6 @@ html { scrollbar-color: var(--trame) var(--calque); caret-color: var(--bleu-plan
 .lien-fort { font-weight: 600; color: var(--encre); text-decoration-color: var(--encre); text-decoration-thickness: 2px; text-underline-offset: 5px; }
 .lien-fort:hover { color: var(--bleu-plan); }
 
-/* Bandeau des métiers : une ligne de légende, pas des onglets */
-p.bandeau .cadre { display: block; }
-p.bandeau { border-block: var(--trait-plan) solid var(--encre); background: var(--calque); margin: 0; padding: var(--space-4) 0; text-align: center; font-family: var(--font-cote); font-size: 0.75rem; line-height: 1rem; letter-spacing: .12em; text-transform: uppercase; color: var(--encre-douce); }
 
 /* Fondateur */
 .fondateur { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: var(--space-12); align-items: center; }
@@ -263,7 +260,6 @@ p.bandeau { border-block: var(--trait-plan) solid var(--encre); background: var(
   body { padding-bottom: 72px; }
   :root { --bascule-bas: 84px; }
 }
-@media (max-width: 480px) { p.bandeau { letter-spacing: .04em; font-size: 0.6875rem; } }
 
 /* Passe polish */
 .texte > .titre-section:not(:first-child) { margin-top: var(--space-12); }
@@ -323,3 +319,17 @@ p.bandeau { border-block: var(--trait-plan) solid var(--encre); background: var(
 .puzzle--pret:not(.puzzle--assemble) .puzzle__piece--hd { transform: translate(58px, -40px) rotate(9deg); }
 .puzzle--pret:not(.puzzle--assemble) .puzzle__piece--bg { transform: translate(-50px, 52px) rotate(8deg); }
 .puzzle--pret:not(.puzzle--assemble) .puzzle__piece--bd { transform: translate(56px, 50px) rotate(-10deg); }
+
+/* Ruban des quatre métiers : défilement continu, séparateurs en lignes de cote (piste dupliquée pour une boucle sans saut) */
+.bandeau { position: relative; overflow: hidden; border-block: var(--trait-plan) solid var(--encre); background: var(--calque); }
+.bandeau__texte { margin: 0; padding: var(--space-4) var(--space-4); text-align: center; font-family: var(--font-cote); font-size: .75rem; line-height: 1rem; letter-spacing: .12em; text-transform: uppercase; color: var(--encre-douce); }
+.bandeau__piste { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .bandeau__texte { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .bandeau__piste { display: flex; width: max-content; animation: bandeau-defile 48s linear infinite; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .bandeau:hover .bandeau__piste { animation-play-state: paused; }
+}
+.bandeau__piste ul { display: flex; align-items: center; flex: none; margin: 0; padding: 0; list-style: none; }
+.bandeau__piste li { flex: none; padding: var(--space-4) 0; font-family: var(--font-cote); font-size: .75rem; line-height: 1rem; letter-spacing: .12em; text-transform: uppercase; color: var(--encre); }
+.bandeau__cote { width: 56px; height: 8px; margin: 0 var(--space-5); padding: 0 !important; border-left: var(--trait-fin) solid var(--bleu-plan); border-right: var(--trait-fin) solid var(--bleu-plan); background: linear-gradient(var(--bleu-plan), var(--bleu-plan)) center / 100% var(--trait-fin) no-repeat; }
+@keyframes bandeau-defile { to { transform: translateX(-50%); } }
