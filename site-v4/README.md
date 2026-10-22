@@ -24,8 +24,8 @@ Cloudflare Pages sert `prestations.html` à l'adresse `/prestations` : les balis
 | `assets/bundle.css` | composants `sb-` du design system — même règle |
 | `assets/site.css` | mise en page du site, uniquement à partir des tokens |
 | `assets/fonts/` | Montserrat, Schibsted Grotesk, JetBrains Mono, avec leurs licences `*-OFL.txt` (SIL OFL 1.1, dépôt google/fonts) |
-| `assets/img/logo-trait.svg` | logo en traits seuls, fond transparent, vectorisé avec potrace depuis `logo-sobima.png` ; affiché en en-tête et pied de page via `mask` (couleur encre, suit le mode nuit). **Variante à valider par Redoine** (la charte dit de ne pas recolorer le logo) |
-| `assets/img/puzzle.svg` | le même puzzle découpé en cadre + 4 pièces (`#cadre`, `#p_hg`, `#p_hd`, `#p_bg`, `#p_bd`), utilisé par l'animation de l'accueil via `<use>` |
+| `assets/img/logo-trait.svg` | logo en traits seuls, fond transparent, vectorisé avec potrace depuis `logo-sobima.png` ; intégré dans chaque page sous forme de symbole SVG (`<use href="#logo-trait">`) au moment de l'assemblage, couleur encre, suit le mode nuit ; fonctionne aussi en ouvrant les fichiers directement (`file://`). **Variante à valider par Redoine** (la charte dit de ne pas recolorer le logo) |
+| `assets/img/puzzle.svg` | le même puzzle découpé en cadre + 4 pièces (`#cadre`, `#p_hg`, `#p_hd`, `#p_bg`, `#p_bd`), intégré dans l'accueil (symboles SVG) pour l'animation ; le fichier reste la source |
 | `assets/img/og-sobima.jpg` | image de partage 1 200 × 630 (réseaux sociaux, messageries) |
 | `404.html` | page d'erreur servie par Cloudflare Pages (`noindex`, `<base href="/">` pour fonctionner à toute profondeur d'URL) |
 | `_headers` | en-têtes Cloudflare : sécurité de base, cache long des polices |
@@ -92,3 +92,4 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-22 — Césure automatique des titres retirée (coupait des mots alors qu'il restait de la place) ; seule la coupure de secours des mots trop longs est gardée.
 - 2026-10-22 — Pied de page : marge de 32 px rétablie entre le filet de la signature et le logo (annulée par la règle .pied p).
 - 2026-10-22 — Logo vectorisé (potrace) en version traits, couleur encre, en en-tête et pied ; puzzle du logo découpé en 4 pièces qui s'assemblent au défilement à côté de « Un seul interlocuteur » (geste offert, voir Sobima.md).
+- 2026-10-22 — Logo et puzzle intégrés dans les pages (symboles SVG) au lieu d'un masque CSS et de `<use>` externes, que Chrome bloque quand le site est ouvert en `file://`.

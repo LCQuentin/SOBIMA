@@ -301,7 +301,8 @@ p.bandeau { border-block: var(--trait-plan) solid var(--encre); background: var(
 .encadre p { max-width: 68ch; }
 
 /* Logo en traits (variante monochrome à valider par Redoine) : suit la couleur du texte et le mode nuit */
-.logo-trait { display: block; width: 36px; aspect-ratio: 512 / 499; background: currentColor; -webkit-mask: url("img/logo-trait.svg") center / contain no-repeat; mask: url("img/logo-trait.svg") center / contain no-repeat; }
+.logo-trait { display: block; width: 36px; height: auto; aspect-ratio: 512 / 499; flex: none; }
+.sprites { position: absolute; width: 0; height: 0; overflow: hidden; }
 
 /* Puzzle du logo : les quatre pièces (les quatre métiers) s'assemblent quand la section entre à l'écran */
 .interlocuteur { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: var(--space-12); align-items: center; }
