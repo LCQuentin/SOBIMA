@@ -105,3 +105,4 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-22 — Démo publiée sur https://sobima-demo.bonjour-cf3.workers.dev ; `_headers` : cache des polices sans cumul avec la règle générale.
 - 2026-10-22 — Ruban des quatre métiers en défilement continu (séparateurs en lignes de cote, pause au survol, ligne fixe en mouvement réduit) ; fiche fondateur : « +40 » chantiers (Redoine a dit « à peu près une quarantaine » : à confirmer).
 - 2026-10-22 — FAQ en deux colonnes sur ordinateur : questions dans une colonne lisible (réponses à 72 caractères), aparté de contact collant ; bloc bleu du bas transformé en appel au test fit.
+- 2026-10-22 — Premier écran : définition du test fit en police de texte sous le bouton, preuve en fiche de cotes (Interlocuteur · Expérience · Chantiers +40) au lieu de deux paragraphes en mono.
