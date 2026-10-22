@@ -341,10 +341,5 @@ html { scrollbar-color: var(--trame) var(--calque); caret-color: var(--bleu-plan
 .faq-aparte a.valeur:hover { color: var(--bleu-plan); }
 @media (max-width: 960px) { .faq-grille { grid-template-columns: 1fr; gap: var(--space-8); } .faq-aparte { position: static; } }
 
-/* Accroche : définition du test fit sous le bouton, preuve en fiche de cotes */
+/* Accroche : définition du test fit sous le bouton */
 .sb-hero p.hero__note { margin: var(--space-4) 0 0; font-size: .875rem; line-height: 1.375rem; color: var(--encre-douce); max-width: 52ch; }
-.hero__fiche { display: grid; grid-template-columns: repeat(3, minmax(0, max-content)); gap: var(--space-5); margin: var(--space-8) 0 0; padding-top: var(--space-5); border-top: var(--trait-fin) solid var(--trame); }
-.hero__fiche div + div { padding-left: var(--space-5); border-left: var(--trait-fin) solid var(--trame); }
-.hero__fiche dt { font-family: var(--font-cote); font-size: .6875rem; line-height: 1rem; letter-spacing: .06em; text-transform: uppercase; color: var(--bleu-plan); }
-.hero__fiche dd { margin: var(--space-1) 0 0; font-family: var(--font-titre); font-weight: 600; font-size: 1rem; line-height: 1.375rem; color: var(--encre); }
-@media (max-width: 480px) { .hero__fiche { gap: var(--space-3); } .hero__fiche div + div { padding-left: var(--space-3); } .hero__fiche dd { font-size: .9375rem; } }
