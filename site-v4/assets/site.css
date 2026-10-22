@@ -25,7 +25,7 @@ a { color: var(--bleu-plan); text-underline-offset: 3px; text-decoration-thickne
 a:hover { text-decoration-thickness: 2px; }
 a:focus-visible, summary:focus-visible { outline: 2px solid var(--bleu-plan); outline-offset: 3px; border-radius: 1px; }
 ::selection { background: var(--bleu-plan); color: var(--calque); }
-h1, h2, h3 { text-wrap: balance; overflow-wrap: break-word; hyphens: auto; }
+h1, h2, h3 { text-wrap: balance; overflow-wrap: break-word; }
 p, li, dd { text-wrap: pretty; }
 
 .lien-evitement { position: absolute; left: -9999px; top: 0; z-index: 20; padding: var(--space-3) var(--space-4); background: var(--encre); color: var(--calque); }
