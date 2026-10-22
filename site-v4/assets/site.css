@@ -11,6 +11,7 @@ body { font-size: 1rem; line-height: 1.625; }
 .sb-marque { font-size: 1.125rem; }
 .sb-hero h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); }
 .sb-hero p:not(.sb-etiquette) { font-size: 1.125rem; line-height: 1.75rem; }
+.sb-carte { align-content: start; }
 .sb-carte h3, .sb-etape h3 { font-size: 1.25rem; line-height: 1.625rem; }
 .sb-carte p, .sb-etape p:not(.sb-etiquette) { font-size: .875rem; line-height: 1.375rem; }
 .sb-testfit h3 { font-size: 1.5rem; line-height: 1.75rem; }

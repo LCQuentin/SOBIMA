@@ -43,7 +43,7 @@ Le thème sombre suit le réglage du système (`prefers-color-scheme`). Pour la 
 
 ## Avant la mise en ligne
 
-- **Supprimer tous les repères `<mark class="a-confirmer">`** (13 au 2026-10-22) : `grep -c a-confirmer *.html`.
+- **Supprimer tous les repères `<mark class="a-confirmer">`** (11 au 2026-10-22) : `grep -c a-confirmer *.html`.
 - **Retirer le bouton jour / nuit temporaire** : supprimer `assets/theme-temporaire.js`, la ligne `<script src="assets/theme-temporaire.js">` des 10 pages et le bloc « TEMPORAIRE » en fin de `site.css`.
 - Confirmer le domaine (`www.sobima.fr` partout).
 - Vérifier les mentions sensibles, y compris dans les `<title>` et meta descriptions : `grep -n "CBRE\|Montreuil\|La Défense" *.html` — seule la mention « trois ans chez CBRE » est validée ; aucune référence de projet CBRE.
@@ -80,7 +80,7 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - Liens internes en `.html` : Cloudflare Pages les redirige vers l'URL sans extension (une redirection par clic). Gardé volontairement pour que le site s'ouvre en local avec un simple serveur statique ; à revoir après le premier déploiement.
 - Les tailles de `bundle.css` (design system) restent en px ; `site.css` les surcharge en rem pour les composants utilisés. À reporter dans la charte si elle évolue.
 
-- 13 repères `a-confirmer` affichés à l'écran (voulu pour la démo, à retirer avant la mise en ligne).
+- 11 repères `a-confirmer` affichés à l'écran (voulu pour la démo, à retirer avant la mise en ligne).
 - Citer La Défense, l'immeuble haussmannien et le projet de Montreuil reste à valider par Redoine (« trois ans chez CBRE » validé le 2026-10-21 ; aucune référence de projet CBRE).
 - Bouton jour / nuit temporaire (JavaScript) à retirer avant la mise en ligne.
 - Pas de formulaire : contact par téléphone et e-mail pré-rempli.
@@ -108,3 +108,4 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-22 — Premier écran : définition du test fit en police de texte sous le bouton, preuve en fiche de cotes (Interlocuteur · Expérience · Chantiers +40) au lieu de deux paragraphes en mono.
 - 2026-10-22 — Mentions légales : TVA FR05130822281 (clé vérifiée sur le SIREN), hébergeur Cloudflare, Inc. (adresse du rapport SEC FY2025), « aucun cookie, aucun outil de mesure d'audience », section assurance retirée (aucune obligation d'affichage sur le site trouvée ; obligatoire sur devis et factures). Fiche de preuve retirée du premier écran.
 - 2026-10-22 — Téléphone affiché au format international (+33 6 58 94 36 97) sur toutes les pages.
+- 2026-10-22 — Page Expérience étoffée à partir de l'entretien du 2026-10-21 : périmètre précisé (surfaces, clients, bâtiments, espaces), récit du projet de Montreuil, deux fiches anonymisées (centre d'examens ERP en immeuble haussmannien, tour IGH à La Défense), section « Travailler autour de votre activité » (site occupé, nuit, réemploi sur place, réglementation). Aucun nom de client ni mention CBRE dans les fiches. Cartes alignées en haut (`.sb-carte { align-content: start }`).
