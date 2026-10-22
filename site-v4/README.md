@@ -24,6 +24,8 @@ Cloudflare Pages sert `prestations.html` à l'adresse `/prestations` : les balis
 | `assets/bundle.css` | composants `sb-` du design system — même règle |
 | `assets/site.css` | mise en page du site, uniquement à partir des tokens |
 | `assets/fonts/` | Montserrat, Schibsted Grotesk, JetBrains Mono, avec leurs licences `*-OFL.txt` (SIL OFL 1.1, dépôt google/fonts) |
+| `assets/img/logo-trait.svg` | logo en traits seuls, fond transparent, vectorisé avec potrace depuis `logo-sobima.png` ; affiché en en-tête et pied de page via `mask` (couleur encre, suit le mode nuit). **Variante à valider par Redoine** (la charte dit de ne pas recolorer le logo) |
+| `assets/img/puzzle.svg` | le même puzzle découpé en cadre + 4 pièces (`#cadre`, `#p_hg`, `#p_hd`, `#p_bg`, `#p_bd`), utilisé par l'animation de l'accueil via `<use>` |
 | `assets/img/og-sobima.jpg` | image de partage 1 200 × 630 (réseaux sociaux, messageries) |
 | `404.html` | page d'erreur servie par Cloudflare Pages (`noindex`, `<base href="/">` pour fonctionner à toute profondeur d'URL) |
 | `_headers` | en-têtes Cloudflare : sécurité de base, cache long des polices |
@@ -64,6 +66,9 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 
 ## Problèmes connus
 
+- Logo en traits : variante monochrome de la charte, à faire valider par Redoine. Le badge caramel officiel reste utilisé pour le favicon et l'image de partage.
+- Animation du puzzle (accueil, section « Un seul interlocuteur ») : CSS seul, déclenchée au défilement (`animation-timeline: view()`). Dans les navigateurs qui ne la gèrent pas, et si le visiteur a demandé à réduire les mouvements, le puzzle s'affiche assemblé, sans animation.
+
 - Liens internes en `.html` : Cloudflare Pages les redirige vers l'URL sans extension (une redirection par clic). Gardé volontairement pour que le site s'ouvre en local avec un simple serveur statique ; à revoir après le premier déploiement.
 - Les tailles de `bundle.css` (design system) restent en px ; `site.css` les surcharge en rem pour les composants utilisés. À reporter dans la charte si elle évolue.
 
@@ -86,3 +91,4 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-22 — Passe issue de l'audit Impeccable (16/20) : page 404, `_headers`, licences OFL, image de partage, tailles en rem, trame atténuée en haut des pages internes, largeur des encadrés, boutons qui passent à la ligne, mode sombre automatique déplacé dans `tokens.css`, deux erreurs de texte corrigées.
 - 2026-10-22 — Césure automatique des titres retirée (coupait des mots alors qu'il restait de la place) ; seule la coupure de secours des mots trop longs est gardée.
 - 2026-10-22 — Pied de page : marge de 32 px rétablie entre le filet de la signature et le logo (annulée par la règle .pied p).
+- 2026-10-22 — Logo vectorisé (potrace) en version traits, couleur encre, en en-tête et pied ; puzzle du logo découpé en 4 pièces qui s'assemblent au défilement à côté de « Un seul interlocuteur » (geste offert, voir Sobima.md).

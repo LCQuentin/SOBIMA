@@ -299,3 +299,29 @@ p.bandeau { border-block: var(--trait-plan) solid var(--encre); background: var(
 /* Audit : trame atténuée en haut des pages internes, paragraphes d'encadré limités */
 .tete-page { background: color-mix(in srgb, var(--calque) 72%, transparent); }
 .encadre p { max-width: 68ch; }
+
+/* Logo en traits (variante monochrome à valider par Redoine) : suit la couleur du texte et le mode nuit */
+.logo-trait { display: block; width: 36px; aspect-ratio: 512 / 499; background: currentColor; -webkit-mask: url("img/logo-trait.svg") center / contain no-repeat; mask: url("img/logo-trait.svg") center / contain no-repeat; }
+
+/* Puzzle du logo : les quatre pièces (les quatre métiers) s'assemblent quand la section entre à l'écran */
+.interlocuteur { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: var(--space-12); align-items: center; }
+.puzzle { margin: 0; color: var(--encre); }
+.puzzle svg { width: 100%; height: auto; overflow: visible; }
+.puzzle figcaption { margin-top: var(--space-3); text-align: center; font-family: var(--font-cote); font-size: .75rem; line-height: 1rem; letter-spacing: .06em; text-transform: uppercase; color: var(--bleu-plan); }
+.puzzle__piece, .puzzle__cadre { transform-box: fill-box; transform-origin: center; }
+@media (max-width: 860px) { .interlocuteur { grid-template-columns: 1fr; gap: var(--space-8); } .puzzle { max-width: 220px; margin-inline: auto; } }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .puzzle__piece, .puzzle__cadre { animation: linear both; animation-timeline: view(); animation-range: entry 10% cover 45%; }
+    .puzzle__cadre { animation-name: puzzle-cadre; }
+    .puzzle__piece--hg { animation-name: puzzle-hg; }
+    .puzzle__piece--hd { animation-name: puzzle-hd; }
+    .puzzle__piece--bg { animation-name: puzzle-bg; }
+    .puzzle__piece--bd { animation-name: puzzle-bd; }
+  }
+}
+@keyframes puzzle-cadre { from { opacity: 0; transform: scale(1.08); } }
+@keyframes puzzle-hg { from { opacity: 0; transform: translate(-54px, -48px) rotate(-14deg); } }
+@keyframes puzzle-hd { from { opacity: 0; transform: translate(58px, -40px) rotate(9deg); } }
+@keyframes puzzle-bg { from { opacity: 0; transform: translate(-50px, 52px) rotate(8deg); } }
+@keyframes puzzle-bd { from { opacity: 0; transform: translate(56px, 50px) rotate(-10deg); } }
