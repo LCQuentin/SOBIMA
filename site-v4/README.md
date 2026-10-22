@@ -20,19 +20,21 @@ Cloudflare Pages sert `prestations.html` à l'adresse `/prestations` : les balis
 | Fichier | Rôle |
 |---|---|
 | `*.html` (10 pages) | accueil, prestations, méthode, expérience (`references.html`), à propos, test fit, réemploi, FAQ, contact, mentions légales |
-| `assets/tokens.css` | couleurs, polices, espacements du design system (piste A « Plan d'implantation ») — **ne pas modifier ici**, la source est `documents/charte/tokens.json` |
+| `assets/tokens.css` | couleurs, polices, espacements du design system (piste A « Plan d'implantation »), copiés de `documents/charte/` — seul ajout : le bloc `prefers-color-scheme: dark`, à garder identique au bloc `[data-theme="dark"]` juste au-dessus |
 | `assets/bundle.css` | composants `sb-` du design system — même règle |
 | `assets/site.css` | mise en page du site, uniquement à partir des tokens |
-| `assets/fonts/` | Montserrat, Schibsted Grotesk, JetBrains Mono (SIL OFL 1.1) |
+| `assets/fonts/` | Montserrat, Schibsted Grotesk, JetBrains Mono, avec leurs licences `*-OFL.txt` (SIL OFL 1.1, dépôt google/fonts) |
+| `assets/img/og-sobima.jpg` | image de partage 1 200 × 630 (réseaux sociaux, messageries) |
+| `404.html` | page d'erreur servie par Cloudflare Pages (`noindex`, `<base href="/">` pour fonctionner à toute profondeur d'URL) |
+| `_headers` | en-têtes Cloudflare : sécurité de base, cache long des polices |
 | `assets/img/` | logo officiel, portrait |
 
-Le thème sombre suit le réglage du système (`prefers-color-scheme`). Pour la démo, un bouton temporaire « Mode jour / Mode nuit » (seul JavaScript du site) force l'un ou l'autre et mémorise le choix dans le navigateur. Ses valeurs sont recopiées en tête de `site.css` : les modifier aussi dans `tokens.css`.
+Le thème sombre suit le réglage du système (`prefers-color-scheme`). Pour la démo, un bouton temporaire « Mode jour / Mode nuit » (seul JavaScript du site) force l'un ou l'autre et mémorise le choix dans le navigateur. Les valeurs sombres automatiques sont dans `tokens.css`. Les tailles de texte de `site.css` sont en rem (elles suivent la taille de police choisie par le visiteur) ; `site.css` surcharge en rem les tailles en px des composants de `bundle.css`.
 
 ## Avant la mise en ligne
 
 - **Supprimer tous les repères `<mark class="a-confirmer">`** (19 au 2026-10-21) : `grep -c a-confirmer *.html`.
 - **Retirer le bouton jour / nuit temporaire** : supprimer `assets/theme-temporaire.js`, la ligne `<script src="assets/theme-temporaire.js">` des 10 pages et le bloc « TEMPORAIRE » en fin de `site.css`.
-- Ajouter les fichiers de licence OFL des trois polices dans `assets/fonts/`.
 - Confirmer le domaine (`www.sobima.fr` partout).
 - Vérifier les mentions sensibles, y compris dans les `<title>` et meta descriptions : `grep -n "CBRE\|Montreuil\|La Défense" *.html` — seule la mention « trois ans chez CBRE » est validée ; aucune référence de projet CBRE.
 
@@ -61,13 +63,12 @@ La source des faits et chiffres est la note du vault Cortex `02_Projets/SOBIMA/C
 Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails pré-remplis. Un formulaire pourra être branché plus tard avec une Cloudflare Pages Function, selon l'hébergement des e-mails de `sobima.fr`.
 
 ## Problèmes connus
-- Contradiction sur test-fit-48h : l'étape 01 (« plan, e-mail, téléphone ») ne reprend pas la liste « Trois éléments suffisent » (plan, contexte, besoins).
-- Accueil, section « Parlons de votre projet » : « Demandez directement un devis » sans lien vers devis-contact.html.
+
+- Liens internes en `.html` : Cloudflare Pages les redirige vers l'URL sans extension (une redirection par clic). Gardé volontairement pour que le site s'ouvre en local avec un simple serveur statique ; à revoir après le premier déploiement.
+- Les tailles de `bundle.css` (design system) restent en px ; `site.css` les surcharge en rem pour les composants utilisés. À reporter dans la charte si elle évolue.
 
 - 19 repères `a-confirmer` affichés à l'écran (voulu pour la démo, à retirer avant la mise en ligne).
 - Citer La Défense, l'immeuble haussmannien et le projet de Montreuil reste à valider par Redoine (« trois ans chez CBRE » validé le 2026-10-21 ; aucune référence de projet CBRE).
-- Licences OFL des polices absentes de `assets/fonts/`.
-- Pas d'image de partage `og:image` (PNG ou JPG 1200 × 630 à créer).
 - Bouton jour / nuit temporaire (JavaScript) à retirer avant la mise en ligne.
 - Pas de formulaire : contact par téléphone et e-mail pré-rempli.
 - Pas de photos de chantiers : visuels hachurés en attente.
@@ -82,3 +83,4 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-21 — Passe polish : CSS mort retiré (formulaire maquetté, ancien bandeau), styles en ligne remplacés par des classes, cibles tactiles ≥ 44 px sur mobile, mentions légales alignées, nombres et unités insécables, signature du pied de page pleine largeur.
 - 2026-10-22 — Passe issue de la 2e critique (22/32) : page Test fit sans renvoi vers elle-même (barre mobile, en-tête et menu → « Envoyer mon plan »), lien e-mail pré-rempli centralisé, adresse visible dans le bloc Test fit de l'accueil, test fit / devis distingués, suite hors Île-de-France, ligne de preuve sous le CTA, piliers en une ligne, méthode en nomenclature de plan (accueil et Méthode), fiche fondateur en 14 px, trame uniforme dans le premier écran, soulignement encre, table de réunion en contour.
 - 2026-10-22 — 3e critique Impeccable (21/32) : arrêt des passes de design, place à l'audit technique et aux retours de Redoine ; formulaire inscrit en v2.
+- 2026-10-22 — Passe issue de l'audit Impeccable (16/20) : page 404, `_headers`, licences OFL, image de partage, tailles en rem, trame atténuée en haut des pages internes, largeur des encadrés, césure des titres, boutons qui passent à la ligne, mode sombre automatique déplacé dans `tokens.css`, deux erreurs de texte corrigées.
