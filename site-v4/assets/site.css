@@ -338,7 +338,7 @@ html { scrollbar-color: var(--trame) var(--calque); caret-color: var(--bleu-plan
 .faq-aparte { position: sticky; top: 104px; display: grid; gap: var(--space-4); padding: var(--space-6); background: var(--calque-releve); border: var(--trait-plan) solid var(--encre); border-radius: var(--radius-trait); }
 .faq-aparte__titre { margin: 0; font-family: var(--font-titre); font-weight: 600; font-size: 1.25rem; line-height: 1.625rem; }
 .faq-aparte .ligne { display: grid; gap: var(--space-1); padding-top: var(--space-4); border-top: var(--trait-fin) solid var(--trame); }
-.faq-aparte .valeur { font-family: var(--font-titre); font-weight: 600; font-size: 1.125rem; color: var(--encre); text-decoration: none; }
+.faq-aparte .valeur { font-family: var(--font-titre); font-weight: 600; font-size: 1.125rem; color: var(--encre); text-decoration: none; overflow-wrap: anywhere; }
 .faq-aparte a.valeur:hover { color: var(--bleu-plan); }
 @media (max-width: 960px) { .faq-grille { grid-template-columns: 1fr; gap: var(--space-8); } .faq-aparte { position: static; } }
 

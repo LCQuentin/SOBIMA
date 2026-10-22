@@ -28,6 +28,7 @@ Cloudflare Pages sert `prestations.html` à l'adresse `/prestations` : les balis
 | Fichier | Rôle |
 |---|---|
 | `*.html` (10 pages) | accueil, prestations, méthode, expérience (`references.html`), à propos, test fit, réemploi, FAQ, contact, mentions légales |
+| `references/association-400-m2-4-semaines.html` | fiche référence modèle (SPEC §4 : lieu, m², délai, prestations, avant / après), servie à `/references/association-400-m2-4-semaines` ; chemins relatifs en `../`. Pour une nouvelle fiche : copier ce fichier, changer le slug, le contenu, la canonical, le JSON-LD `BreadcrumbList`, et ajouter l'URL au sitemap |
 | `assets/tokens.css` | couleurs, polices, espacements du design system (piste A « Plan d'implantation »), copiés de `documents/charte/` — seul ajout : le bloc `prefers-color-scheme: dark`, à garder identique au bloc `[data-theme="dark"]` juste au-dessus |
 | `assets/bundle.css` | composants `sb-` du design system — même règle |
 | `assets/site.css` | mise en page du site, uniquement à partir des tokens |
@@ -43,7 +44,7 @@ Le thème sombre suit le réglage du système (`prefers-color-scheme`). Pour la 
 
 ## Avant la mise en ligne
 
-- **Supprimer tous les repères `<mark class="a-confirmer">`** (11 au 2026-10-22) : `grep -c a-confirmer *.html`.
+- **Supprimer tous les repères `<mark class="a-confirmer">`** (13 au 2026-10-22, dont 2 sur la fiche référence) : `grep -c a-confirmer *.html`.
 - **Retirer le bouton jour / nuit temporaire** : supprimer `assets/theme-temporaire.js`, la ligne `<script src="assets/theme-temporaire.js">` des 10 pages et le bloc « TEMPORAIRE » en fin de `site.css`.
 - Confirmer le domaine (`www.sobima.fr` partout).
 - Vérifier les mentions sensibles, y compris dans les `<title>` et meta descriptions : `grep -n "CBRE\|Montreuil\|La Défense" *.html` — seule la mention « trois ans chez CBRE » est validée ; aucune référence de projet CBRE.
@@ -62,6 +63,7 @@ Il n'y a pas de fichier de données unique (choix d'un site sans build) : cherch
 | Durée des travaux | `deux à trois mois` |
 | Délai du test fit | `48 h` |
 | Expérience | `quarantaine`, `1 500 m²` |
+| Libellé officiel | `bureaux et d'espaces commerciaux` (pied de page, accueil, JSON-LD) |
 
 La source des faits et chiffres est la note du vault Cortex `02_Projets/SOBIMA/Contenus du site - SOBIMA (v1).md` (§ 2).
 
@@ -109,3 +111,5 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-22 — Mentions légales : TVA FR05130822281 (clé vérifiée sur le SIREN), hébergeur Cloudflare, Inc. (adresse du rapport SEC FY2025), « aucun cookie, aucun outil de mesure d'audience », section assurance retirée (aucune obligation d'affichage sur le site trouvée ; obligatoire sur devis et factures). Fiche de preuve retirée du premier écran.
 - 2026-10-22 — Téléphone affiché au format international (+33 6 58 94 36 97) sur toutes les pages.
 - 2026-10-22 — Page Expérience étoffée à partir de l'entretien du 2026-10-21 : périmètre précisé (surfaces, clients, bâtiments, espaces), récit du projet de Montreuil, deux fiches anonymisées (centre d'examens ERP en immeuble haussmannien, tour IGH à La Défense), section « Travailler autour de votre activité » (site occupé, nuit, réemploi sur place, réglementation). Aucun nom de client ni mention CBRE dans les fiches. Cartes alignées en haut (`.sb-carte { align-content: start }`).
+- 2026-10-22 — Données structurées complétées (SPEC §7) : `WebSite` sur l'accueil, `Service` + `hasOfferCatalog` (7 prestations) sur Prestations, `BreadcrumbList` sur toutes les pages à fil d'Ariane ; `@id` commun pour l'entreprise. Fiche référence modèle `references/association-400-m2-4-semaines.html` (projet de Montreuil, prestations et cadre CBRE / SOBIMA « À CONFIRMER »), liée depuis la page Expérience et ajoutée au sitemap. Libellé « aménagement de bureaux et d'espaces commerciaux » (décision du 21/10) dans le pied de page, l'étiquette de l'accueil et la description JSON-LD. Vérifié avec `wrangler dev` : `/references` et `/references/<slug>` en 200, 0 lien interne cassé.
+- 2026-10-22 — Accessibilité (audit RGAA du 22/10) : tableau de l'accueil relié à son titre (`aria-labelledby`), cadres « Photo à venir » masqués aux lecteurs d'écran, adresse e-mail de l'aparté FAQ coupable (`overflow-wrap: anywhere`, débordement à 200 % corrigé). Vérifié : 0 violation axe sur 4 pages. Reste : arrêt du ruban défilant (RGAA 13.8).
