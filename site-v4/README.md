@@ -1,6 +1,6 @@
 # Site SOBIMA — v4
 
-Site vitrine de SOBIMA, contractant général en aménagement de bureaux à Paris et en Île-de-France. HTML et CSS statiques, sans outil de build ni JavaScript.
+Site vitrine de SOBIMA, contractant général en aménagement de bureaux à Paris et en Île-de-France. HTML et CSS statiques, sans outil de build ; un seul petit script (animation du puzzle), le site restant complet sans lui.
 
 ## Démarrage rapide
 
@@ -67,7 +67,7 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 ## Problèmes connus
 
 - Logo en traits : variante monochrome de la charte, à faire valider par Redoine. Le badge caramel officiel reste utilisé pour le favicon et l'image de partage.
-- Animation du puzzle (accueil, section « Un seul interlocuteur ») : CSS seul, déclenchée au défilement (`animation-timeline: view()`). Dans les navigateurs qui ne la gèrent pas, et si le visiteur a demandé à réduire les mouvements, le puzzle s'affiche assemblé, sans animation.
+- Animation du puzzle (accueil, section « Un seul interlocuteur ») : `assets/puzzle.js` (12 lignes, sans dépendance, chargé sur l'accueil seulement) déclenche une fois l'assemblage quand le puzzle entre à l'écran ; transitions CSS de 0,9 s. Sans JavaScript, ou si le visiteur a demandé à réduire les mouvements, le puzzle s'affiche assemblé. C'est le seul JavaScript durable du site (accord du 2026-10-22).
 
 - Liens internes en `.html` : Cloudflare Pages les redirige vers l'URL sans extension (une redirection par clic). Gardé volontairement pour que le site s'ouvre en local avec un simple serveur statique ; à revoir après le premier déploiement.
 - Les tailles de `bundle.css` (design system) restent en px ; `site.css` les surcharge en rem pour les composants utilisés. À reporter dans la charte si elle évolue.
@@ -93,3 +93,4 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-22 — Pied de page : marge de 32 px rétablie entre le filet de la signature et le logo (annulée par la règle .pied p).
 - 2026-10-22 — Logo vectorisé (potrace) en version traits, couleur encre, en en-tête et pied ; puzzle du logo découpé en 4 pièces qui s'assemblent au défilement à côté de « Un seul interlocuteur » (geste offert, voir Sobima.md).
 - 2026-10-22 — Logo et puzzle intégrés dans les pages (symboles SVG) au lieu d'un masque CSS et de `<use>` externes, que Chrome bloque quand le site est ouvert en `file://`.
+- 2026-10-22 — Animation du puzzle refaite : déclenchée une fois à l'entrée à l'écran (puzzle.js + transitions) au lieu d'être liée au défilement (état intermédiaire figé sur Chrome, rien sur Firefox).
