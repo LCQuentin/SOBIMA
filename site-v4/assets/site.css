@@ -270,7 +270,7 @@ p.bandeau { border-block: var(--trait-plan) solid var(--encre); background: var(
 .texte > .titre-section { margin-bottom: var(--space-3); }
 @media (max-width: 800px) { .pied ul { gap: 0; } .pied li a { display: inline-block; padding: 11px 0; } }
 @media (max-width: 1080px) { .sb-marque { min-height: 44px; } .lien-fort { display: inline-block; padding: 12px 0; } a.valeur { display: inline-block; padding: 8px 0; } .pied__legal a { display: inline-block; padding: 12px 0; } }
-.pied p.pied__signature { max-width: none; }
+.pied p.pied__signature { max-width: none; margin: 0 0 var(--space-8); }
 
 /* Passe critique 2 */
 .sb-hero p.hero__preuve { margin: var(--space-6) 0 0; padding-top: var(--space-4); border-top: var(--trait-fin) solid var(--trame); font-family: var(--font-cote); font-size: 0.8125rem; line-height: 1.125rem; letter-spacing: .02em; color: var(--encre); max-width: none; }

@@ -85,3 +85,4 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-22 — 3e critique Impeccable (21/32) : arrêt des passes de design, place à l'audit technique et aux retours de Redoine ; formulaire inscrit en v2.
 - 2026-10-22 — Passe issue de l'audit Impeccable (16/20) : page 404, `_headers`, licences OFL, image de partage, tailles en rem, trame atténuée en haut des pages internes, largeur des encadrés, boutons qui passent à la ligne, mode sombre automatique déplacé dans `tokens.css`, deux erreurs de texte corrigées.
 - 2026-10-22 — Césure automatique des titres retirée (coupait des mots alors qu'il restait de la place) ; seule la coupure de secours des mots trop longs est gardée.
+- 2026-10-22 — Pied de page : marge de 32 px rétablie entre le filet de la signature et le logo (annulée par la règle .pied p).
