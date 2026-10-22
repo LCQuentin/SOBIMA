@@ -54,7 +54,7 @@ Il n'y a pas de fichier de données unique (choix d'un site sans build) : cherch
 
 | Donnée | Rechercher |
 |---|---|
-| Téléphone | `06 58 94 36 97` et `+33658943697` |
+| Téléphone | `+33 6 58 94 36 97` (affiché) et `+33658943697` (liens `tel:`) |
 | E-mail | `redoine@sobima.fr` |
 | Adresse | `173 rue de Courcelles` |
 | Capital, RCS | `1 000 €`, `130 822 281` |
@@ -107,3 +107,4 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-22 — FAQ en deux colonnes sur ordinateur : questions dans une colonne lisible (réponses à 72 caractères), aparté de contact collant ; bloc bleu du bas transformé en appel au test fit.
 - 2026-10-22 — Premier écran : définition du test fit en police de texte sous le bouton, preuve en fiche de cotes (Interlocuteur · Expérience · Chantiers +40) au lieu de deux paragraphes en mono.
 - 2026-10-22 — Mentions légales : TVA FR05130822281 (clé vérifiée sur le SIREN), hébergeur Cloudflare, Inc. (adresse du rapport SEC FY2025), « aucun cookie, aucun outil de mesure d'audience », section assurance retirée (aucune obligation d'affichage sur le site trouvée ; obligatoire sur devis et factures). Fiche de preuve retirée du premier écran.
+- 2026-10-22 — Téléphone affiché au format international (+33 6 58 94 36 97) sur toutes les pages.
