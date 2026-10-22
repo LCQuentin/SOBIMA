@@ -15,6 +15,14 @@ python3 -m http.server 8765
 Déposer le dossier `site-v4/` tel quel (dépôt Git ou envoi direct). Aucune commande de build, dossier de sortie = racine.
 Cloudflare Pages sert `prestations.html` à l'adresse `/prestations` : les balises `canonical`, `og:url` et `sitemap.xml` utilisent déjà cette forme. À vérifier au premier déploiement.
 
+## Démo en ligne
+
+- Adresse : https://sobima-demo.bonjour-cf3.workers.dev (non indexée : `X-Robots-Tag: noindex` ajouté à la copie de démo).
+- Hébergée sur le compte Cloudflare de Quentin, en **Workers avec fichiers statiques** : wrangler 4.151 ne crée plus de projet Pages classique et redirige vers Workers. La mise en ligne définitive se fera sur le compte de Redoine (Pages ou Workers, à trancher).
+- Redéployer : copier `site-v4/` sans `README.md` dans un dossier `deploy/`, ajouter `X-Robots-Tag: noindex, nofollow` sous `/*` dans `deploy/_headers`, puis `npx wrangler deploy` depuis le dossier parent avec ce `wrangler.jsonc` :
+  `{"name": "sobima-demo", "compatibility_date": "2026-10-19", "assets": {"directory": "./deploy", "not_found_handling": "404-page", "html_handling": "auto-trailing-slash"}}`
+- Vérifié en ligne le 2026-10-22 : pages 200, vraie 404 à toute profondeur, `prestations.html` redirigé (307) vers `/prestations`, en-têtes de sécurité présents, cache d'un an sur les polices, README non publié.
+
 ## Structure
 
 | Fichier | Rôle |
@@ -94,3 +102,4 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-22 — Logo vectorisé (potrace) en version traits, couleur encre, en en-tête et pied ; puzzle du logo découpé en 4 pièces qui s'assemblent au défilement à côté de « Un seul interlocuteur » (geste offert, voir Sobima.md).
 - 2026-10-22 — Logo et puzzle intégrés dans les pages (symboles SVG) au lieu d'un masque CSS et de `<use>` externes, que Chrome bloque quand le site est ouvert en `file://`.
 - 2026-10-22 — Animation du puzzle refaite : déclenchée une fois à l'entrée à l'écran (puzzle.js + transitions) au lieu d'être liée au défilement (état intermédiaire figé sur Chrome, rien sur Firefox).
+- 2026-10-22 — Démo publiée sur https://sobima-demo.bonjour-cf3.workers.dev ; `_headers` : cache des polices sans cumul avec la règle générale.
