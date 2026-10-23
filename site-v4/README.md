@@ -39,18 +39,19 @@ Cloudflare Pages sert `prestations.html` à l'adresse `/prestations` : les balis
 | `assets/img/piece.svg`, `piece-debut.svg` | pièce de puzzle de la frise des six étapes (accueil, Méthode), utilisée comme masque CSS |
 | `assets/img/ambiance-*.webp` | photos d'ambiance Unsplash (800 et 1 600 px), provenance dans `assets/img/CREDITS.md` ; à remplacer par les rendus et photos de Redoine |
 | `favicon.svg`, `favicon.png`, `apple-touch-icon.png` | logo détouré en caramel, sans fond (l'icône Apple garde un fond beige `--calque`, iOS affichant sinon du noir) |
-| `404.html` | page d'erreur servie par Cloudflare Pages (`noindex`, `<base href="/">` pour fonctionner à toute profondeur d'URL) |
-| `_headers` | en-têtes Cloudflare : sécurité de base, cache long des polices |
+| `llms.txt` | synthèse structurée du site et des pages canoniques pour les moteurs de recherche IA (GEO) |
+| `404.html` | page d'erreur servie par Cloudflare Pages (`noindex`, chemins absolus `/...` pour fonctionner à toute profondeur d'URL sans casser le lien d'évitement `#contenu`) |
+| `_headers` | en-têtes Cloudflare : sécurité (CSP, COOP, X-Frame-Options), cache long des polices |
 | `assets/img/` | logo officiel (portrait de Redoine retiré le 2026-10-23) |
 
-Le thème sombre suit le réglage du système (`prefers-color-scheme`). Pour la démo, un bouton temporaire « Mode jour / Mode nuit » (seul JavaScript du site) force l'un ou l'autre et mémorise le choix dans le navigateur. Les valeurs sombres automatiques sont dans `tokens.css`. Les tailles de texte de `site.css` sont en rem (elles suivent la taille de police choisie par le visiteur) ; `site.css` surcharge en rem les tailles en px des composants de `bundle.css`.
+Le thème sombre suit le réglage du système (`prefers-color-scheme`). Pour la démo, un bouton temporaire « Mode jour / Mode nuit » force l'un ou l'autre et mémorise le choix dans le navigateur. Les valeurs sombres automatiques sont dans `tokens.css`. Les tailles de texte de `site.css` sont en rem (elles suivent la taille de police choisie par le visiteur) ; `site.css` surcharge en rem les tailles en px des composants de `bundle.css`.
 
 ## Avant la mise en ligne
 
-- **Supprimer tous les repères `<mark class="a-confirmer">`** (15 au 2026-10-23, dont 2 sur la fiche référence et 2 « photo de l'équipe ») : `grep -c a-confirmer *.html`.
-- **Retirer le bouton jour / nuit temporaire** : supprimer `assets/theme-temporaire.js`, la ligne `<script src="assets/theme-temporaire.js">` des 10 pages et le bloc « TEMPORAIRE » en fin de `site.css`.
+- **Supprimer tous les repères `<mark class="a-confirmer">`** (14 au 2026-10-23, dont 2 sur la fiche référence) : `grep -rc a-confirmer *.html references/`.
+- **Retirer le bouton jour / nuit temporaire** : supprimer `assets/theme-temporaire.js`, la ligne `<script src=".../assets/theme-temporaire.js">` des 12 pages et le bloc « TEMPORAIRE » en fin de `site.css`.
 - Confirmer le domaine (`www.sobima.fr` partout).
-- Vérifier les mentions sensibles, y compris dans les `<title>` et meta descriptions : `grep -n "CBRE\|Montreuil\|La Défense" *.html` — seule la mention « trois ans chez CBRE » est validée ; aucune référence de projet CBRE.
+- Vérifier les mentions sensibles, y compris dans les `<title>` et meta descriptions : `grep -rn "CBRE\|Montreuil\|La Défense" *.html references/`.
 
 ## Changer une coordonnée ou un chiffre
 
@@ -65,7 +66,6 @@ Il n'y a pas de fichier de données unique (choix d'un site sans build) : cherch
 | Ratio d'occupation | `10 m²` |
 | Durée des travaux | `deux à trois mois` |
 | Délai du test fit | `48 h` |
-| Expérience | `quarantaine`, `1 500 m²` |
 | Libellé officiel | `bureaux et d'espaces commerciaux` (pied de page, accueil, JSON-LD) |
 
 La source des faits et chiffres est la note du vault Cortex `02_Projets/SOBIMA/Contenus du site - SOBIMA (v1).md` (§ 2).
@@ -80,12 +80,12 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 ## Problèmes connus
 
 - Logo en traits : variante monochrome de la charte, à faire valider par Redoine. Le badge caramel officiel reste utilisé pour le favicon et l'image de partage.
-- Animation du puzzle (accueil, section « Un seul interlocuteur ») : `assets/puzzle.js` (12 lignes, sans dépendance, chargé sur l'accueil seulement) déclenche une fois l'assemblage quand le puzzle entre à l'écran ; transitions CSS de 0,9 s. Sans JavaScript, ou si le visiteur a demandé à réduire les mouvements, le puzzle s'affiche assemblé. C'est le seul JavaScript durable du site (accord du 2026-10-22).
+- Animation du puzzle (accueil, section « Un seul interlocuteur ») et pause du ruban (accueil, Prestations) : `assets/puzzle.js` (sans dépendance, chargé sur l'accueil et Prestations) déclenche une fois l'assemblage quand le puzzle entre à l'écran et injecte le bouton « Pause / Relancer » dans le ruban défilant (conformité RGAA 13.8). Sans JavaScript, ou si le visiteur a demandé à réduire les mouvements, le puzzle s'affiche assemblé et le ruban reste fixe. C'est le seul JavaScript durable du site (accord du 2026-10-22).
 
 - Liens internes en `.html` : Cloudflare Pages les redirige vers l'URL sans extension (une redirection par clic). Gardé volontairement pour que le site s'ouvre en local avec un simple serveur statique ; à revoir après le premier déploiement.
 - Les tailles de `bundle.css` (design system) restent en px ; `site.css` les surcharge en rem pour les composants utilisés. À reporter dans la charte si elle évolue.
 
-- 11 repères `a-confirmer` affichés à l'écran (voulu pour la démo, à retirer avant la mise en ligne).
+- 14 repères `a-confirmer` affichés à l'écran (voulu pour la démo, à retirer avant la mise en ligne).
 - Citer La Défense, l'immeuble haussmannien et le projet de Montreuil reste à valider par Redoine (« trois ans chez CBRE » validé le 2026-10-21 ; aucune référence de projet CBRE).
 - Bouton jour / nuit temporaire (JavaScript) à retirer avant la mise en ligne.
 - Pas de formulaire : contact par téléphone et e-mail pré-rempli.
@@ -120,3 +120,4 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-23 — En-têtes de Prestations, Méthode, Expérience et À propos : étiquette bleue retirée (elle répétait le fil d'Ariane). Chapô de la page Expérience réécrit : « interlocuteur qui connaît le terrain » au lieu de « jeune entreprise » (note Contenus v1 alignée).
 - 2026-10-23 — Page Expérience : section « Les premiers projets SOBIMA » retirée jusqu'aux premières photos de chantier.
 - 2026-10-23 — Retours de Redoine sur la maquette (1er aller-retour, voir la note « Retours Redoine - maquette v4 2026-10-23 » du vault) : SOBIMA parle à la place de Redoine (portrait retiré, « Nous appeler », contact@sobima.fr) ; capital retiré du pied de page et d'À propos (gardé dans les mentions légales) ; plus de nombre de chantiers ni de surface maximale ; tableau « Votre crainte » remplacé par « Nos engagements » ; accroche de l'accueil sur l'accompagnement clés en main, test fit en seconde porte d'entrée ; police mono JetBrains retirée (étiquettes en Schibsted Grotesk) ; frise puzzle des six étapes, animée au défilement en CSS ; photos d'ambiance Unsplash sur l'accueil, Prestations, Méthode et Réemploi ; favicon détouré en caramel ; image OG régénérée. Vérifié en local (wrangler dev) : 0 violation axe sur 12 pages × clair / sombre × 1 280 / 375 px, aucun débordement à 320 px ni à 200 %, taille minimale 12 px, aucune requête vers un tiers.
+- 2026-10-23 — Revue intégrale du code (SEO/GEO, accessibilité, responsivité) : lien rétabli depuis Expérience vers la fiche `references/association-400-m2-4-semaines.html` ; `og:image:alt` mis à jour sur les 12 pages ; JSON-LD enrichis (`vatID`/`taxID`/`knowsAbout` sur l'accueil, `AboutPage` complétée, `Service` sur Test fit, `ContactPage` sur Contact) ; création de `llms.txt` et mise à jour de `sitemap.xml` ; bouton Pause / Relancer sur le ruban défilant (RGAA 13.8) ; fil d'Ariane balisé en `<nav>` ; `+`/`−` de la FAQ masqués aux lecteurs d'écran ; `404.html` en chemins racines sans `<base href="/">` (corrige le lien `#contenu`) ; `scroll-padding-bottom` mobile, défilement interne du menu mobile ouvert, tailles en `px` du plan SVG sous 480 px (résiste au zoom 200 %), centrage optique des numéros de la frise ; suppression du CSS mort et consolidation de `site.css`.
