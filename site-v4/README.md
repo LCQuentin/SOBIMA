@@ -32,19 +32,22 @@ Cloudflare Pages sert `prestations.html` à l'adresse `/prestations` : les balis
 | `assets/tokens.css` | couleurs, polices, espacements du design system (piste A « Plan d'implantation »), copiés de `documents/charte/` — seul ajout : le bloc `prefers-color-scheme: dark`, à garder identique au bloc `[data-theme="dark"]` juste au-dessus |
 | `assets/bundle.css` | composants `sb-` du design system — même règle |
 | `assets/site.css` | mise en page du site, uniquement à partir des tokens |
-| `assets/fonts/` | Montserrat, Schibsted Grotesk, JetBrains Mono, avec leurs licences `*-OFL.txt` (SIL OFL 1.1, dépôt google/fonts) |
+| `assets/fonts/` | Montserrat, Schibsted Grotesk (JetBrains Mono retirée le 2026-10-23), avec leurs licences `*-OFL.txt` (SIL OFL 1.1, dépôt google/fonts) |
 | `assets/img/logo-trait.svg` | logo en traits seuls, fond transparent, vectorisé avec potrace depuis `logo-sobima.png` ; intégré dans chaque page sous forme de symbole SVG (`<use href="#logo-trait">`) au moment de l'assemblage, couleur encre, suit le mode nuit ; fonctionne aussi en ouvrant les fichiers directement (`file://`). **Variante à valider par Redoine** (la charte dit de ne pas recolorer le logo) |
 | `assets/img/puzzle.svg` | le même puzzle découpé en cadre + 4 pièces (`#cadre`, `#p_hg`, `#p_hd`, `#p_bg`, `#p_bd`), intégré dans l'accueil (symboles SVG) pour l'animation ; le fichier reste la source |
-| `assets/img/og-sobima.jpg` | image de partage 1 200 × 630 (réseaux sociaux, messageries) |
+| `assets/img/og-sobima.jpg` | image de partage 1 200 × 630 (réseaux sociaux, messageries), régénérée le 2026-10-23 à partir de l'accueil |
+| `assets/img/piece.svg`, `piece-debut.svg` | pièce de puzzle de la frise des six étapes (accueil, Méthode), utilisée comme masque CSS |
+| `assets/img/ambiance-*.webp` | photos d'ambiance Unsplash (800 et 1 600 px), provenance dans `assets/img/CREDITS.md` ; à remplacer par les rendus et photos de Redoine |
+| `favicon.svg`, `favicon.png`, `apple-touch-icon.png` | logo détouré en caramel, sans fond (l'icône Apple garde un fond beige `--calque`, iOS affichant sinon du noir) |
 | `404.html` | page d'erreur servie par Cloudflare Pages (`noindex`, `<base href="/">` pour fonctionner à toute profondeur d'URL) |
 | `_headers` | en-têtes Cloudflare : sécurité de base, cache long des polices |
-| `assets/img/` | logo officiel, portrait |
+| `assets/img/` | logo officiel (portrait de Redoine retiré le 2026-10-23) |
 
 Le thème sombre suit le réglage du système (`prefers-color-scheme`). Pour la démo, un bouton temporaire « Mode jour / Mode nuit » (seul JavaScript du site) force l'un ou l'autre et mémorise le choix dans le navigateur. Les valeurs sombres automatiques sont dans `tokens.css`. Les tailles de texte de `site.css` sont en rem (elles suivent la taille de police choisie par le visiteur) ; `site.css` surcharge en rem les tailles en px des composants de `bundle.css`.
 
 ## Avant la mise en ligne
 
-- **Supprimer tous les repères `<mark class="a-confirmer">`** (13 au 2026-10-22, dont 2 sur la fiche référence) : `grep -c a-confirmer *.html`.
+- **Supprimer tous les repères `<mark class="a-confirmer">`** (15 au 2026-10-23, dont 2 sur la fiche référence et 2 « photo de l'équipe ») : `grep -c a-confirmer *.html`.
 - **Retirer le bouton jour / nuit temporaire** : supprimer `assets/theme-temporaire.js`, la ligne `<script src="assets/theme-temporaire.js">` des 10 pages et le bloc « TEMPORAIRE » en fin de `site.css`.
 - Confirmer le domaine (`www.sobima.fr` partout).
 - Vérifier les mentions sensibles, y compris dans les `<title>` et meta descriptions : `grep -n "CBRE\|Montreuil\|La Défense" *.html` — seule la mention « trois ans chez CBRE » est validée ; aucune référence de projet CBRE.
@@ -56,9 +59,9 @@ Il n'y a pas de fichier de données unique (choix d'un site sans build) : cherch
 | Donnée | Rechercher |
 |---|---|
 | Téléphone | `+33 6 58 94 36 97` (affiché) et `+33658943697` (liens `tel:`) |
-| E-mail | `redoine@sobima.fr` |
+| E-mail | `contact@sobima.fr` (boîte à créer par Redoine avant la mise en ligne) |
 | Adresse | `173 rue de Courcelles` |
-| Capital, RCS | `1 000 €`, `130 822 281` |
+| Capital, RCS | `1 000 €` (seulement dans les mentions légales, obligation LCEN), `130 822 281` |
 | Ratio d'occupation | `10 m²` |
 | Durée des travaux | `deux à trois mois` |
 | Délai du test fit | `48 h` |
@@ -116,3 +119,4 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-23 — Revue UI/UX (skill ui-ux-pro-max), corrections en CSS seul en fin de `site.css` : barre d'action mobile masquée tant que le bouton du premier écran est visible (accueil, test fit ; animation liée au défilement `view-timeline`, sans effet sous Firefox où la barre reste visible), barre masquée en paysage (hauteur ≤ 500 px), plancher de 12 px (fiches de cotes à 13 px, légendes, cotes), légendes du plan SVG à environ 12 px rendus au-delà de 480 px de large (tailles d'origine en dessous, sinon elles débordent des pièces), colonnes de texte à 52 ch (environ 72 caractères au lieu de 76 à 100), bouton Menu à 44 px. Vérifié en local : 0 violation axe sur 22 passes, aucun débordement horizontal.
 - 2026-10-23 — En-têtes de Prestations, Méthode, Expérience et À propos : étiquette bleue retirée (elle répétait le fil d'Ariane). Chapô de la page Expérience réécrit : « interlocuteur qui connaît le terrain » au lieu de « jeune entreprise » (note Contenus v1 alignée).
 - 2026-10-23 — Page Expérience : section « Les premiers projets SOBIMA » retirée jusqu'aux premières photos de chantier.
+- 2026-10-23 — Retours de Redoine sur la maquette (1er aller-retour, voir la note « Retours Redoine - maquette v4 2026-10-23 » du vault) : SOBIMA parle à la place de Redoine (portrait retiré, « Nous appeler », contact@sobima.fr) ; capital retiré du pied de page et d'À propos (gardé dans les mentions légales) ; plus de nombre de chantiers ni de surface maximale ; tableau « Votre crainte » remplacé par « Nos engagements » ; accroche de l'accueil sur l'accompagnement clés en main, test fit en seconde porte d'entrée ; police mono JetBrains retirée (étiquettes en Schibsted Grotesk) ; frise puzzle des six étapes, animée au défilement en CSS ; photos d'ambiance Unsplash sur l'accueil, Prestations, Méthode et Réemploi ; favicon détouré en caramel ; image OG régénérée. Vérifié en local (wrangler dev) : 0 violation axe sur 12 pages × clair / sombre × 1 280 / 375 px, aucun débordement à 320 px ni à 200 %, taille minimale 12 px, aucune requête vers un tiers.

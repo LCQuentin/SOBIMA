@@ -7,7 +7,7 @@ body { margin: 0; font-family: var(--font-texte); font-size: 16px; line-height: 
 .sb-trame { background-color: var(--calque); background-image: linear-gradient(var(--trame) var(--trait-fin), transparent var(--trait-fin)), linear-gradient(90deg, var(--trame) var(--trait-fin), transparent var(--trait-fin)); background-size: var(--space-8) var(--space-8); background-position: -1px -1px; }
 .sb-trame > .sb-voile { background: color-mix(in srgb, var(--calque) 88%, transparent); }
 
-/* Étiquette et cote (JetBrains Mono) */
+/* Étiquette et cote (Schibsted Grotesk en capitales ; la mono JetBrains a été retirée le 2026-10-23) */
 .sb-etiquette { font-family: var(--font-cote); font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: var(--bleu-plan); margin: 0; }
 .sb-cote { display: inline-grid; gap: var(--space-1); font-family: var(--font-cote); font-size: 11px; line-height: 14px; letter-spacing: .02em; color: var(--bleu-plan); text-align: center; }
 .sb-cote::before { content: ""; height: 8px; border-left: var(--trait-fin) solid var(--bleu-plan); border-right: var(--trait-fin) solid var(--bleu-plan); background: linear-gradient(var(--bleu-plan), var(--bleu-plan)) center / 100% var(--trait-fin) no-repeat; }

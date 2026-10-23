@@ -6,7 +6,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) { --calque: #15181c; --calque-releve: #1f2328; --trame: #3a4048; --encre: #f2eee6; --encre-douce: #a3a8ae; --bleu-plan: #9db8d9; --bleu-plan-fond: #2c4a6e; --sur-bleu-plan: #f2eee6; --sur-bleu-plan-doux: #c7d3e3; --caramel: #c49e5f; --sur-caramel: #15181c; --caramel-texte: #d9b77e; color-scheme: dark; }
 }
-:root { --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px; --radius-0: 0; --radius-trait: 2px; --radius-bouton: 3px; --trait-fin: 1px; --trait-plan: 1.5px; --font-titre: "Montserrat", "Helvetica Neue", Arial, sans-serif; --font-texte: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif; --font-cote: "JetBrains Mono", ui-monospace, Menlo, monospace; }
+:root { --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px; --radius-0: 0; --radius-trait: 2px; --radius-bouton: 3px; --trait-fin: 1px; --trait-plan: 1.5px; --font-titre: "Montserrat", "Helvetica Neue", Arial, sans-serif; --font-texte: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif; --font-cote: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif; }
 .display { font-family: var(--font-titre); font-size: 56px; line-height: 58px; font-weight: 700; letter-spacing: -0.02em; }
 .titre-1 { font-family: var(--font-titre); font-size: 40px; line-height: 44px; font-weight: 700; letter-spacing: -0.015em; }
 .titre-2 { font-family: var(--font-titre); font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -0.01em; }
@@ -19,4 +19,3 @@
 .cote { font-family: var(--font-cote); font-size: 11px; line-height: 14px; font-weight: 400; letter-spacing: 0.02em; }
 @font-face { font-family: "Montserrat"; src: url("fonts/Montserrat-Variable.woff2") format("woff2"); font-weight: 400 800; font-style: normal; font-display: swap; }
 @font-face { font-family: "Schibsted Grotesk"; src: url("fonts/SchibstedGrotesk-Variable.woff2") format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; }
-@font-face { font-family: "JetBrains Mono"; src: url("fonts/JetBrainsMono-Variable.woff2") format("woff2"); font-weight: 400 600; font-style: normal; font-display: swap; }
