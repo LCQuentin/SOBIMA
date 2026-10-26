@@ -1,20 +1,36 @@
 /* Accueil et Méthode :
-   1. Assemblage unique des quatre pièces du puzzle à l'entrée à l'écran.
+   1. Badge vidéo : lecture unique à l'entrée à l'écran, puis image figée.
    2. Frise des six étapes : chaque pièce s'emboîte une fois, quand elle est bien visible à l'écran.
-   Sans ce script, ou si le visiteur a demandé à réduire les mouvements, puzzle et frise restent assemblés. */
+   Sans ce script, ou si le visiteur a demandé à réduire les mouvements, le badge et la frise restent sur leur image finale. */
 (function () {
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  var puzzle = document.querySelector(".puzzle");
-  if (puzzle && "IntersectionObserver" in window) {
-    puzzle.classList.add("puzzle--pret");
-    var observateur = new IntersectionObserver(function (entrees) {
-      if (entrees[0].isIntersecting) {
-        puzzle.classList.add("puzzle--assemble");
-        observateur.disconnect();
-      }
-    }, { threshold: 0.3 });
-    observateur.observe(puzzle);
+  var videoPuzzle = document.querySelector(".video-puzzle");
+  if (videoPuzzle && "IntersectionObserver" in window) {
+    var video = videoPuzzle.querySelector("video");
+    var statique = videoPuzzle.querySelector(".video-puzzle__statique");
+    var joue = false;
+    var montrerStatique = function () {
+      videoPuzzle.classList.remove("video-puzzle--pret");
+      if (video) video.pause();
+    };
+
+    if (video && statique) {
+      videoPuzzle.classList.add("video-puzzle--pret");
+      video.addEventListener("error", montrerStatique, { once: true });
+
+      var observateurVideo = new IntersectionObserver(function (entrees) {
+        if (!entrees[0].isIntersecting || joue) return;
+        joue = true;
+        observateurVideo.disconnect();
+        var lecture = video.play();
+        if (lecture && typeof lecture.catch === "function") {
+          lecture.catch(montrerStatique);
+        }
+      }, { threshold: 0.6 });
+
+      observateurVideo.observe(videoPuzzle);
+    }
   }
 
   var etapes = document.querySelectorAll(".frise li");
