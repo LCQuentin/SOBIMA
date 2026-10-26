@@ -307,8 +307,8 @@ mark.a-confirmer { background: transparent; color: var(--caramel-texte); font-fa
 }
 .bandeau__piste ul { display: flex; align-items: center; flex: none; margin: 0; padding: 0; list-style: none; }
 .bandeau__piste li { flex: none; padding: var(--space-4) 0; font-family: var(--font-cote); font-size: .75rem; line-height: 1rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--encre); }
-/* Séparateur : pièce de puzzle caramel (masque assets/img/piece-bandeau.svg), 22 px, espace de chaque côté supérieur à sa largeur */
-.bandeau__piste .bandeau__piece { width: 22px; height: 22px; padding: 0; margin: 0 32px; background: var(--caramel); -webkit-mask: url("img/piece-bandeau.svg") no-repeat center / contain; mask: url("img/piece-bandeau.svg") no-repeat center / contain; }
+/* Séparateur : pièce de puzzle caramel (masque assets/img/piece-bandeau.svg), 22 px, inclinée de 12°, espace de chaque côté supérieur à sa largeur */
+.bandeau__piste .bandeau__piece { width: 22px; height: 22px; padding: 0; margin: 0 32px; background: var(--caramel); -webkit-mask: url("img/piece-bandeau.svg") no-repeat center / contain; mask: url("img/piece-bandeau.svg") no-repeat center / contain; transform: rotate(-12deg); }
 @keyframes bandeau-defile { to { transform: translateX(-50%); } }
 
 /* Étiquettes et cotes : Schibsted Grotesk, capitales espacées, chiffres tabulaires */
