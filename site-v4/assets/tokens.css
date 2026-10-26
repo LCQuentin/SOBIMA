@@ -14,3 +14,5 @@
 .cote { font-family: var(--font-cote); font-size: 11px; line-height: 14px; font-weight: 400; letter-spacing: 0.02em; }
 @font-face { font-family: "Montserrat"; src: url("fonts/Montserrat-Variable.woff2") format("woff2"); font-weight: 400 800; font-style: normal; font-display: swap; }
 @font-face { font-family: "Schibsted Grotesk"; src: url("fonts/SchibstedGrotesk-Variable.woff2") format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; }
+/* Ajout site v4 (2026-10-26) : vert du réemploi, hors charte. Texte sur --vert-reemploi-fond : contraste ≥ 4,5:1. */
+:root { --vert-reemploi: #2f5e3d; --vert-reemploi-fond: #e3eadc; }

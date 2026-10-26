@@ -48,7 +48,7 @@ Le site n'a qu'un thème clair, quel que soit le réglage de l'appareil (`<meta 
 
 ## Avant la mise en ligne
 
-- **Supprimer tous les repères `<mark class="a-confirmer">`** (14 au 2026-10-23, dont 2 sur la fiche référence) : `grep -rc a-confirmer *.html references/`.
+- **Supprimer tous les repères `<mark class="a-confirmer">`** (13 affichés au 2026-10-26, dont 2 sur la fiche référence, plus 1 dans la section « Votre interlocuteur » masquée en commentaire HTML dans `index.html`) : `grep -rc a-confirmer *.html references/`.
 - Confirmer le domaine (`www.sobima.fr` partout).
 - Vérifier les mentions sensibles, y compris dans les `<title>` et meta descriptions : `grep -rn "CBRE\|Montreuil\|La Défense" *.html references/`.
 
@@ -79,12 +79,12 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 ## Problèmes connus
 
 - Logo en traits : variante monochrome de la charte, à faire valider par Redoine. Le badge caramel officiel reste utilisé pour le favicon et l'image de partage.
-- Animation du puzzle (accueil, section « Un point de contact ») : `assets/puzzle.js` (sans dépendance, chargé sur l'accueil et Prestations) déclenche une fois l'assemblage quand le puzzle entre à l'écran. Sans JavaScript, ou si le visiteur a demandé à réduire les mouvements, le puzzle s'affiche assemblé. Le ruban des métiers (accueil, Prestations) défile en CSS, s'arrête au survol et reste fixe en mouvement réduit ; il n'a plus de bouton Pause depuis le 2026-10-26 (voir problèmes connus). C'est le seul JavaScript durable du site (accord du 2026-10-22).
+- Animations du puzzle et de la frise : `assets/puzzle.js` (sans dépendance, chargé sur l'accueil et Méthode) déclenche une fois l'assemblage du puzzle (accueil, section « Un point de contact ») et l'emboîtement de chaque pièce de la frise des six étapes (accueil, Méthode) quand elle est bien visible (60 % de l'étape à l'écran, hors 15 % du bas). Sans JavaScript, ou si le visiteur a demandé à réduire les mouvements, puzzle et frise s'affichent assemblés. Le ruban des métiers (accueil, Prestations) défile en CSS, s'arrête au survol et reste fixe en mouvement réduit ; il n'a plus de bouton Pause depuis le 2026-10-26 (voir problèmes connus). C'est le seul JavaScript durable du site (accord du 2026-10-22).
 
 - Liens internes en `.html` : Cloudflare Pages les redirige vers l'URL sans extension (une redirection par clic). Gardé volontairement pour que le site s'ouvre en local avec un simple serveur statique ; à revoir après le premier déploiement.
 - Les tailles de `bundle.css` (design system) restent en px ; `site.css` les surcharge en rem pour les composants utilisés. À reporter dans la charte si elle évolue.
 
-- 14 repères `a-confirmer` affichés à l'écran (voulu pour la démo, à retirer avant la mise en ligne).
+- 13 repères `a-confirmer` affichés à l'écran (voulu pour la démo, à retirer avant la mise en ligne).
 - Citer La Défense, l'immeuble haussmannien et le projet de Montreuil reste à valider par Redoine (« trois ans chez CBRE » validé le 2026-10-21 ; aucune référence de projet CBRE).
 - Pas de formulaire : contact par téléphone et e-mail pré-rempli.
 - Ruban des métiers sans bouton Pause (retiré à la demande le 2026-10-26) : défilement continu de plus de 5 s, donc non conforme au critère RGAA 13.8 / WCAG 2.2.2 ; seuls la pause au survol (pas au clavier ni au toucher) et le mode « mouvement réduit » l'arrêtent.
@@ -123,3 +123,6 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-26 — Mode nuit retiré : thème clair uniquement (`color-scheme: light`), bouton jour / nuit et `assets/theme-temporaire.js` supprimés, bloc `prefers-color-scheme: dark` retiré de `tokens.css`.
 - 2026-10-26 — Accueil : titre animé en CSS (bureaux → locaux → commerces → bureaux, un seul passage de 5 s avec le délai, sous le seuil RGAA 13.8 ; fixe si le visiteur réduit les animations ; seul « bureaux » est dans le HTML). Titre réduit pour que « Vos commerces clés » tienne sur une ligne (`.titre-defilant`, 3 lignes de 375 à 1 440 px). Chapô reformulé (« SOBIMA vous accompagne… »), lien téléphone retiré du premier écran (classe `.lien-fort` supprimée), encart test fit reformulé.
 - 2026-10-26 — Ruban des métiers : lignes de cote remplacées par de petits puzzles caramel (symbole `#logo-trait`, 22 px), bouton Pause retiré (code supprimé de `puzzle.js`), défilement ralenti (48 s → 80 s, environ 45 → 23 px/s). Accueil : titre de section « Un point de contact, de la visite technique à l'installation de vos équipes », chapô de la section retiré, « Un pilotage centralisé ».
+- 2026-10-26 — Frise Méthode (accueil, Méthode) : emboîtement déclenché par `puzzle.js` quand chaque étape est visible, à vitesse fixe (1,1 s par pièce, 0,35 s d'écart, environ 2,9 s sur une ligne) au lieu de l'animation liée au défilement (qui finissait avant que la frise soit à l'écran et restait fixe sous Firefox) ; `puzzle.js` retiré de Prestations (plus utile), ajouté à Méthode. Accueil : section « Votre interlocuteur » masquée (commentaire HTML, en attente de la photo d'équipe), phrase « L'agent vous a envoyé le plan ? » retirée du bloc test fit, bouton « Demander mon test fit offert » agrandi avec flèche et halo ; encadré « Réemployer avant d'acheter » en vert (`--vert-reemploi` #2f5e3d sur `--vert-reemploi-fond` #e3eadc, contraste 6,1:1, jetons ajoutés hors charte dans `tokens.css`).
+- 2026-10-26 — Page Réemploi : photo d'ambiance du bois retirée (fichiers `ambiance-bois-reemploi-*.webp` et ligne de crédit supprimés).
+- 2026-10-26 — Page Expérience masquée : liens « Expérience » retirés de l'en-tête, du menu mobile et du pied de page des 12 pages ; `references.html` et la fiche `references/association-400-m2-4-semaines.html` restent en ligne mais en `noindex, follow`, retirées de `sitemap.xml` et de `llms.txt`.

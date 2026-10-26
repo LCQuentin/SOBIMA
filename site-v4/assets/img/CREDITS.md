@@ -10,4 +10,3 @@ Téléchargées le 2026-10-23 depuis images.unsplash.com, converties en WebP (80
 | `ambiance-plans-*.webp` | Méthode | https://unsplash.com/photos/Yn8D5B8C-eY | @lucaskphoto |
 | `ambiance-plateau-plantes-*.webp` | Prestations (recadrée en 3:2) | https://unsplash.com/photos/xTmez98cqAM | @___atmos |
 | `ambiance-echantillons-*.webp` | Accueil (mosaïque) | https://unsplash.com/photos/ST-QAmN8BIk | @declansun |
-| `ambiance-bois-reemploi-*.webp` | Réemploi (recadrée en 3:2) | https://unsplash.com/photos/1TY3MGq-hOQ | @wesleyphotography |
