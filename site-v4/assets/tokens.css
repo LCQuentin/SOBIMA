@@ -1,11 +1,6 @@
 /* SOBIMA — generated from tokens.json */
 :root, [data-theme="light"] { --calque: #f2eee6; --calque-releve: #fbf9f5; --trame: #c9c2b5; --encre: #1f2328; --encre-douce: #5c5f63; --bleu-plan: #2c4a6e; --bleu-plan-fond: #2c4a6e; --sur-bleu-plan: #f2eee6; --sur-bleu-plan-doux: #c7d3e3; --caramel: #c49e5f; --sur-caramel: #1f2328; --caramel-texte: #7a5a26; }
 [data-theme="dark"] { --calque: #15181c; --calque-releve: #1f2328; --trame: #3a4048; --encre: #f2eee6; --encre-douce: #a3a8ae; --bleu-plan: #9db8d9; --bleu-plan-fond: #2c4a6e; --sur-bleu-plan: #f2eee6; --sur-bleu-plan-doux: #c7d3e3; --caramel: #c49e5f; --sur-caramel: #15181c; --caramel-texte: #d9b77e; }
-/* Ajout site v4 : thème sombre automatique, mêmes valeurs que [data-theme="dark"] ci-dessus.
-   Le CSS pur ne permet pas de fusionner media query et attribut : garder les deux blocs identiques. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --calque: #15181c; --calque-releve: #1f2328; --trame: #3a4048; --encre: #f2eee6; --encre-douce: #a3a8ae; --bleu-plan: #9db8d9; --bleu-plan-fond: #2c4a6e; --sur-bleu-plan: #f2eee6; --sur-bleu-plan-doux: #c7d3e3; --caramel: #c49e5f; --sur-caramel: #15181c; --caramel-texte: #d9b77e; color-scheme: dark; }
-}
 :root { --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px; --radius-0: 0; --radius-trait: 2px; --radius-bouton: 3px; --trait-fin: 1px; --trait-plan: 1.5px; --font-titre: "Montserrat", "Helvetica Neue", Arial, sans-serif; --font-texte: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif; --font-cote: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif; }
 .display { font-family: var(--font-titre); font-size: 56px; line-height: 58px; font-weight: 700; letter-spacing: -0.02em; }
 .titre-1 { font-family: var(--font-titre); font-size: 40px; line-height: 44px; font-weight: 700; letter-spacing: -0.015em; }

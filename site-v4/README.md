@@ -29,7 +29,7 @@ Cloudflare Pages sert `prestations.html` à l'adresse `/prestations` : les balis
 |---|---|
 | `*.html` (10 pages) | accueil, prestations, méthode, expérience (`references.html`), à propos, test fit, réemploi, FAQ, contact, mentions légales |
 | `references/association-400-m2-4-semaines.html` | fiche référence modèle (SPEC §4 : lieu, m², délai, prestations, avant / après), servie à `/references/association-400-m2-4-semaines` ; chemins relatifs en `../`. Pour une nouvelle fiche : copier ce fichier, changer le slug, le contenu, la canonical, le JSON-LD `BreadcrumbList`, et ajouter l'URL au sitemap |
-| `assets/tokens.css` | couleurs, polices, espacements du design system (piste A « Plan d'implantation »), copiés de `documents/charte/` — seul ajout : le bloc `prefers-color-scheme: dark`, à garder identique au bloc `[data-theme="dark"]` juste au-dessus |
+| `assets/tokens.css` | couleurs, polices, espacements du design system (piste A « Plan d'implantation »), copiés de `documents/charte/` ; le bloc `[data-theme="dark"]` de la charte reste présent mais n'est utilisé par aucune page |
 | `assets/bundle.css` | composants `sb-` du design system — même règle |
 | `assets/site.css` | mise en page du site, uniquement à partir des tokens |
 | `assets/fonts/` | Montserrat, Schibsted Grotesk (JetBrains Mono retirée le 2026-10-23), avec leurs licences `*-OFL.txt` (SIL OFL 1.1, dépôt google/fonts) |
@@ -44,12 +44,11 @@ Cloudflare Pages sert `prestations.html` à l'adresse `/prestations` : les balis
 | `_headers` | en-têtes Cloudflare : sécurité (CSP, COOP, X-Frame-Options), cache long des polices |
 | `assets/img/` | logo officiel (portrait de Redoine retiré le 2026-10-23) |
 
-Le thème sombre suit le réglage du système (`prefers-color-scheme`). Pour la démo, un bouton temporaire « Mode jour / Mode nuit » force l'un ou l'autre et mémorise le choix dans le navigateur. Les valeurs sombres automatiques sont dans `tokens.css`. Les tailles de texte de `site.css` sont en rem (elles suivent la taille de police choisie par le visiteur) ; `site.css` surcharge en rem les tailles en px des composants de `bundle.css`.
+Le site n'a qu'un thème clair, quel que soit le réglage de l'appareil (`<meta name="color-scheme" content="light">`, mode nuit retiré le 2026-10-26). Les tailles de texte de `site.css` sont en rem (elles suivent la taille de police choisie par le visiteur) ; `site.css` surcharge en rem les tailles en px des composants de `bundle.css`.
 
 ## Avant la mise en ligne
 
 - **Supprimer tous les repères `<mark class="a-confirmer">`** (14 au 2026-10-23, dont 2 sur la fiche référence) : `grep -rc a-confirmer *.html references/`.
-- **Retirer le bouton jour / nuit temporaire** : supprimer `assets/theme-temporaire.js`, la ligne `<script src=".../assets/theme-temporaire.js">` des 12 pages et le bloc « TEMPORAIRE » en fin de `site.css`.
 - Confirmer le domaine (`www.sobima.fr` partout).
 - Vérifier les mentions sensibles, y compris dans les `<title>` et meta descriptions : `grep -rn "CBRE\|Montreuil\|La Défense" *.html references/`.
 
@@ -80,15 +79,15 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 ## Problèmes connus
 
 - Logo en traits : variante monochrome de la charte, à faire valider par Redoine. Le badge caramel officiel reste utilisé pour le favicon et l'image de partage.
-- Animation du puzzle (accueil, section « Un seul interlocuteur ») et pause du ruban (accueil, Prestations) : `assets/puzzle.js` (sans dépendance, chargé sur l'accueil et Prestations) déclenche une fois l'assemblage quand le puzzle entre à l'écran et injecte le bouton « Pause / Relancer » dans le ruban défilant (conformité RGAA 13.8). Sans JavaScript, ou si le visiteur a demandé à réduire les mouvements, le puzzle s'affiche assemblé et le ruban reste fixe. C'est le seul JavaScript durable du site (accord du 2026-10-22).
+- Animation du puzzle (accueil, section « Un point de contact ») : `assets/puzzle.js` (sans dépendance, chargé sur l'accueil et Prestations) déclenche une fois l'assemblage quand le puzzle entre à l'écran. Sans JavaScript, ou si le visiteur a demandé à réduire les mouvements, le puzzle s'affiche assemblé. Le ruban des métiers (accueil, Prestations) défile en CSS, s'arrête au survol et reste fixe en mouvement réduit ; il n'a plus de bouton Pause depuis le 2026-10-26 (voir problèmes connus). C'est le seul JavaScript durable du site (accord du 2026-10-22).
 
 - Liens internes en `.html` : Cloudflare Pages les redirige vers l'URL sans extension (une redirection par clic). Gardé volontairement pour que le site s'ouvre en local avec un simple serveur statique ; à revoir après le premier déploiement.
 - Les tailles de `bundle.css` (design system) restent en px ; `site.css` les surcharge en rem pour les composants utilisés. À reporter dans la charte si elle évolue.
 
 - 14 repères `a-confirmer` affichés à l'écran (voulu pour la démo, à retirer avant la mise en ligne).
 - Citer La Défense, l'immeuble haussmannien et le projet de Montreuil reste à valider par Redoine (« trois ans chez CBRE » validé le 2026-10-21 ; aucune référence de projet CBRE).
-- Bouton jour / nuit temporaire (JavaScript) à retirer avant la mise en ligne.
 - Pas de formulaire : contact par téléphone et e-mail pré-rempli.
+- Ruban des métiers sans bouton Pause (retiré à la demande le 2026-10-26) : défilement continu de plus de 5 s, donc non conforme au critère RGAA 13.8 / WCAG 2.2.2 ; seuls la pause au survol (pas au clavier ni au toucher) et le mode « mouvement réduit » l'arrêtent.
 - Pas de photos de chantiers : visuels hachurés en attente.
 - Le plan d'implantation de l'accueil et du test fit est un exemple illustratif (cotes marquées « exemple »).
 
@@ -121,3 +120,6 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-23 — Page Expérience : section « Les premiers projets SOBIMA » retirée jusqu'aux premières photos de chantier.
 - 2026-10-23 — Retours de Redoine sur la maquette (1er aller-retour, voir la note « Retours Redoine - maquette v4 2026-10-23 » du vault) : SOBIMA parle à la place de Redoine (portrait retiré, « Nous appeler », contact@sobima.fr) ; capital retiré du pied de page et d'À propos (gardé dans les mentions légales) ; plus de nombre de chantiers ni de surface maximale ; tableau « Votre crainte » remplacé par « Nos engagements » ; accroche de l'accueil sur l'accompagnement clés en main, test fit en seconde porte d'entrée ; police mono JetBrains retirée (étiquettes en Schibsted Grotesk) ; frise puzzle des six étapes, animée au défilement en CSS ; photos d'ambiance Unsplash sur l'accueil, Prestations, Méthode et Réemploi ; favicon détouré en caramel ; image OG régénérée. Vérifié en local (wrangler dev) : 0 violation axe sur 12 pages × clair / sombre × 1 280 / 375 px, aucun débordement à 320 px ni à 200 %, taille minimale 12 px, aucune requête vers un tiers.
 - 2026-10-23 — Revue intégrale du code (SEO/GEO, accessibilité, responsivité) : lien rétabli depuis Expérience vers la fiche `references/association-400-m2-4-semaines.html` ; `og:image:alt` mis à jour sur les 12 pages ; JSON-LD enrichis (`vatID`/`taxID`/`knowsAbout` sur l'accueil, `AboutPage` complétée, `Service` sur Test fit, `ContactPage` sur Contact) ; création de `llms.txt` et mise à jour de `sitemap.xml` ; bouton Pause / Relancer sur le ruban défilant (RGAA 13.8) ; fil d'Ariane balisé en `<nav>` ; `+`/`−` de la FAQ masqués aux lecteurs d'écran ; `404.html` en chemins racines sans `<base href="/">` (corrige le lien `#contenu`) ; `scroll-padding-bottom` mobile, défilement interne du menu mobile ouvert, tailles en `px` du plan SVG sous 480 px (résiste au zoom 200 %), centrage optique des numéros de la frise ; suppression du CSS mort et consolidation de `site.css`.
+- 2026-10-26 — Mode nuit retiré : thème clair uniquement (`color-scheme: light`), bouton jour / nuit et `assets/theme-temporaire.js` supprimés, bloc `prefers-color-scheme: dark` retiré de `tokens.css`.
+- 2026-10-26 — Accueil : titre animé en CSS (bureaux → locaux → commerces → bureaux, un seul passage de 5 s avec le délai, sous le seuil RGAA 13.8 ; fixe si le visiteur réduit les animations ; seul « bureaux » est dans le HTML). Titre réduit pour que « Vos commerces clés » tienne sur une ligne (`.titre-defilant`, 3 lignes de 375 à 1 440 px). Chapô reformulé (« SOBIMA vous accompagne… »), lien téléphone retiré du premier écran (classe `.lien-fort` supprimée), encart test fit reformulé.
+- 2026-10-26 — Ruban des métiers : lignes de cote remplacées par de petits puzzles caramel (symbole `#logo-trait`, 22 px), bouton Pause retiré (code supprimé de `puzzle.js`), défilement ralenti (48 s → 80 s, environ 45 → 23 px/s). Accueil : titre de section « Un point de contact, de la visite technique à l'installation de vos équipes », chapô de la section retiré, « Un pilotage centralisé ».
