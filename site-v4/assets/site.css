@@ -101,9 +101,17 @@ p, li, dd { text-wrap: pretty; }
 .plan .mur { stroke: var(--encre); fill: none; stroke-width: 4; }
 .plan .cloison { stroke: var(--encre); fill: none; stroke-width: 2; }
 .plan .porte { stroke: var(--encre); fill: none; stroke-width: 1; stroke-dasharray: 3 3; }
-.plan .poste { fill: var(--caramel); }
-.plan .meuble { fill: none; stroke: var(--encre); stroke-width: 1.5; }
-.plan .table { fill: none; stroke: var(--caramel); stroke-width: 2; }
+.plan .porte-vantail { stroke: var(--encre); fill: none; stroke-width: 1.5; }
+/* Espaces colorés par fonction (légende sous le plan) */
+.zone--travail { fill: color-mix(in srgb, var(--caramel) 24%, var(--calque-releve)); background: color-mix(in srgb, var(--caramel) 24%, var(--calque-releve)); }
+.zone--collaboratif { fill: color-mix(in srgb, var(--vert-reemploi) 34%, var(--calque-releve)); background: color-mix(in srgb, var(--vert-reemploi) 34%, var(--calque-releve)); }
+.zone--convivialite { fill: color-mix(in srgb, var(--caramel) 62%, var(--calque-releve)); background: color-mix(in srgb, var(--caramel) 62%, var(--calque-releve)); }
+.zone--support { fill: color-mix(in srgb, var(--encre) 78%, var(--caramel)); background: color-mix(in srgb, var(--encre) 78%, var(--caramel)); }
+.plan .plateau, .plan .plateau rect { fill: var(--calque-releve); stroke: var(--encre); stroke-width: 1; }
+.plan .siege { fill: var(--calque-releve); stroke: var(--encre-douce); stroke-width: 1; }
+.plan__legende { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin: var(--space-3) 0 0; padding: 0; list-style: none; font-family: var(--font-cote); font-size: .75rem; line-height: 1rem; letter-spacing: .02em; color: var(--encre-douce); }
+.plan__legende li { display: flex; align-items: center; gap: var(--space-2); }
+.plan__pastille { width: 12px; height: 12px; border: 1px solid color-mix(in srgb, var(--encre) 35%, transparent); }
 .plan .cote-trait { stroke: var(--bleu-plan); stroke-width: 1; fill: none; }
 /* Légendes du plan SVG : la taille est en unités du viewBox (520 de large), mises à l'échelle avec le dessin.
    Unités en px pour que l'agrandissement de police du navigateur ne fasse pas déborder les textes hors des pièces. */
@@ -117,12 +125,24 @@ p, li, dd { text-wrap: pretty; }
   .plan .cote-texte { font-size: 17px; }
   .plan .zone-texte { font-size: 15px; }
 }
-.plan .trace { stroke-dasharray: 2000; stroke-dashoffset: 0; }
+.plan .zone-texte--sombre { fill: var(--calque); }
+/* Animation au chargement (environ 5,5 s) : 1. murs, 2. cloisons une à une puis portes, 3. couleurs des espaces, 4. mobilier.
+   Murs et cloisons ont pathLength="1" : le tracé va de 1 à 0 quelle que soit leur longueur. */
+.plan .mur, .plan .cloison { stroke-dasharray: 1; stroke-dashoffset: 0; }
 @media (prefers-reduced-motion: no-preference) {
-  .plan .trace { animation: tracer 1.2s ease-out both; }
-  .plan .poste, .plan .table { animation: poser .4s ease-out both; animation-delay: 1s; }
+  .plan .mur { animation: tracer 1s ease-out both; }
+  .plan .cloison { animation: tracer .6s ease-out both; }
+  .plan .c1 { animation-delay: .9s; } .plan .c2 { animation-delay: 1.15s; } .plan .c3 { animation-delay: 1.4s; } .plan .c4 { animation-delay: 1.65s; } .plan .c5 { animation-delay: 1.9s; }
+  .plan .portes { animation: poser .4s ease-out 2.4s both; }
+  .plan .zone { animation: poser .6s ease-out both; }
+  .plan .z1 { animation-delay: 2.6s; } .plan .z2 { animation-delay: 2.75s; } .plan .z3 { animation-delay: 2.9s; } .plan .z4 { animation-delay: 3.05s; } .plan .z5 { animation-delay: 3.2s; } .plan .z6 { animation-delay: 3.35s; }
+  .plan .libelles { animation: poser .5s ease-out 3.6s both; }
+  .plan .mobilier { transform-box: fill-box; transform-origin: center; animation: meubler .4s cubic-bezier(.16, 1, .3, 1) both; }
+  .plan .m1 { animation-delay: 4s; } .plan .m2 { animation-delay: 4.15s; } .plan .m3 { animation-delay: 4.3s; } .plan .m4 { animation-delay: 4.45s; }
+  .plan .m5 { animation-delay: 4.6s; } .plan .m6 { animation-delay: 4.75s; } .plan .m7 { animation-delay: 4.9s; } .plan .m8 { animation-delay: 5.05s; }
 }
-@keyframes tracer { from { stroke-dashoffset: 2000; } }
+@keyframes tracer { from { stroke-dashoffset: 1; } }
+@keyframes meubler { from { opacity: 0; transform: scale(.85); } }
 
 /* Titre de l'accueil : bureaux → locaux → commerces → bureaux, un seul passage (5 s avec le délai, sous le seuil RGAA 13.8 qui impose un bouton Pause).
    Seul « bureaux » est dans le HTML (texte lu par Google et les lecteurs d'écran) ; les autres mots sont du contenu CSS au texte alternatif vide.

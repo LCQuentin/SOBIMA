@@ -139,41 +139,58 @@
 <figure class="plan">
 <svg viewBox="0 0 520 380" role="img" aria-labelledby="plan-titre plan-desc">
 <title id="plan-titre">Exemple de plan d'implantation</title>
-<desc id="plan-desc">Plan illustratif d'un plateau de bureaux de 16 m sur 11 m : un open space de quatre îlots de quatre postes, une salle de réunion, un bureau fermé et un accueil.</desc>
+<desc id="plan-desc">Plan illustratif d'un plateau de bureaux de 16 m sur 11 m : un open space de quatre îlots de quatre postes, une salle de réunion, un bureau fermé, un accueil, un espace café et un local technique.</desc>
 <!-- Cotes -->
 <path class="cote-trait" d="M40 20 V30 M480 20 V30 M40 25 H480"/>
-<text class="cote-texte" x="260" y="16" text-anchor="middle">16,00 m</text>
+<text class="cote-texte" x="260" y="16" text-anchor="middle">16,00 m</text>
 <path class="cote-trait" d="M18 40 H28 M18 340 H28 M23 40 V340"/>
-<text class="cote-texte" x="12" y="190" text-anchor="middle" transform="rotate(-90 12 190)">11,00 m</text>
-<!-- Murs et cloisons -->
-<rect class="mur trace" x="40" y="40" width="440" height="300"/>
-<path class="cloison trace" d="M330 40 V170 H480"/>
-<path class="cloison trace" d="M380 240 V340 M380 240 H480"/>
-<path class="cloison trace" d="M40 260 H150 V340"/>
-<!-- Portes -->
-<path class="porte" d="M330 140 A30 30 0 0 0 360 170"/>
-<path class="porte" d="M380 270 A30 30 0 0 0 410 240"/>
-<path class="porte" d="M150 290 A30 30 0 0 1 120 260"/>
-<!-- Îlots de postes -->
-<g class="poste">
-<rect x="70" y="70" width="34" height="20"/><rect x="108" y="70" width="34" height="20"/><rect x="70" y="94" width="34" height="20"/><rect x="108" y="94" width="34" height="20"/>
-<rect x="190" y="70" width="34" height="20"/><rect x="228" y="70" width="34" height="20"/><rect x="190" y="94" width="34" height="20"/><rect x="228" y="94" width="34" height="20"/>
-<rect x="70" y="160" width="34" height="20"/><rect x="108" y="160" width="34" height="20"/><rect x="70" y="184" width="34" height="20"/><rect x="108" y="184" width="34" height="20"/>
-<rect x="190" y="160" width="34" height="20"/><rect x="228" y="160" width="34" height="20"/><rect x="190" y="184" width="34" height="20"/><rect x="228" y="184" width="34" height="20"/>
-<rect x="420" y="290" width="40" height="22"/>
+<text class="cote-texte" x="12" y="190" text-anchor="middle" transform="rotate(-90 12 190)">11,00 m</text>
+<!-- 3. Espaces colorés par fonction (sous les murs) -->
+<rect class="zone zone--travail z1" x="40" y="40" width="260" height="185"/>
+<rect class="zone zone--collaboratif z2" x="330" y="40" width="150" height="125"/>
+<rect class="zone zone--convivialite z3" x="40" y="255" width="110" height="85"/>
+<rect class="zone zone--convivialite z4" x="150" y="255" width="150" height="85"/>
+<rect class="zone zone--travail z5" x="380" y="240" width="100" height="100"/>
+<rect class="zone zone--support z6" x="330" y="300" width="50" height="40"/>
+<!-- 1. Murs, 2. cloisons et portes -->
+<rect class="mur" x="40" y="40" width="440" height="300" pathLength="1"/>
+<path class="cloison c1" d="M330 40 V122 M330 154 V165 H480" pathLength="1"/>
+<path class="cloison c2" d="M380 340 V280 M380 248 V240 H480" pathLength="1"/>
+<path class="cloison c3" d="M40 255 H105 M137 255 H205 M237 255 H300 V340" pathLength="1"/>
+<path class="cloison c4" d="M150 255 V340" pathLength="1"/>
+<path class="cloison c5" d="M330 340 V300 H380" pathLength="1"/>
+<g class="portes">
+<path class="porte-vantail" d="M330 154 H362 M380 248 H412"/>
+<path class="porte" d="M330 122 A32 32 0 0 1 362 154 M380 280 A32 32 0 0 0 412 248"/>
 </g>
-<!-- Salle de réunion et accueil -->
-<rect class="table" x="365" y="78" width="80" height="44" rx="2"/>
-<rect class="meuble" x="60" y="290" width="60" height="22"/>
+<!-- 4. Mobilier -->
+<g class="mobilier m1"><g class="plateau"><rect x="62" y="66" width="30" height="18"/><rect x="62" y="86" width="30" height="18"/><rect x="94" y="66" width="30" height="18"/><rect x="94" y="86" width="30" height="18"/></g><circle class="siege" cx="77" cy="58" r="5"/><circle class="siege" cx="77" cy="112" r="5"/><circle class="siege" cx="109" cy="58" r="5"/><circle class="siege" cx="109" cy="112" r="5"/></g>
+<g class="mobilier m2"><g class="plateau"><rect x="164" y="66" width="30" height="18"/><rect x="164" y="86" width="30" height="18"/><rect x="196" y="66" width="30" height="18"/><rect x="196" y="86" width="30" height="18"/></g><circle class="siege" cx="179" cy="58" r="5"/><circle class="siege" cx="179" cy="112" r="5"/><circle class="siege" cx="211" cy="58" r="5"/><circle class="siege" cx="211" cy="112" r="5"/></g>
+<g class="mobilier m3"><g class="plateau"><rect x="62" y="160" width="30" height="18"/><rect x="62" y="180" width="30" height="18"/><rect x="94" y="160" width="30" height="18"/><rect x="94" y="180" width="30" height="18"/></g><circle class="siege" cx="77" cy="152" r="5"/><circle class="siege" cx="77" cy="206" r="5"/><circle class="siege" cx="109" cy="152" r="5"/><circle class="siege" cx="109" cy="206" r="5"/></g>
+<g class="mobilier m4"><g class="plateau"><rect x="164" y="160" width="30" height="18"/><rect x="164" y="180" width="30" height="18"/><rect x="196" y="160" width="30" height="18"/><rect x="196" y="180" width="30" height="18"/></g><circle class="siege" cx="179" cy="152" r="5"/><circle class="siege" cx="179" cy="206" r="5"/><circle class="siege" cx="211" cy="152" r="5"/><circle class="siege" cx="211" cy="206" r="5"/></g>
+<g class="mobilier m5"><rect class="plateau" x="363" y="84" width="84" height="36" rx="2"/><circle class="siege" cx="377" cy="76" r="5"/><circle class="siege" cx="377" cy="128" r="5"/><circle class="siege" cx="405" cy="76" r="5"/><circle class="siege" cx="405" cy="128" r="5"/><circle class="siege" cx="433" cy="76" r="5"/><circle class="siege" cx="433" cy="128" r="5"/><circle class="siege" cx="355" cy="102" r="5"/><circle class="siege" cx="455" cy="102" r="5"/></g>
+<g class="mobilier m6"><circle class="plateau" cx="195" cy="310" r="12"/><circle class="siege" cx="195" cy="290" r="5"/><circle class="siege" cx="195" cy="330" r="5"/><circle class="siege" cx="175" cy="310" r="5"/><circle class="siege" cx="215" cy="310" r="5"/><circle class="plateau" cx="255" cy="310" r="12"/><circle class="siege" cx="255" cy="290" r="5"/><circle class="siege" cx="255" cy="330" r="5"/><circle class="siege" cx="235" cy="310" r="5"/><circle class="siege" cx="275" cy="310" r="5"/></g>
+<g class="mobilier m7"><rect class="plateau" x="56" y="298" width="52" height="16"/><circle class="siege" cx="82" cy="324" r="5"/></g>
+<g class="mobilier m8"><rect class="plateau" x="424" y="292" width="44" height="22"/><circle class="siege" cx="446" cy="284" r="5"/></g>
 <!-- Libellés -->
-<text class="zone-texte" x="166" y="240" text-anchor="middle">Open space</text>
-<text class="zone-texte" x="405" y="62" text-anchor="middle">Réunion</text>
-<text class="zone-texte" x="448" y="262" text-anchor="middle">Bureau</text>
-<text class="zone-texte" x="82" y="282" text-anchor="middle">Accueil</text>
+<g class="libelles">
+<text class="zone-texte" x="266" y="126" text-anchor="middle"><tspan x="266">Open</tspan><tspan x="266" dy="16">space</tspan></text>
+<text class="zone-texte" x="405" y="60" text-anchor="middle">Réunion</text>
+<text class="zone-texte" x="95" y="280" text-anchor="middle">Accueil</text>
+<text class="zone-texte" x="225" y="276" text-anchor="middle">Café</text>
+<text class="zone-texte" x="430" y="334" text-anchor="middle">Bureau</text>
+<text class="zone-texte zone-texte--sombre" x="355" y="325" text-anchor="middle">LT</text>
 <!-- Cote de circulation -->
-<path class="cote-trait" d="M146 132 H186 M146 127 V137 M186 127 V137"/>
-<text class="cote-texte" x="166" y="150" text-anchor="middle">1,45 m</text>
+<path class="cote-trait" d="M124 124 H164 M124 119 V129 M164 119 V129"/>
+<text class="cote-texte" x="144" y="143" text-anchor="middle">1,45 m</text>
+</g>
 </svg>
+<ul class="plan__legende">
+<li><span class="plan__pastille zone--travail" aria-hidden="true"></span>Travail</li>
+<li><span class="plan__pastille zone--collaboratif" aria-hidden="true"></span>Collaboratif</li>
+<li><span class="plan__pastille zone--convivialite" aria-hidden="true"></span>Convivialité</li>
+<li><span class="plan__pastille zone--support" aria-hidden="true"></span>Support</li>
+</ul>
 <figcaption><span>EXEMPLE · PLAN ILLUSTRATIF</span><span>176 m² · 17 POSTES</span></figcaption>
 </figure>
 
