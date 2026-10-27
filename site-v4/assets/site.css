@@ -41,7 +41,9 @@ p, li, dd { text-wrap: pretty; }
 /* En-tête */
 .entete { position: sticky; top: 0; z-index: 26; background: var(--calque); border-bottom: var(--trait-fin) solid var(--trame); }
 .entete__ligne { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); min-height: 72px; }
-.entete .sb-marque img { width: 36px; }
+/* Logo complet (fond transparent, assets/img/logo-sobima-complet.png) : hauteur fixe, largeur selon le format */
+.entete .sb-marque img { width: clamp(150px, 16vw, 200px); height: auto; }
+.pied .sb-marque img { width: clamp(150px, 16vw, 200px); height: auto; }
 .entete .sb-nav { gap: var(--space-6); align-items: center; }
 .entete__actions { display: flex; align-items: center; gap: var(--space-6); }
 .menu-mobile { display: none; }
