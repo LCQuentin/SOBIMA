@@ -1,6 +1,7 @@
 # Consignes pour les IA — site SOBIMA
 
-Site internet de SOBIMA (contractant général en aménagement de bureaux), en HTML et CSS statiques, non déployé. Cible de déploiement : Cloudflare Pages gratuit, sans build ni JavaScript (promesse faite au client).
+Site internet de SOBIMA (contractant général en aménagement de bureaux), en HTML et CSS statiques, non déployé. Cible de déploiement : Cloudflare (offre gratuite), sans build. JavaScript limité à deux petits scripts facultatifs (animations de l'accueil, formulaire de contact) ; le site reste utilisable sans eux.
+- `worker/` : Worker Cloudflare qui sert `site-v4/` et traite le formulaire de contact (`/api/contact`, envoi par Resend) et les suggestions d'adresses (`/api/adresse`, BAN). Secrets dans `worker/.dev.vars` (ignoré par git) ou `wrangler secret`, jamais dans le dépôt. Tests : `node --test worker/test/`.
 
 - `site/` : maquette d'accueil v1 (Tailwind), puis site v2 (vanilla CSS, 7 pages) ; contient les assets partagés (`site/assets/` : logos, portrait, `social-deeplink.js`).
 - `site-v2/` : variante v2.

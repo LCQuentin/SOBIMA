@@ -1,0 +1,5 @@
+# Copier en .dev.vars (ignoré par git) pour `npx wrangler dev`.
+# ENVOI_SIMULE=1 : le mail est écrit dans la console au lieu d'être envoyé. Ne jamais le poser en production.
+ENVOI_SIMULE=1
+# Clé d'API Resend (secret) : laisser vide en local si ENVOI_SIMULE=1
+RESEND_API_KEY=

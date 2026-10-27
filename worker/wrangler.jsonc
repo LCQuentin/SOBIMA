@@ -1,0 +1,23 @@
+// Site SOBIMA : pages statiques (../site-v4) + formulaire de contact et suggestions d'adresses (/api/*).
+// Secret à poser hors du dépôt : RESEND_API_KEY (`npx wrangler secret put RESEND_API_KEY`, ou .dev.vars en local).
+{
+  "name": "sobima-site",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-19",
+  "assets": {
+    "directory": "../site-v4",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/api/*"]
+  },
+  "vars": {
+    "CONTACT_DESTINATAIRE": "contact@sobima.fr",
+    "CONTACT_EXPEDITEUR": "Site SOBIMA <formulaire@sobima.fr>"
+  },
+  // Limites par adresse IP : 5 envois et 60 recherches d'adresse par minute
+  "ratelimits": [
+    { "name": "LIMITE_CONTACT", "namespace_id": "4101", "simple": { "limit": 5, "period": 60 } },
+    { "name": "LIMITE_ADRESSE", "namespace_id": "4102", "simple": { "limit": 60, "period": 60 } }
+  ]
+}

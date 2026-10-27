@@ -1,26 +1,41 @@
 # Site SOBIMA — v4
 
-Site vitrine de SOBIMA, contractant général en aménagement de bureaux à Paris et en Île-de-France. HTML et CSS statiques, sans outil de build ; un seul petit script (logo animé et frise), le site restant complet sans lui.
+Site vitrine de SOBIMA, contractant général en aménagement de bureaux à Paris et en Île-de-France. HTML et CSS statiques, sans outil de build ; deux petits scripts (logo animé et frise sur l'accueil, formulaire de contact), le site restant utilisable sans eux. Un Worker Cloudflare (`../worker/`) sert les pages et traite le formulaire de contact.
 
 ## Démarrage rapide
 
 ```sh
-cd site-v4
-python3 -m http.server 8765
-# puis ouvrir http://localhost:8765/
+cd worker
+cp .dev.vars.example .dev.vars   # ENVOI_SIMULE=1 : le mail est écrit dans la console au lieu d'être envoyé
+npx wrangler dev --port 8787
+# puis ouvrir http://localhost:8787/
+node --test test/                # tests du contrôle des champs et des fichiers
 ```
 
-## Déploiement (Cloudflare Pages, offre gratuite)
+Un simple `python3 -m http.server` dans `site-v4/` affiche toujours les pages, mais sans le formulaire (pas de route `/api`).
 
-Déposer le dossier `site-v4/` tel quel (dépôt Git ou envoi direct). Aucune commande de build, dossier de sortie = racine.
-Cloudflare Pages sert `prestations.html` à l'adresse `/prestations` : les balises `canonical`, `og:url` et `sitemap.xml` utilisent déjà cette forme. À vérifier au premier déploiement.
+## Déploiement (Cloudflare Workers, offre gratuite)
+
+Le site est servi par le Worker `../worker/` : pages statiques de `site-v4/` (fichiers listés dans `.assetsignore` exclus) et routes `/api/contact`, `/api/adresse`. Aucune commande de build.
+
+```sh
+cd worker
+npx wrangler secret put RESEND_API_KEY   # une fois, sur le compte Cloudflare de SOBIMA
+npx wrangler deploy
+```
+
+- Cloudflare sert `prestations.html` à l'adresse `/prestations` : les balises `canonical`, `og:url` et `sitemap.xml` utilisent déjà cette forme.
+- `_headers` ne s'applique qu'aux fichiers statiques ; les réponses de `/api` portent leurs propres en-têtes de sécurité (`ENTETES_SECURITE` dans `worker/src/contact.js`).
+- Offre gratuite : 10 ms de CPU par requête. C'est la raison de la limite de 2 Mo sur les plans (décision du 2026-10-27).
+- Avant chaque mise en ligne qui touche aux styles, changer le numéro `?v=` de `tokens.css`, `bundle.css` et `site.css` dans toutes les pages (cache d'un jour sur `/assets/*`).
+- Si l'hébergement final est Pages : `traiterContact` et `traiterAdresse` se branchent en Pages Functions sans réécriture.
 
 ## Démo en ligne
 
 - Adresse : https://sobima-demo.bonjour-cf3.workers.dev (non indexée : `X-Robots-Tag: noindex` ajouté à la copie de démo).
-- Hébergée sur le compte Cloudflare de Quentin, en **Workers avec fichiers statiques** : wrangler 4.151 ne crée plus de projet Pages classique et redirige vers Workers. La mise en ligne définitive se fera sur le compte de Redoine (Pages ou Workers, à trancher).
-- Redéployer : copier `site-v4/` sans `README.md` dans un dossier `deploy/`, ajouter `X-Robots-Tag: noindex, nofollow` sous `/*` dans `deploy/_headers`, puis `npx wrangler deploy` depuis le dossier parent avec ce `wrangler.jsonc` :
-  `{"name": "sobima-demo", "compatibility_date": "2026-10-19", "assets": {"directory": "./deploy", "not_found_handling": "404-page", "html_handling": "auto-trailing-slash"}}`
+- Hébergée sur le compte Cloudflare de Quentin. La mise en ligne définitive se fera sur le compte de SOBIMA.
+- **Version en ligne au 2026-10-27 : sans formulaire** (fichiers statiques seuls, déployés avant le Worker).
+- Redéployer avec le formulaire : copier `site-v4/` sans `README.md` dans un dossier `deploy/`, ajouter `X-Robots-Tag: noindex, nofollow` sous `/*` dans `deploy/_headers`, puis `npx wrangler deploy` depuis `worker/` avec `--name sobima-demo` et `assets.directory` pointant sur ce dossier `deploy/` (copie de `wrangler.jsonc`). Sans clé Resend, le formulaire de la démo répond « L'envoi est momentanément indisponible » (échec fermé voulu) : prévenir Redoine avant qu'il l'essaie, ou poser `ENVOI_SIMULE=1` en variable de la démo uniquement.
 - Vérifié en ligne le 2026-10-27 : pages 200, vraie 404 à toute profondeur, `prestations.html` redirigé (307) vers `/prestations`, en-têtes de sécurité présents, cache d'un an sur les polices, README non publié, anciens fichiers vidéo absents.
 
 ## Structure
@@ -41,6 +56,9 @@ Cloudflare Pages sert `prestations.html` à l'adresse `/prestations` : les balis
 | `assets/img/ambiance-*.webp` | photos d'ambiance Unsplash (800 et 1 600 px), provenance dans `assets/img/CREDITS.md` ; à remplacer par les rendus et photos de Redoine |
 | `favicon.svg`, `favicon.png`, `apple-touch-icon.png` | logo détouré en caramel, sans fond (l'icône Apple garde un fond beige `--calque`, iOS affichant sinon du noir) |
 | `llms.txt` | synthèse structurée du site et des pages canoniques pour les moteurs de recherche IA (GEO) |
+| `devis-contact.html`, `assets/contact.js` | page Contact avec le formulaire (voir « Formulaire ») ; le script ajoute les suggestions d'adresses et l'envoi sans rechargement |
+| `merci.html`, `envoi-impossible.html` | pages de retour du formulaire quand JavaScript est absent (`noindex`, hors sitemap) |
+| `.assetsignore` | fichiers de ce dossier non publiés par le Worker (`README.md`) |
 | `404.html` | page d'erreur servie par Cloudflare Pages (`noindex`, chemins absolus `/...` pour fonctionner à toute profondeur d'URL sans casser le lien d'évitement `#contenu`) |
 | `_headers` | en-têtes Cloudflare : sécurité (CSP, COOP, X-Frame-Options), cache long des polices |
 | `assets/img/` | logo officiel (portrait de Redoine retiré le 2026-10-23) |
@@ -49,7 +67,7 @@ Le site n'a qu'un thème clair, quel que soit le réglage de l'appareil (`<meta 
 
 ## Avant la mise en ligne
 
-- **Supprimer tous les repères `<mark class="a-confirmer">`** (13 affichés au 2026-10-26, dont 2 sur la fiche référence, plus 1 dans la section « Votre interlocuteur » masquée en commentaire HTML dans `index.html`) : `grep -rc a-confirmer *.html references/`.
+- **Supprimer tous les repères `<mark class="a-confirmer">`** (14 affichés au 2026-10-27, dont la durée de conservation des demandes dans les mentions légales, dont 2 sur la fiche référence, plus 1 dans la section « Votre interlocuteur » masquée en commentaire HTML dans `index.html`) : `grep -rc a-confirmer *.html references/`.
 - Confirmer le domaine (`www.sobima.fr` partout).
 - Vérifier les mentions sensibles, y compris dans les `<title>` et meta descriptions : `grep -rn "CBRE\|Montreuil\|La Défense" *.html references/`.
 
@@ -72,10 +90,30 @@ La source des faits et chiffres est la note du vault Cortex `02_Projets/SOBIMA/C
 
 ## Formulaire
 
-**Feuille de route v2 (décision du 2026-10-22)** : formulaire de demande de test fit / devis via une Cloudflare Pages Function, à arbitrer avec Redoine selon l'hébergement des e-mails de `sobima.fr` (Email Routing Cloudflare ou service d'envoi type Resend). C'est le principal point faible relevé par les trois critiques Impeccable (21 → 22 → 21/32).
+Formulaire de contact sur la page Contact (décision du 2026-10-27 : Worker + Resend, adresses BAN relayées par le Worker, plans PDF / JPG / PNG / DWG / DXF).
 
+- **Champs** : prénom, nom, e-mail et téléphone obligatoires ; société, adresse du local, message et plan facultatifs ; champ piège invisible contre les robots.
+- **Adresse** : suggestions de la Base Adresse Nationale (Géoplateforme IGN, `data.geopf.fr/geocodage/search`) via `GET /api/adresse?q=…`. Le navigateur ne contacte que le site. Une adresse non proposée est acceptée en saisie libre ; le mail précise « reconnue dans la BAN » ou « saisie libre ».
+- **Plan** : un seul fichier, 2 Mo au plus (offre gratuite de Workers : 10 ms de CPU par requête ; le contrôle complet d'un PDF coûte environ 3,5 ms par Mo ; décision du 2026-10-27). Les plans plus lourds sont à envoyer par e-mail, ce que le formulaire indique. Le type est vérifié d'après le contenu réel (signature), qui doit correspondre à l'extension. Les PDF contenant `/JavaScript`, `/JS`, `/Launch`, `/EmbeddedFile(s)` ou `/RichMedia` sont refusés. Le fichier est renommé (`plan-prenom-nom.ext`), envoyé en pièce jointe, jamais stocké ni republié sur le site.
+- **Envoi** : `POST /api/contact` (multipart). Avec JavaScript, réponse JSON et message par champ ; sans JavaScript, redirection 303 vers `/merci` ou `/envoi-impossible`. Le mail part en texte seul, de `CONTACT_EXPEDITEUR` vers `CONTACT_DESTINATAIRE`, avec l'e-mail du visiteur en adresse de réponse.
+- **Limites** : 5 envois et 60 recherches d'adresse par minute et par adresse IP (liaisons `ratelimits` de `worker/wrangler.jsonc`) ; corps refusé avant lecture au-delà de 2,25 Mo.
+- **Échec fermé** : sans clé Resend (et hors mode simulé), la réponse est une erreur qui renvoie au téléphone et à l'e-mail, jamais « envoyé ».
+- Code : `worker/src/contact.js`, `worker/src/fichiers.js`, `worker/src/adresse.js` ; tests : `worker/test/contact.test.js` (17 cas, dont exécutable renommé, PDF à script, PNG renommé en DWG, nom piégé, injection dans l'objet).
 
-Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails pré-remplis. Un formulaire pourra être branché plus tard avec une Cloudflare Pages Function, selon l'hébergement des e-mails de `sobima.fr`.
+### Variables d'environnement (Worker)
+
+| Nom | Rôle |
+|---|---|
+| `RESEND_API_KEY` | clé d'API Resend (secret : `npx wrangler secret put RESEND_API_KEY`, ou `.dev.vars` en local, jamais dans le dépôt) |
+| `CONTACT_DESTINATAIRE` | adresse qui reçoit les demandes (`wrangler.jsonc`) |
+| `CONTACT_EXPEDITEUR` | expéditeur des mails, sur le domaine vérifié chez Resend (`wrangler.jsonc`) |
+| `ENVOI_SIMULE` | `1` en local uniquement : le mail est écrit dans la console au lieu d'être envoyé |
+
+### Avant la mise en service du formulaire
+
+- Créer le compte Resend (sur le compte de SOBIMA) et vérifier le domaine `sobima.fr` : ajouter chez Squarespace (DNS de `sobima.fr`) les enregistrements SPF / DKIM donnés par Resend, sur le sous-domaine proposé. **Ne pas toucher au MX racine** (Google Workspace).
+- Poser le secret `RESEND_API_KEY`, envoyer une demande réelle avec un plan PDF et un DWG, vérifier la réception dans Gmail.
+- Trancher Pages ou Workers pour l'hébergement final : `traiterContact` et `traiterAdresse` sont des fonctions `(request, env)` réutilisables en Pages Functions.
 
 ## Problèmes connus
 
@@ -85,11 +123,15 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - Liens internes en `.html` : Cloudflare Pages les redirige vers l'URL sans extension (une redirection par clic). Gardé volontairement pour que le site s'ouvre en local avec un simple serveur statique ; à revoir après le premier déploiement.
 - Les tailles de `bundle.css` (design system) restent en px ; `site.css` les surcharge en rem pour les composants utilisés. À reporter dans la charte si elle évolue.
 
-- 13 repères `a-confirmer` affichés à l'écran (voulu pour la démo, à retirer avant la mise en ligne).
+- 14 repères `a-confirmer` affichés à l'écran (voulu pour la démo, à retirer avant la mise en ligne).
 - Citer La Défense, l'immeuble haussmannien et le projet de Montreuil reste à valider par Redoine (« trois ans chez CBRE » validé le 2026-10-21 ; aucune référence de projet CBRE).
-- Pas de formulaire : contact par téléphone et e-mail pré-rempli.
+- Formulaire : l'envoi réel par Resend n'a pas été testé (domaine non vérifié, pas de clé) ; seul le mode simulé l'a été.
+- Contrôle des PDF : un mot-clé actif caché dans un flux compressé (object stream) n'est pas détecté. Les DWG ne sont contrôlés que par leur signature (format binaire fermé). La protection repose aussi sur l'analyse des pièces jointes par Gmail.
+- Suggestions d'adresses : dépendent de la disponibilité de la Géoplateforme IGN ; en cas de panne, le champ reste en saisie libre.
+- Anti-spam limité au champ piège et aux limites de débit : pas de Turnstile (ce serait un script tiers, à ajouter à la CSP et aux mentions légales). À reconsidérer si du spam arrive.
 - Ruban des métiers sans bouton Pause (retiré à la demande le 2026-10-26) : défilement continu de plus de 5 s, donc non conforme au critère RGAA 13.8 / WCAG 2.2.2 ; seuls la pause au survol (pas au clavier ni au toucher) et le mode « mouvement réduit » l'arrêtent.
 - Pas de photos de chantiers : visuels hachurés en attente.
+- Plan de la page Test fit : en capture Chrome sans interface (2026-10-27, avant comme après les retouches), les postes, la table et les bureaux sont des pavés noirs et les murs pointillés. Peut-être un état d'animation figé par la capture, à vérifier dans un vrai navigateur.
 - Le plan d'implantation de l'accueil et du test fit est un exemple illustratif (cotes marquées « exemple »).
 
 ## Journal
@@ -137,3 +179,5 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-26 — Accueil : puzzle SVG remplacé par la vidéo du badge officiel (`assets/video/accueil-puzzle.*`, 1080 × 1080, 4,5 s, sans audio), lecture unique à l'entrée à l'écran puis image figée ; poster première image, image statique finale en secours sans JS et en mouvement réduit. Les symboles SVG du puzzle ne sont plus chargés ; `assets/img/puzzle.svg` reste la source archivée. La vidéo est rognée à la plaque caramel (`clip-path: inset(11.185% 10.185%)`) pour laisser la trame de la page autour du badge ; ses couleurs sont converties sRGB → BT.709 à l'encodage pour que le caramel corresponde à `#c49e5f`.
 - 2026-10-27 — Accueil, mosaïque d'ambiance : photo d'échantillons (en bas à droite) remplacée par le nuancier terracotta et sauge fourni par Quentin (`ambiance-nuancier-800/1536.webp`) ; anciens fichiers supprimés, `CREDITS.md` mis à jour (origine de l'image à confirmer).
 - 2026-10-27 — Accueil : la vidéo du badge est remplacée par le logo officiel en traits caramel sur fond transparent, avec les quatre pièces (Conception, Travaux, Mobilier, Déménagement) qui s'assemblent au scroll ; libellés autour du logo, fallback assemblé sans JS et en mouvement réduit. Les fichiers `assets/video/accueil-puzzle.*` sont retirés du site ; la source de la vidéo reste dans `~/Video/SOBIMA/sobima-puzzle-accueil/`.
+- 2026-10-27 — Retour de Redoine « trop bloc, pas fini » (avis : note « Avis - retour Redoine « trop bloc » (2026-10-27) » du vault), option A, retouches de rythme : quadrillage retiré du `<body>` des 12 pages et réservé au premier écran de l'accueil (`.hero.sb-trame`, trame adoucie) ; filets entre sections, bordures noires du plan, du ruban, des encadrés, de la carte contact, de l'aparté FAQ et du pied de page supprimés (fond et espace à la place, ombre portée sous le plan) ; titres de section plus grands (`clamp` jusqu'à 36 px) et classe `.titre-fort` (jusqu'à 52 px) sur « Un point de contact » et « Parlons de votre projet » ; Déclencheurs en trois colonnes sous le titre ; bandeau test fit en bande bleue pleine largeur (`:has`, toutes les pages) ; « Trois mots » / engagements sans cadres ; Prestations : les 7 rangées alternées deviennent une section « Sept étapes, un seul interlocuteur » avec sommaire collant à gauche et grand numéro caramel par étape (ancres `#etape-besoin` … `#etape-demenagement`), fonds des sections suivantes réalternés. Vérifié en capture Chrome sans interface à 1 440 et 500 px (accueil, Prestations, Test fit, À propos, FAQ, Réemploi). Non vérifié : 375 px réel, Firefox / Safari, axe.
+- 2026-10-27 — Formulaire de contact (page Contact) : prénom, nom, société, e-mail, téléphone, adresse du local avec suggestions BAN (relayées par `/api/adresse`, saisie libre acceptée), message, plan joint (PDF / JPG / PNG / DWG / DXF, 2 Mo, type vérifié par signature, PDF actifs refusés, renommé, jamais stocké). Worker Cloudflare `../worker/` (pages + `/api/contact` + `/api/adresse`), envoi par Resend, limites de débit, champ piège, échec fermé, pages `merci` et `envoi-impossible` pour le parcours sans JavaScript, jeton `--erreur` (#a3341f, 5,9:1 sur `--calque`) ajouté hors charte, mentions légales (données personnelles, Resend, BAN) mises à jour avec la durée de conservation `À CONFIRMER`. Limite des plans ramenée de 10 à 2 Mo après mesure du CPU (contrôle PDF environ 37 ms pour 10 Mo, limite gratuite 10 ms) : choix de rester sur l'offre gratuite plutôt que Workers payant (5 $/mois) ; base64 et décodage PDF natifs. Numéros de version des CSS uniformisés (`?v=20261027b`, 13 pages). Vérifié : 17 tests `node --test` ; avec `wrangler dev`, suggestions au clavier, envoi navigateur réussi (mode simulé), fichier piégé refusé avec message sur le champ, aucune erreur console ni CSP, parcours sans JS par curl (303 vers /merci et /envoi-impossible), 429 au 6e envoi par minute. Non vérifié : envoi réel Resend, temps CPU réel sur Cloudflare (non mesurable en local), axe, Firefox / Safari.

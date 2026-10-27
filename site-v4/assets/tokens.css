@@ -16,3 +16,5 @@
 @font-face { font-family: "Schibsted Grotesk"; src: url("fonts/SchibstedGrotesk-Variable.woff2") format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; }
 /* Ajout site v4 (2026-10-26) : vert du réemploi, hors charte. Texte sur --vert-reemploi-fond : contraste ≥ 4,5:1. */
 :root { --vert-reemploi: #2f5e3d; --vert-reemploi-fond: #e3eadc; }
+/* Ajout site v4 (2026-10-27) : rouge des erreurs du formulaire, hors charte. Contraste ≥ 5,9:1 sur --calque et --calque-releve. */
+:root { --erreur: #a3341f; }
