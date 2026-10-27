@@ -1,6 +1,6 @@
 # Site SOBIMA — v4
 
-Site vitrine de SOBIMA, contractant général en aménagement de bureaux à Paris et en Île-de-France. HTML et CSS statiques, sans outil de build ; un seul petit script (badge vidéo et frise), le site restant complet sans lui.
+Site vitrine de SOBIMA, contractant général en aménagement de bureaux à Paris et en Île-de-France. HTML et CSS statiques, sans outil de build ; un seul petit script (logo animé et frise), le site restant complet sans lui.
 
 ## Démarrage rapide
 
@@ -21,7 +21,7 @@ Cloudflare Pages sert `prestations.html` à l'adresse `/prestations` : les balis
 - Hébergée sur le compte Cloudflare de Quentin, en **Workers avec fichiers statiques** : wrangler 4.151 ne crée plus de projet Pages classique et redirige vers Workers. La mise en ligne définitive se fera sur le compte de Redoine (Pages ou Workers, à trancher).
 - Redéployer : copier `site-v4/` sans `README.md` dans un dossier `deploy/`, ajouter `X-Robots-Tag: noindex, nofollow` sous `/*` dans `deploy/_headers`, puis `npx wrangler deploy` depuis le dossier parent avec ce `wrangler.jsonc` :
   `{"name": "sobima-demo", "compatibility_date": "2026-10-19", "assets": {"directory": "./deploy", "not_found_handling": "404-page", "html_handling": "auto-trailing-slash"}}`
-- Vérifié en ligne le 2026-10-22 : pages 200, vraie 404 à toute profondeur, `prestations.html` redirigé (307) vers `/prestations`, en-têtes de sécurité présents, cache d'un an sur les polices, README non publié.
+- Vérifié en ligne le 2026-10-27 : pages 200, vraie 404 à toute profondeur, `prestations.html` redirigé (307) vers `/prestations`, en-têtes de sécurité présents, cache d'un an sur les polices, README non publié, anciens fichiers vidéo absents.
 
 ## Structure
 
@@ -35,8 +35,7 @@ Cloudflare Pages sert `prestations.html` à l'adresse `/prestations` : les balis
 | `assets/site.css` | mise en page du site, uniquement à partir des tokens |
 | `assets/fonts/` | Montserrat, Schibsted Grotesk (JetBrains Mono retirée le 2026-10-23), avec leurs licences `*-OFL.txt` (SIL OFL 1.1, dépôt google/fonts) |
 | `assets/img/logo-trait.svg` | logo en traits seuls, fond transparent, vectorisé avec potrace depuis `logo-sobima.png` ; intégré dans chaque page sous forme de symbole SVG (`<use href="#logo-trait">`) au moment de l'assemblage, couleur encre, suit le mode nuit ; fonctionne aussi en ouvrant les fichiers directement (`file://`). **Variante à valider par Redoine** (la charte dit de ne pas recolorer le logo) |
-| `assets/img/puzzle.svg` | source historique du puzzle découpé en cadre + 4 pièces (`#cadre`, `#p_hg`, `#p_hd`, `#p_bg`, `#p_bd`), archivée ; l'accueil utilise désormais la vidéo ci-dessous, les symboles SVG ne sont plus chargés |
-| `assets/video/accueil-puzzle.*` | badge SOBIMA animé de la section « Un point de contact » : MP4 H.264 et WebM VP9 1080 × 1080, 4,5 s, sans audio, poster première image et image statique finale. Généré depuis `~/Video/SOBIMA/sobima-puzzle-accueil/` (4K dans `~/Video/SOBIMA/finals/`) |
+| `assets/img/puzzle.svg` | source historique du puzzle découpé en cadre + 4 pièces (`#cadre`, `#p_hg`, `#p_hd`, `#p_bg`, `#p_bd`), archivée ; l'accueil utilise désormais le logo officiel en traits inline (cadre + 4 pièces animées), les symboles SVG ne sont plus chargés |
 | `assets/img/og-sobima.jpg` | image de partage 1 200 × 630 (réseaux sociaux, messageries), régénérée le 2026-10-23 à partir de l'accueil |
 | `assets/img/piece.svg`, `piece-debut.svg` | pièce de puzzle de la frise des six étapes (accueil), utilisée comme masque CSS |
 | `assets/img/ambiance-*.webp` | photos d'ambiance Unsplash (800 et 1 600 px), provenance dans `assets/img/CREDITS.md` ; à remplacer par les rendus et photos de Redoine |
@@ -133,7 +132,8 @@ Pas de formulaire en v1 (décision du 2026-10-21) : boutons d'appel et e-mails p
 - 2026-10-26 — Accueil : phrase sous le bouton du premier écran raccourcie (« Vous visitez un local ? Vérifiez que votre implantation fonctionne avant de vous engager. »). Bouton « Parlons de votre projet » de l'en-tête et de la barre mobile redirigé vers `devis-contact.html` (10 pages). Ruban des métiers (accueil, Prestations) : logo remplacé par une pièce de puzzle caramel de 22 px (`assets/img/piece-bandeau.svg` en masque CSS), 32 px d'espace de chaque côté.
 - 2026-10-26 — Plan de l'accueil redessiné et animé en 4 temps au chargement (environ 5,5 s, CSS seul, fixe en mouvement réduit) : murs, cloisons une à une puis portes (`pathLength="1"`), coloration des espaces par fonction (travail, collaboratif, convivialité, support ; légende sous le plan), mobilier (4 îlots de 4 postes avec sièges, table de réunion 8 places, 2 tables rondes de café, banque d'accueil, bureau). Ajout d'un café et d'un local technique ; chiffres inchangés (16 × 11 m = 176 m², 16 + 1 = 17 postes). Vérifié dans Chrome à 1 920 px et 375 px.
 - 2026-10-26 — Ruban des métiers : pièces de puzzle inclinées de 12° (`transform: rotate(-12deg)`).
-- 2026-10-26 — Photo de la mosaïque d'accueil `ambiance-echantillons-*.webp` remplacée par le nuancier terracotta et sauge fourni (800 et 1 600 px), provenance Unsplash retirée de `assets/img/CREDITS.md`.
 - 2026-10-26 — Page À propos : bloc « L'entreprise — Identité et siège » (siège et RCS) retiré ; ces mentions restent dans les mentions légales.
 
 - 2026-10-26 — Accueil : puzzle SVG remplacé par la vidéo du badge officiel (`assets/video/accueil-puzzle.*`, 1080 × 1080, 4,5 s, sans audio), lecture unique à l'entrée à l'écran puis image figée ; poster première image, image statique finale en secours sans JS et en mouvement réduit. Les symboles SVG du puzzle ne sont plus chargés ; `assets/img/puzzle.svg` reste la source archivée. La vidéo est rognée à la plaque caramel (`clip-path: inset(11.185% 10.185%)`) pour laisser la trame de la page autour du badge ; ses couleurs sont converties sRGB → BT.709 à l'encodage pour que le caramel corresponde à `#c49e5f`.
+- 2026-10-27 — Accueil, mosaïque d'ambiance : photo d'échantillons (en bas à droite) remplacée par le nuancier terracotta et sauge fourni par Quentin (`ambiance-nuancier-800/1536.webp`) ; anciens fichiers supprimés, `CREDITS.md` mis à jour (origine de l'image à confirmer).
+- 2026-10-27 — Accueil : la vidéo du badge est remplacée par le logo officiel en traits caramel sur fond transparent, avec les quatre pièces (Conception, Travaux, Mobilier, Déménagement) qui s'assemblent au scroll ; libellés autour du logo, fallback assemblé sans JS et en mouvement réduit. Les fichiers `assets/video/accueil-puzzle.*` sont retirés du site ; la source de la vidéo reste dans `~/Video/SOBIMA/sobima-puzzle-accueil/`.

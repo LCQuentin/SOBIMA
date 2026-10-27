@@ -276,13 +276,30 @@ mark.a-confirmer { background: transparent; color: var(--caramel-texte); font-fa
 
 /* Puzzle du logo : les quatre pièces (les quatre métiers) s'assemblent quand la section entre à l'écran */
 .interlocuteur { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: var(--space-12); align-items: center; }
-.video-puzzle { margin: 0; color: var(--encre); }
-.video-puzzle__cadre { --badge-inset-x: 10.185%; --badge-inset-y: 11.185%; position: relative; aspect-ratio: 1; overflow: hidden; clip-path: inset(var(--badge-inset-y) var(--badge-inset-x)); }
-.video-puzzle__video, .video-puzzle__statique { display: block; width: 100%; height: 100%; object-fit: cover; }
-.video-puzzle__statique { position: absolute; inset: 0; }
-.video-puzzle--pret .video-puzzle__statique { visibility: hidden; }
-.video-puzzle figcaption { margin-top: var(--space-3); text-align: center; font-family: var(--font-cote); font-size: .75rem; line-height: 1rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--bleu-plan); }
-@media (max-width: 860px) { .interlocuteur { grid-template-columns: 1fr; gap: var(--space-8); } .video-puzzle { max-width: 220px; margin-inline: auto; } }
+.puzzle { margin: 0; color: var(--caramel); }
+.puzzle__ensemble { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-3); row-gap: var(--space-2); align-items: center; }
+.puzzle__logo { display: block; grid-column: 1 / -1; grid-row: 2; width: 100%; height: auto; }
+.puzzle__metier { font-family: var(--font-cote); font-size: .625rem; line-height: 1rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--caramel-texte); transition: opacity .4s ease-out; }
+.puzzle__metier--hg { grid-column: 1; grid-row: 1; text-align: left; }
+.puzzle__metier--hd { grid-column: 2; grid-row: 1; text-align: right; }
+.puzzle__metier--bg { grid-column: 1; grid-row: 3; text-align: left; }
+.puzzle__metier--bd { grid-column: 2; grid-row: 3; text-align: right; }
+.puzzle__piece { transition: transform 1.1s cubic-bezier(.16, 1, .3, 1), opacity .3s ease-out; }
+.puzzle--pret.puzzle--assemble .puzzle__piece--hd { transition-delay: .06s; }
+.puzzle--pret.puzzle--assemble .puzzle__piece--bg { transition-delay: .12s; }
+.puzzle--pret.puzzle--assemble .puzzle__piece--bd { transition-delay: .18s; }
+.puzzle--pret:not(.puzzle--assemble) .puzzle__piece { opacity: 0; }
+.puzzle--pret:not(.puzzle--assemble) .puzzle__piece--hg { transform: translate(-290px, -240px); }
+.puzzle--pret:not(.puzzle--assemble) .puzzle__piece--hd { transform: translate(290px, -240px); }
+.puzzle--pret:not(.puzzle--assemble) .puzzle__piece--bg { transform: translate(-290px, 240px); }
+.puzzle--pret:not(.puzzle--assemble) .puzzle__piece--bd { transform: translate(290px, 240px); }
+.puzzle--pret:not(.puzzle--assemble) .puzzle__metier { opacity: 0; }
+.puzzle--pret.puzzle--assemble .puzzle__metier--hg { transition-delay: 1.1s; }
+.puzzle--pret.puzzle--assemble .puzzle__metier--hd { transition-delay: 1.16s; }
+.puzzle--pret.puzzle--assemble .puzzle__metier--bg { transition-delay: 1.22s; }
+.puzzle--pret.puzzle--assemble .puzzle__metier--bd { transition-delay: 1.28s; }
+.puzzle figcaption { margin-top: var(--space-3); text-align: center; font-family: var(--font-cote); font-size: .75rem; line-height: 1rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--bleu-plan); }
+@media (max-width: 860px) { .interlocuteur { grid-template-columns: 1fr; gap: var(--space-8); } .puzzle { max-width: 220px; margin-inline: auto; } }
 
 /* Ruban des quatre métiers : défilement continu, séparateurs en lignes de cote (piste dupliquée pour une boucle sans saut) */
 .bandeau { position: relative; overflow: hidden; border-block: var(--trait-plan) solid var(--encre); background: var(--calque); }

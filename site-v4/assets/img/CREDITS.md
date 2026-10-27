@@ -10,4 +10,8 @@ Téléchargées le 2026-10-23 depuis images.unsplash.com, converties en WebP (80
 | `ambiance-plans-*.webp` | Méthode | https://unsplash.com/photos/Yn8D5B8C-eY | @lucaskphoto |
 | `ambiance-plateau-plantes-*.webp` | Prestations (recadrée en 3:2) | https://unsplash.com/photos/xTmez98cqAM | @___atmos |
 
-`ambiance-echantillons-*.webp` (accueil, mosaïque) n'est pas une photo Unsplash : image fournie le 2026-10-26 (nuancier terracotta et sauge), convertie en WebP 800 et 1 600 px. Elle remplace la photo https://unsplash.com/photos/ST-QAmN8BIk de @declansun.
+## Autres images
+
+| Fichier | Page | Provenance |
+|---|---|---|
+| `ambiance-nuancier-*.webp` | Accueil (mosaïque, en bas à droite) | Image « Nuancier tactile terracotta et sauge » fournie par Quentin le 2026-10-27, convertie en WebP (800 et 1 536 px). [À CONFIRMER : origine et droits d'usage de l'image] |

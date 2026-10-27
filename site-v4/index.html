@@ -25,8 +25,8 @@
 <link rel="preload" href="assets/fonts/SchibstedGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/tokens.css">
 <link rel="stylesheet" href="assets/bundle.css">
-<link rel="stylesheet" href="assets/site.css">
-<script src="assets/puzzle.js" defer></script>
+<link rel="stylesheet" href="assets/site.css?v=20261027">
+<script src="assets/puzzle.js?v=20261027" defer></script>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -205,13 +205,39 @@
 </div>
 <p class="piliers"><span>Un pilotage centralisé</span><span>Des échanges simplifiés</span><span>Un cap maîtrisé : qualité, délai, coûts</span></p>
 </div>
-<figure class="video-puzzle" aria-hidden="true">
-<div class="video-puzzle__cadre">
-<video class="video-puzzle__video" muted playsinline preload="none" width="1080" height="1080" poster="assets/video/accueil-puzzle-poster.webp">
-<source src="assets/video/accueil-puzzle.webm" type="video/webm">
-<source src="assets/video/accueil-puzzle.mp4" type="video/mp4">
-</video>
-<img class="video-puzzle__statique" src="assets/video/accueil-puzzle-statique.webp" alt="" width="1080" height="1080" decoding="async">
+<figure class="puzzle" aria-hidden="true">
+<div class="puzzle__ensemble">
+<span class="puzzle__metier puzzle__metier--hg">Conception</span>
+<span class="puzzle__metier puzzle__metier--hd">Travaux</span>
+<svg class="puzzle__logo" viewBox="0 0 512 499" role="presentation" focusable="false">
+<defs>
+<clipPath id="puzzle-clip-flight"><rect x="37.5" y="20.5" width="442" height="457" rx="116.5"/></clipPath>
+<clipPath id="puzzle-clip-hg"><rect x="40" y="23" width="437" height="452" rx="107"/></clipPath>
+</defs>
+<g class="puzzle__cadre" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" stroke-linejoin="round">
+<rect x="29" y="12" width="459" height="474" rx="125"/>
+</g>
+<g clip-path="url(#puzzle-clip-flight)" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
+<g clip-path="url(#puzzle-clip-hg)">
+<g class="puzzle__piece puzzle__piece--hg">
+<g transform="translate(122 104) rotate(22) scale(0.78) translate(-189 -187)">
+<path d="M 80 80 L 298 80 L 298 138 L 282 138 A 40 40 0 1 0 282 200 L 298 200 L 298 294 L 216 294 A 40 40 0 1 1 164 294 L 80 294 Z"/>
+</g>
+</g>
+</g>
+<g class="puzzle__piece puzzle__piece--hd">
+<path d="M 298 80 L 474 80 A 125 125 0 0 1 488 137 L 488 294 L 440 294 A 40 40 0 1 0 392 294 L 298 294 L 298 200 L 282 200 A 40 40 0 1 1 282 138 L 298 138 Z"/>
+</g>
+<g class="puzzle__piece puzzle__piece--bg">
+<path d="M 298 294 L 298 360 L 314 360 A 40 40 0 1 1 314 420 L 298 420 L 298 486 L 154 486 A 125 125 0 0 1 80 462 L 80 294 L 164 294 A 40 40 0 1 0 216 294 L 298 294 Z"/>
+</g>
+<g class="puzzle__piece puzzle__piece--bd">
+<path d="M 298 294 L 392 294 A 40 40 0 1 1 440 294 L 488 294 L 488 361 A 125 125 0 0 1 363 486 L 298 486 L 298 420 L 314 420 A 40 40 0 1 0 314 360 L 298 360 Z"/>
+</g>
+</g>
+</svg>
+<span class="puzzle__metier puzzle__metier--bg">Mobilier</span>
+<span class="puzzle__metier puzzle__metier--bd">Déménagement</span>
 </div>
 <figcaption>Quatre métiers · un seul interlocuteur</figcaption>
 </figure>
@@ -222,7 +248,7 @@
 <div class="cadre mosaique">
 <figure class="mosaique__grande"><img src="assets/img/ambiance-bureau-bois-1600.webp" srcset="assets/img/ambiance-bureau-bois-800.webp 800w, assets/img/ambiance-bureau-bois-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 760px" width="1600" height="1067" alt="Ambiance : bureaux en bois clair avec cloison vitrée et table de réunion" loading="lazy" decoding="async"></figure>
 <figure class="mosaique__petite"><img src="assets/img/ambiance-materiaux-1600.webp" srcset="assets/img/ambiance-materiaux-800.webp 800w, assets/img/ambiance-materiaux-1600.webp 1600w" sizes="(max-width: 760px) 50vw, 380px" width="1600" height="1067" alt="Ambiance : échantillons de matériaux posés sur une table" loading="lazy" decoding="async"></figure>
-<figure class="mosaique__petite"><img src="assets/img/ambiance-echantillons-1600.webp" srcset="assets/img/ambiance-echantillons-800.webp 800w, assets/img/ambiance-echantillons-1600.webp 1600w" sizes="(max-width: 760px) 50vw, 380px" width="1600" height="1067" alt="Ambiance : échantillons de textures de sols et de revêtements" loading="lazy" decoding="async"></figure>
+<figure class="mosaique__petite"><img src="assets/img/ambiance-nuancier-1536.webp" srcset="assets/img/ambiance-nuancier-800.webp 800w, assets/img/ambiance-nuancier-1536.webp 1536w" sizes="(max-width: 760px) 50vw, 380px" width="1536" height="1024" alt="Ambiance : nuancier de matériaux terracotta et sauge, terrazzo, bois, céramiques et moquettes" loading="lazy" decoding="async"></figure>
 <p class="ambiance__legende mosaique__legende">Photos d'ambiance</p>
 </div>
 </section>
