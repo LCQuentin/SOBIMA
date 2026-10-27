@@ -5,7 +5,6 @@ Téléchargées le 2026-10-23 depuis images.unsplash.com, converties en WebP (80
 
 | Fichier | Page | Photo Unsplash | Auteur |
 |---|---|---|---|
-| `ambiance-bureau-bois-*.webp` | Accueil (mosaïque) | https://unsplash.com/photos/fllxjm9v_eE | @___atmos |
 | `ambiance-materiaux-*.webp` | Accueil (mosaïque) | https://unsplash.com/photos/bKbyJJkSlSc | @declansun |
 | `ambiance-plans-*.webp` | Méthode | https://unsplash.com/photos/Yn8D5B8C-eY | @lucaskphoto |
 | `ambiance-plateau-plantes-*.webp` | Prestations (recadrée en 3:2) | https://unsplash.com/photos/xTmez98cqAM | @___atmos |
@@ -15,3 +14,4 @@ Téléchargées le 2026-10-23 depuis images.unsplash.com, converties en WebP (80
 | Fichier | Page | Provenance |
 |---|---|---|
 | `ambiance-nuancier-*.webp` | Accueil (mosaïque, en bas à droite) | Image « Nuancier tactile terracotta et sauge » fournie par Quentin le 2026-10-27, convertie en WebP (800 et 1 536 px). [À CONFIRMER : origine et droits d'usage de l'image] |
+| `ambiance-bureau-vitre-*.webp` | Accueil (mosaïque, grande image) | Image « Bureau moderne avec salle de réunion vitrée » fournie par Quentin le 2026-10-27, convertie en WebP (800 et 1 536 px) ; remplace la photo Unsplash `ambiance-bureau-bois` (@___atmos). [À CONFIRMER : origine et droits d'usage de l'image] |
