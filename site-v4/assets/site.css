@@ -302,8 +302,14 @@ p, li, dd { text-wrap: pretty; }
 .sb-testfit a:not(.sb-bouton) { color: var(--sur-bleu-plan); text-decoration-color: var(--sur-bleu-plan-doux); }
 .sb-testfit a:focus-visible { outline-color: var(--sur-bleu-plan); }
 @media (max-width: 800px) { .sb-testfit--large { grid-template-columns: 1fr; padding: var(--space-8) var(--space-5); } }
-/* Le bandeau test fit occupe toute la largeur : la section devient bleue, le bloc perd son fond propre */
-.section:has(> .cadre > .sb-testfit--large) { background: var(--bleu-plan-fond); padding-block: var(--space-16); }
+/* Le bandeau test fit occupe toute la largeur : la section devient bleue, le bloc perd son fond propre.
+   Bleu pâle de l'encart simulation de l'accueil, texte foncé (demande de Redoine, 2026-10-28) : encre 12,8:1, bleu 7,4:1. */
+.sb-testfit--large { background: var(--bleu-plan-clair); color: var(--encre); }
+.sb-testfit--large .sb-etiquette { color: var(--bleu-plan); }
+.sb-testfit--large a:not(.sb-bouton) { color: var(--bleu-plan); text-decoration-color: var(--bleu-plan); }
+.sb-testfit--large a:focus-visible, .sb-testfit--large .sb-bouton:focus-visible { outline-color: var(--bleu-plan); }
+.sb-testfit--large .sb-bouton--testfit:hover { border-color: var(--encre); color: var(--encre); }
+.section:has(> .cadre > .sb-testfit--large) { background: var(--bleu-plan-clair); padding-block: var(--space-16); }
 .section:has(> .cadre > .sb-testfit--large) .sb-testfit--large { background: none; padding-inline: 0; padding-block: 0; }
 .sb-testfit--large h2 { font-size: clamp(1.75rem, 3.2vw, 2.5rem); line-height: 1.12; letter-spacing: -.02em; }
 
