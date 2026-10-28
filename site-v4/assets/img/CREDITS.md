@@ -7,7 +7,21 @@ Téléchargées le 2026-10-23 depuis images.unsplash.com, converties en WebP (80
 |---|---|---|---|
 | `ambiance-materiaux-*.webp` | Accueil (mosaïque) | https://unsplash.com/photos/bKbyJJkSlSc | @declansun |
 | `ambiance-plans-*.webp` | Méthode | https://unsplash.com/photos/Yn8D5B8C-eY | @lucaskphoto |
-| `ambiance-plateau-plantes-*.webp` | Prestations (recadrée en 3:2) | https://unsplash.com/photos/xTmez98cqAM | @___atmos |
+| `ambiance-plateau-plantes-*.webp` | Approche (recadrée en 3:2) | https://unsplash.com/photos/xTmez98cqAM | @___atmos |
+
+Ajoutées le 2026-10-28 (retours de Redoine du 28/10), licence vérifiée sur chaque page photo (« Free to use under the Unsplash License »), recadrées et converties en WebP :
+
+| Fichier | Page | Photo Unsplash | Auteur |
+|---|---|---|---|
+| `metier-conception-480.webp` | Accueil (puzzle, au survol) | recadrage carré de `ambiance-plans` (https://unsplash.com/photos/Yn8D5B8C-eY) | @lucaskphoto |
+| `metier-travaux-480.webp` | Accueil (puzzle, au survol) | https://unsplash.com/photos/biRt6RXejuk | Stefan Lehner (@st_lehner) |
+| `metier-demenagement-480.webp` | Accueil (puzzle, au survol) | https://unsplash.com/photos/7wvLXoF7JKc | Chloë Forbes-Kindlen (@chloeforbesk) |
+| `metier-mobilier-480.webp` | Accueil (puzzle, au survol) | https://unsplash.com/photos/zF-ysAeI7XU | Madeline Liu (@madeline_sd) |
+| `reemploi-mobilier-*.webp` | Réemploi | https://unsplash.com/photos/7T8vSHYXq4U | S O C I A L . C U T (@socialcut) |
+| `reemploi-cloison-640.webp` | Réemploi | https://unsplash.com/photos/NRamRy-l14c | Flipsnack (@flipsnack) |
+| `reemploi-sol-640.webp` | Réemploi | https://unsplash.com/photos/QLhqloXuSQw | IMEX Flooring Sweden (@imexflooring) |
+| `reemploi-cablage-640.webp` | Réemploi (recadrée pour écarter une étiquette de marque) | https://unsplash.com/photos/pl6My-v7gnE | Dimitri Karastelev (@dkfra19) |
+| `reemploi-cuisine-640.webp` | Réemploi | https://unsplash.com/photos/OI6D_VKxSMw | Craig Lovelidge (@craigology) |
 
 ## Autres images
 

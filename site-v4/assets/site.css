@@ -114,8 +114,8 @@ p, li, dd { text-wrap: pretty; }
 .zone--collaboratif { fill: color-mix(in srgb, var(--vert-reemploi) 34%, var(--calque-releve)); background: color-mix(in srgb, var(--vert-reemploi) 34%, var(--calque-releve)); }
 .zone--convivialite { fill: color-mix(in srgb, var(--caramel) 62%, var(--calque-releve)); background: color-mix(in srgb, var(--caramel) 62%, var(--calque-releve)); }
 .zone--support { fill: color-mix(in srgb, var(--encre) 78%, var(--caramel)); background: color-mix(in srgb, var(--encre) 78%, var(--caramel)); }
-.plan .plateau, .plan .plateau rect { fill: var(--calque-releve); stroke: var(--encre); stroke-width: 1; }
-.plan .siege { fill: var(--calque-releve); stroke: var(--encre-douce); stroke-width: 1; }
+.plan .plateau, .plan .plateau rect, .pl-plateau { fill: var(--calque-releve); stroke: var(--encre); stroke-width: 1; }
+.plan .siege, .pl-siege { fill: var(--calque-releve); stroke: var(--encre-douce); stroke-width: 1; }
 .plan__legende { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin: var(--space-3) 0 0; padding: 0; list-style: none; font-family: var(--font-cote); font-size: .75rem; line-height: 1rem; letter-spacing: .02em; color: var(--encre-douce); }
 .plan__legende li { display: flex; align-items: center; gap: var(--space-2); }
 .plan__pastille { width: 12px; height: 12px; border: 1px solid color-mix(in srgb, var(--encre) 35%, transparent); }
@@ -133,44 +133,83 @@ p, li, dd { text-wrap: pretty; }
   .plan .zone-texte { font-size: 15px; }
 }
 .plan .zone-texte--sombre { fill: var(--calque); }
-/* Animation au chargement (environ 5,5 s) : 1. murs, 2. cloisons une à une puis portes, 3. couleurs des espaces, 4. mobilier.
+/* Mobilier dessiné (accueil), d'après le rendu de space planning transmis par Redoine le 2026-10-28.
+   Classes pl-* sans ancêtre : le mobilier est cloné par <use>, et Chrome n'applique pas aux clones les sélecteurs qui passent par .plan. */
+.pl-accoudoir { fill: var(--calque-releve); stroke: var(--encre-douce); stroke-width: .8; }
+.pl-dossier { fill: color-mix(in srgb, var(--encre-douce) 45%, var(--calque-releve)); stroke: var(--encre-douce); stroke-width: .8; }
+.pl-dossier-trait { fill: none; stroke: var(--encre-douce); stroke-width: 1.6; stroke-linecap: round; }
+.plan .ecran, .plan .ecran-mural, .pl-ecran { fill: var(--encre); }
+.plan .clavier, .pl-clavier { fill: none; stroke: var(--encre-douce); stroke-width: .7; }
+.plan .evier { fill: none; stroke: var(--encre-douce); stroke-width: 1; }
+.plan .evier-bonde { fill: var(--encre-douce); }
+.pl-pot { fill: color-mix(in srgb, var(--vert-reemploi) 28%, var(--calque-releve)); }
+.pl-feuilles { fill: var(--vert-reemploi); }
+.plan .fenetre { fill: none; stroke: var(--bleu-plan); stroke-width: 4; }
+.plan .fenetre-vitre { fill: none; stroke: var(--calque-releve); stroke-width: 1.2; }
+.plan feDropShadow { flood-color: var(--encre); flood-opacity: .2; }
+.plan .zone-surface { fill: var(--encre-douce); font-family: var(--font-cote); font-size: 11px; letter-spacing: .02em; text-transform: none; font-variant-numeric: tabular-nums; }
+/* Petits écrans : les libellés sont agrandis (règles plus haut), on retire les surfaces et la cote de circulation,
+   et on décale les deux libellés qui toucheraient un mur ou une porte. */
+@media (max-width: 600px) {
+  .plan .zone-surface, .plan .l-cote { display: none; }
+  .plan .l3 { transform: translate(9px, 0); }
+  .plan .l5 { transform: translate(0, 7px); }
+  .plan .l5 .zone-texte { font-size: 13px; }
+}
+/* Animation au chargement (moins de 5 s, sous le seuil RGAA 13.8) : 1. murs et fenêtres, 2. cloisons une à une puis portes,
+   3. les espaces un à un, dans l'ordre demandé par Redoine (open space, réunion, bureau, café), puis l'accueil et le local technique.
+   Chaque espace arrive avec sa couleur, son libellé, son mobilier et sa pastille de légende.
    Murs et cloisons ont pathLength="1" : le tracé va de 1 à 0 quelle que soit leur longueur. */
 .plan .mur, .plan .cloison { stroke-dasharray: 1; stroke-dashoffset: 0; }
 @media (prefers-reduced-motion: no-preference) {
-  .plan .mur { animation: tracer 1s ease-out both; }
-  .plan .cloison { animation: tracer .6s ease-out both; }
-  .plan .c1 { animation-delay: .9s; } .plan .c2 { animation-delay: 1.15s; } .plan .c3 { animation-delay: 1.4s; } .plan .c4 { animation-delay: 1.65s; } .plan .c5 { animation-delay: 1.9s; }
-  .plan .portes { animation: poser .4s ease-out 2.4s both; }
-  .plan .zone { animation: poser .6s ease-out both; }
-  .plan .z1 { animation-delay: 2.6s; } .plan .z2 { animation-delay: 2.75s; } .plan .z3 { animation-delay: 2.9s; } .plan .z4 { animation-delay: 3.05s; } .plan .z5 { animation-delay: 3.2s; } .plan .z6 { animation-delay: 3.35s; }
-  .plan .libelles { animation: poser .5s ease-out 3.6s both; }
+  .plan .mur { animation: tracer .8s ease-out both; }
+  .plan .fenetres { animation: poser .3s ease-out .7s both; }
+  .plan .cloison { animation: tracer .5s ease-out both; }
+  .plan .c1 { animation-delay: .8s; } .plan .c2 { animation-delay: .95s; } .plan .c3 { animation-delay: 1.1s; } .plan .c4 { animation-delay: 1.25s; } .plan .c5 { animation-delay: 1.4s; }
+  .plan .portes { animation: poser .3s ease-out 1.8s both; }
+  .plan .zone, .plan .libelle, .plan__legende li { animation: poser .5s ease-out both; }
   .plan .mobilier { transform-box: fill-box; transform-origin: center; animation: meubler .4s cubic-bezier(.16, 1, .3, 1) both; }
-  .plan .m1 { animation-delay: 4s; } .plan .m2 { animation-delay: 4.15s; } .plan .m3 { animation-delay: 4.3s; } .plan .m4 { animation-delay: 4.45s; }
-  .plan .m5 { animation-delay: 4.6s; } .plan .m6 { animation-delay: 4.75s; } .plan .m7 { animation-delay: 4.9s; } .plan .m8 { animation-delay: 5.05s; }
+  /* 1. Open space */
+  .plan .z1 { animation-delay: 2s; } .plan .l1, .plan__legende .legende--travail { animation-delay: 2.1s; }
+  .plan .m1 { animation-delay: 2.15s; } .plan .m2 { animation-delay: 2.25s; } .plan .m3 { animation-delay: 2.35s; } .plan .m4 { animation-delay: 2.45s; }
+  .plan .l-cote, .plan .p1 { animation-delay: 2.6s; }
+  /* 2. Salle de réunion */
+  .plan .z2 { animation-delay: 2.75s; } .plan .l2, .plan__legende .legende--collaboratif { animation-delay: 2.85s; } .plan .m5 { animation-delay: 2.9s; } .plan .p2 { animation-delay: 3.1s; }
+  /* 3. Bureau */
+  .plan .z5 { animation-delay: 3.3s; } .plan .l5 { animation-delay: 3.4s; } .plan .m8 { animation-delay: 3.45s; }
+  /* 4. Café */
+  .plan .z4 { animation-delay: 3.85s; } .plan .l4, .plan__legende .legende--convivialite { animation-delay: 3.95s; } .plan .m6 { animation-delay: 4s; }
+  /* 5. Accueil, 6. local technique */
+  .plan .z3 { animation-delay: 4.3s; } .plan .l3 { animation-delay: 4.4s; } .plan .m7 { animation-delay: 4.45s; } .plan .p3 { animation-delay: 4.6s; }
+  .plan .z6 { animation-delay: 4.65s; } .plan .l6, .plan .m9, .plan__legende .legende--support { animation-delay: 4.7s; }
 }
 @keyframes tracer { from { stroke-dashoffset: 1; } }
 @keyframes meubler { from { opacity: 0; transform: scale(.85); } }
 
-/* Titre de l'accueil : bureaux → locaux → commerces → bureaux, un seul passage (5 s avec le délai, sous le seuil RGAA 13.8 qui impose un bouton Pause).
+/* Titre de l'accueil : bureaux → locaux → commerces, en boucle (décision du 2026-10-28, à la demande de Redoine). Chaque mot reste environ 2 s.
+   Le dernier mot de la liste est une copie de « bureaux » : le retour au début de la boucle ne se voit pas.
+   Non conforme au critère RGAA 13.8 (pas de bouton Pause), choix assumé comme pour le ruban des métiers.
    Seul « bureaux » est dans le HTML (texte lu par Google et les lecteurs d'écran) ; les autres mots sont du contenu CSS au texte alternatif vide.
    La boîte prend la largeur de chaque mot (mesurée en em sur Montserrat 700) pour que « clés » reste collé au mot.
    Ligne 1 « Vos commerces clés » = 10,3 em : taille du titre réglée pour qu'elle tienne dans la colonne (marge 10,6 em ; gouttières de 16 px sur mobile). */
 .sb-hero h1.titre-defilant { font-size: min(clamp(2.25rem, 5vw, 3.5rem), calc((100vw - 2rem) / 10.6)); }
 @media (min-width: 961px) { .sb-hero h1.titre-defilant { font-size: clamp(2.25rem, 4.1vw, 3rem); } }
 @media (prefers-reduced-motion: no-preference) {
-  .mot-defilant { display: inline-block; vertical-align: top; width: 4.18em; height: 1lh; overflow: hidden; animation: mot-largeur 3.8s cubic-bezier(.65, 0, .35, 1) 1.2s both; }
-  .mot-defilant__liste { display: block; white-space: pre; animation: mot-defile 3.8s cubic-bezier(.65, 0, .35, 1) 1.2s both; }
+  .mot-defilant { display: inline-block; vertical-align: top; width: 4.18em; height: 1lh; overflow: hidden; animation: mot-largeur 7.5s cubic-bezier(.65, 0, .35, 1) 1.2s infinite both; }
+  .mot-defilant__liste { display: block; white-space: pre; animation: mot-defile 7.5s cubic-bezier(.65, 0, .35, 1) 1.2s infinite both; }
   .mot-defilant__liste::after { content: "\A locaux\A commerces\A bureaux"; content: "\A locaux\A commerces\A bureaux" / ""; white-space: pre; }
 }
 @keyframes mot-defile {
-  9%, 44% { transform: translateY(-1lh); }
-  53%, 88% { transform: translateY(-2lh); }
-  97%, 100% { transform: translateY(-3lh); }
+  0%, 27% { transform: none; }
+  33%, 60% { transform: translateY(-1lh); }
+  66%, 93% { transform: translateY(-2lh); }
+  100% { transform: translateY(-3lh); }
 }
 @keyframes mot-largeur {
-  9%, 44% { width: 3.33em; }
-  53%, 88% { width: 5.97em; }
-  97%, 100% { width: 4.18em; }
+  0%, 27% { width: 4.18em; }
+  33%, 60% { width: 3.33em; }
+  66%, 93% { width: 5.97em; }
+  100% { width: 4.18em; }
 }
 @keyframes poser { from { opacity: 0; } }
 
@@ -260,6 +299,29 @@ p, li, dd { text-wrap: pretty; }
 .encadre--reemploi a { text-decoration-color: var(--vert-reemploi); }
 @media (max-width: 720px) { .encadre--large { grid-template-columns: 1fr; gap: var(--space-2); } }
 @media (max-width: 640px) { .encadre { padding: var(--space-5); } }
+/* Accueil : deux encarts de même format côte à côte, simulation (bleu clair) et réemploi (vert) ; empilés sur mobile.
+   Le lien ou le bouton est poussé en bas de l'encart pour que les deux s'alignent. Sur mobile, le bouton de la simulation passe
+   avant le texte (titre, bouton, texte : retour de Redoine du 2026-10-28). */
+.duo-encarts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); align-items: stretch; }
+.encart { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); padding: var(--space-8); border-radius: var(--radius-trait); }
+.encart .sb-etiquette, .encart p { margin: 0; }
+.encart p { max-width: 52ch; }
+.encart h2 { margin: 0; font-family: var(--font-titre); font-size: clamp(1.375rem, 2.4vw, 1.75rem); line-height: 1.2; font-weight: 700; letter-spacing: -.01em; }
+.encart > :last-child { margin-top: auto; padding-top: var(--space-2); }
+.encart--simulation { background: var(--bleu-plan-clair); }
+.encart--simulation .sb-etiquette { color: var(--bleu-plan); }
+.encart--reemploi { background: var(--vert-reemploi-fond); }
+.encart--reemploi .sb-etiquette, .encart--reemploi a { color: var(--vert-reemploi); }
+.encart--reemploi a { text-decoration-color: var(--vert-reemploi); }
+.encart .sb-bouton span { transition: transform .2s ease-out; }
+.encart .sb-bouton:hover span { transform: translateX(4px); }
+@media (max-width: 720px) {
+  .duo-encarts { grid-template-columns: 1fr; gap: var(--space-4); }
+  .encart { padding: var(--space-5); }
+  .encart > :last-child { margin-top: 0; padding-top: 0; }
+  .encart--simulation .sb-bouton { order: 1; }
+  .encart--simulation p:not(.sb-etiquette) { order: 2; }
+}
 
 /* Valeurs (3 mots) */
 .mots { display: flex; flex-wrap: wrap; gap: var(--space-3); list-style: none; margin: 0; padding: 0; }
@@ -397,6 +459,16 @@ mark.a-confirmer { background: transparent; color: var(--caramel-texte); font-fa
 .puzzle--pret.puzzle--assemble .puzzle__metier--bg { transition-delay: 1.22s; }
 .puzzle--pret.puzzle--assemble .puzzle__metier--bd { transition-delay: 1.28s; }
 .puzzle figcaption { margin-top: var(--space-3); text-align: center; font-family: var(--font-cote); font-size: .75rem; line-height: 1rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--bleu-plan); }
+/* Survol : la photo du métier apparaît dans sa pièce, découpée à sa forme (retour de Redoine du 2026-10-28 ; photos Unsplash, voir assets/img/CREDITS.md).
+   Décoratif : la figure est masquée aux lecteurs d'écran ; sans survol (écran tactile), le logo reste en traits. */
+.puzzle__photo { opacity: 0; transition: opacity .35s ease-out; }
+.puzzle__piece:hover .puzzle__photo,
+.puzzle__ensemble:has(.puzzle__metier--hg:hover) .puzzle__piece--hg .puzzle__photo,
+.puzzle__ensemble:has(.puzzle__metier--hd:hover) .puzzle__piece--hd .puzzle__photo,
+.puzzle__ensemble:has(.puzzle__metier--bg:hover) .puzzle__piece--bg .puzzle__photo,
+.puzzle__ensemble:has(.puzzle__metier--bd:hover) .puzzle__piece--bd .puzzle__photo { opacity: 1; }
+.puzzle__metier { cursor: default; transition: color .2s ease-out; }
+.puzzle__metier:hover { color: var(--encre); }
 @media (max-width: 860px) { .interlocuteur { grid-template-columns: 1fr; gap: var(--space-8); } .puzzle { max-width: 220px; margin-inline: auto; } }
 
 /* Ruban des quatre métiers : défilement continu, séparateurs en lignes de cote (piste dupliquée pour une boucle sans saut) */
@@ -407,7 +479,8 @@ mark.a-confirmer { background: transparent; color: var(--caramel-texte); font-fa
   .bandeau { display: flex; align-items: center; }
   .bandeau__texte { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .bandeau__voile { flex: 1; min-width: 0; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-  .bandeau__piste { display: flex; width: max-content; animation: bandeau-defile 80s linear infinite; }
+  /* Couche graphique dédiée : sans elle, la pause au survol redessine le texte à une position fractionnaire et il « frise » (retour de Redoine du 2026-10-28) */
+  .bandeau__piste { display: flex; width: max-content; animation: bandeau-defile 80s linear infinite; will-change: transform; backface-visibility: hidden; }
   .bandeau:hover .bandeau__piste { animation-play-state: paused; }
 }
 .bandeau__piste ul { display: flex; align-items: center; flex: none; margin: 0; padding: 0; list-style: none; }
@@ -456,22 +529,28 @@ mark.a-confirmer { background: transparent; color: var(--caramel-texte); font-fa
   .frise h3, .frise p { margin-right: 0; }
   .frise h3 { margin-top: 0; }
 }
-/* Emboîtement déclenché par assets/puzzle.js quand chaque étape est bien visible (classe frise__etape--posee) ;
-   sur une ligne, les pièces partent l'une après l'autre (0,35 s d'écart, 1,1 s chacune, environ 2,9 s en tout). */
+/* Emboîtement déclenché par assets/puzzle.js quand chaque étape est bien visible (classe frise__etape--posee), rejoué à chaque retour
+   à l'écran : le script retire la classe quand l'étape sort de l'écran (retours de Redoine du 2026-10-28 : plus lent, texte avec la pièce,
+   animation maintenue en remontant). Sur une ligne, les pièces partent l'une après l'autre (0,55 s d'écart, 1,6 s chacune) ;
+   le titre puis le texte de chaque étape apparaissent quand sa pièce se pose. */
 @media (prefers-reduced-motion: no-preference) {
-  .frise__etape--prete:not(.frise__etape--posee) .frise__piece { opacity: 0; }
-  .frise__etape--posee .frise__piece { animation: piece-emboite 1.1s cubic-bezier(.16, 1, .3, 1) both; }
+  .frise li { --delai: 0s; }
+  .frise__etape--prete:not(.frise__etape--posee) :is(.frise__piece, h3, p) { opacity: 0; }
+  .frise__etape--posee .frise__piece { animation: piece-emboite 1.6s cubic-bezier(.16, 1, .3, 1) var(--delai) both; }
+  .frise__etape--posee h3 { animation: texte-apparait .6s ease-out calc(var(--delai) + .9s) both; }
+  .frise__etape--posee p { animation: texte-apparait .6s ease-out calc(var(--delai) + 1.05s) both; }
 }
 @media (prefers-reduced-motion: no-preference) and (min-width: 641px) {
-  .frise li:nth-child(3n+2) .frise__piece { animation-delay: .35s; }
-  .frise li:nth-child(3n) .frise__piece { animation-delay: .7s; }
+  .frise li:nth-child(3n+2) { --delai: .55s; }
+  .frise li:nth-child(3n) { --delai: 1.1s; }
 }
 @media (prefers-reduced-motion: no-preference) and (min-width: 1081px) {
-  .frise li:nth-child(4) .frise__piece { animation-delay: 1.05s; }
-  .frise li:nth-child(5) .frise__piece { animation-delay: 1.4s; }
-  .frise li:nth-child(6) .frise__piece { animation-delay: 1.75s; }
+  .frise li:nth-child(4) { --delai: 1.65s; }
+  .frise li:nth-child(5) { --delai: 2.2s; }
+  .frise li:nth-child(6) { --delai: 2.75s; }
 }
 @keyframes piece-emboite { from { transform: translate(36px, -26px) rotate(8deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes texte-apparait { from { opacity: 0; transform: translateY(6px); } }
 
 /* Photos d'ambiance (Unsplash, voir assets/img/CREDITS.md) : jamais présentées comme des réalisations SOBIMA */
 .ambiance { margin: var(--space-8) 0 0; }
@@ -535,3 +614,34 @@ mark.a-confirmer { background: transparent; color: var(--caramel-texte); font-fa
 .etape .texte p {
   text-align: justify;
 }
+
+/* Page Approche : garanties en trois points, juste après les étapes (retour de Redoine du 2026-10-28).
+   Le « 12 » de la garantie de parfait achèvement est en --caramel-texte : le caramel seul n'atteint pas 3:1 sur fond clair. */
+.garanties { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); }
+.garantie { background: var(--calque-releve); border-top: 3px solid var(--caramel); border-radius: var(--radius-trait); padding: var(--space-8) var(--space-6); }
+.garantie__icone { display: block; width: 56px; height: 56px; margin-bottom: var(--space-4); fill: none; stroke: var(--caramel); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.garantie__chiffre { display: flex; align-items: baseline; gap: var(--space-2); height: 56px; margin: 0 0 var(--space-4); font-family: var(--font-titre); font-size: 4.5rem; line-height: 56px; font-weight: 700; letter-spacing: -.03em; color: var(--caramel-texte); }
+.garantie__chiffre span { font-size: 1.125rem; letter-spacing: 0; color: var(--encre); }
+.garantie h3 { margin: 0; font-family: var(--font-titre); font-size: 1.125rem; line-height: 1.4; font-weight: 700; }
+.garantie p:not(.garantie__chiffre) { margin: var(--space-2) 0 0; color: var(--encre-douce); }
+@media (max-width: 800px) { .garanties { grid-template-columns: 1fr; gap: var(--space-4); } .garantie { padding: var(--space-6) var(--space-5); } }
+
+
+/* Page Réemploi (2026-10-28) : le mobilier avec une photo et quatre leviers, puis les matériaux en cartes photo.
+   Photos d'ambiance Unsplash (assets/img/CREDITS.md), jamais présentées comme des réalisations SOBIMA. */
+.reemploi-photo { margin: 0; }
+.reemploi-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-trait); }
+.leviers { list-style: none; margin: 0 0 var(--space-6); padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); counter-reset: levier; }
+.leviers li { margin: 0; padding: var(--space-5); background: var(--calque); border-radius: var(--radius-trait); counter-increment: levier; }
+.leviers h3 { margin: 0 0 var(--space-2); font-family: var(--font-titre); font-size: 1.0625rem; line-height: 1.375rem; font-weight: 700; }
+.leviers h3::before { content: counter(levier, decimal-leading-zero) " "; color: var(--caramel-texte); font-family: var(--font-cote); font-size: .8125rem; letter-spacing: .04em; }
+.leviers p { margin: 0; font-size: .9375rem; line-height: 1.375rem; color: var(--encre-douce); }
+.reemploi-mobilier .texte { max-width: none; }
+.materiaux { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-6); }
+.materiaux figure { margin: 0 0 var(--space-4); }
+.materiaux img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-trait); }
+.materiaux h3 { margin: 0 0 var(--space-2); font-family: var(--font-titre); font-size: 1.125rem; line-height: 1.4; font-weight: 700; }
+.materiaux p { margin: 0; font-size: .9375rem; line-height: 1.375rem; color: var(--encre-douce); }
+.materiaux__note { margin: var(--space-8) 0 0; max-width: 64ch; color: var(--encre-douce); }
+@media (max-width: 1080px) { .materiaux { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .materiaux, .leviers { grid-template-columns: 1fr; } }

@@ -23,10 +23,10 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/Montserrat-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/SchibstedGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/tokens.css?v=20261028a">
+<link rel="stylesheet" href="assets/tokens.css?v=20261028b">
 <link rel="stylesheet" href="assets/bundle.css?v=20261028a">
-<link rel="stylesheet" href="assets/site.css?v=20261028a">
-<script src="assets/puzzle.js?v=20261027" defer></script>
+<link rel="stylesheet" href="assets/site.css?v=20261028b">
+<script src="assets/puzzle.js?v=20261028" defer></script>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -133,21 +133,36 @@
 <figure class="plan">
 <svg viewBox="0 0 520 380" role="img" aria-labelledby="plan-titre plan-desc">
 <title id="plan-titre">Simulation d'implantation</title>
-<desc id="plan-desc">Plan illustratif d'un plateau de bureaux de 16 m sur 11 m : un open space de quatre îlots de quatre postes, une salle de réunion, un bureau fermé, un accueil, un espace café et un local technique.</desc>
+<desc id="plan-desc">Plan illustratif d'un plateau de bureaux de 16 m sur 11 m : un open space de quatre îlots de quatre postes, une salle de réunion de huit places, un bureau fermé, un espace café avec kitchenette, un accueil avec deux fauteuils d'attente et un local technique.</desc>
+<defs>
+<filter id="plan-ombre" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="1.2" stdDeviation=".8"/></filter>
+<!-- Mobilier vu de dessus, orienté vers le haut (dossier en bas) -->
+<g id="plan-chaise"><rect class="pl-accoudoir" x="-7.5" y="-3" width="2" height="6" rx="1"/><rect class="pl-accoudoir" x="5.5" y="-3" width="2" height="6" rx="1"/><rect class="pl-siege" x="-5.5" y="-5" width="11" height="9.5" rx="3"/><rect class="pl-dossier" x="-6.5" y="3.5" width="13" height="3.5" rx="1.75"/></g>
+<g id="plan-chaise-cafe"><rect class="pl-siege" x="-4.5" y="-4.5" width="9" height="8.5" rx="2.5"/><path class="pl-dossier-trait" d="M-4.5 4.6 Q0 7.6 4.5 4.6"/></g>
+<g id="plan-fauteuil"><rect class="pl-siege" x="-6.5" y="-6" width="13" height="12" rx="3"/><rect class="pl-dossier" x="-6.5" y="3" width="13" height="4" rx="2"/><rect class="pl-dossier" x="-8" y="-5" width="3" height="11" rx="1.5"/><rect class="pl-dossier" x="5" y="-5" width="3" height="11" rx="1.5"/></g>
+<g id="plan-poste"><rect class="pl-plateau" width="30" height="18"/><rect class="pl-ecran" x="8" y="3" width="14" height="2" rx=".5"/><rect class="pl-clavier" x="9.5" y="9" width="11" height="3.5" rx=".5"/></g>
+<g id="plan-ilot"><use href="#plan-poste" transform="translate(30 18) rotate(180)"/><use href="#plan-poste" transform="translate(62 18) rotate(180)"/><use href="#plan-poste" y="20"/><use href="#plan-poste" x="32" y="20"/><use href="#plan-chaise" transform="translate(15 -8) rotate(180)"/><use href="#plan-chaise" transform="translate(47 -8) rotate(180)"/><use href="#plan-chaise" transform="translate(15 46)"/><use href="#plan-chaise" transform="translate(47 46)"/></g>
+<g id="plan-table-cafe"><circle class="pl-plateau" r="12"/><use href="#plan-chaise-cafe" transform="translate(-15 -15) rotate(135)"/><use href="#plan-chaise-cafe" transform="translate(15 -15) rotate(-135)"/><use href="#plan-chaise-cafe" transform="translate(-15 15) rotate(45)"/><use href="#plan-chaise-cafe" transform="translate(15 15) rotate(-45)"/></g>
+<g id="plan-plante"><circle class="pl-pot" r="6"/><path class="pl-feuilles" d="M0 -5.5 Q3 -1.5 0 0 Q-3 -1.5 0 -5.5 M5.5 0 Q1.5 3 0 0 Q1.5 -3 5.5 0 M0 5.5 Q-3 1.5 0 0 Q3 1.5 0 5.5 M-5.5 0 Q-1.5 -3 0 0 Q-1.5 3 -5.5 0"/></g>
+</defs>
 <!-- Cotes -->
 <path class="cote-trait" d="M40 20 V30 M480 20 V30 M40 25 H480"/>
 <text class="cote-texte" x="260" y="16" text-anchor="middle">16,00 m</text>
 <path class="cote-trait" d="M18 40 H28 M18 340 H28 M23 40 V340"/>
 <text class="cote-texte" x="12" y="190" text-anchor="middle" transform="rotate(-90 12 190)">11,00 m</text>
-<!-- 3. Espaces colorés par fonction (sous les murs) -->
+<!-- Espaces colorés par fonction (sous les murs) -->
 <rect class="zone zone--travail z1" x="40" y="40" width="260" height="185"/>
 <rect class="zone zone--collaboratif z2" x="330" y="40" width="150" height="125"/>
 <rect class="zone zone--convivialite z3" x="40" y="255" width="110" height="85"/>
 <rect class="zone zone--convivialite z4" x="150" y="255" width="150" height="85"/>
 <rect class="zone zone--travail z5" x="380" y="240" width="100" height="100"/>
 <rect class="zone zone--support z6" x="330" y="300" width="50" height="40"/>
-<!-- 1. Murs, 2. cloisons et portes -->
+<!-- 1. Murs et fenêtres, 2. cloisons et portes -->
 <rect class="mur" x="40" y="40" width="440" height="300" pathLength="1"/>
+<g class="fenetres">
+<path class="fenetre" d="M60 40 H120 M160 40 H220 M360 40 H450 M480 60 V110 M480 185 V225 M480 265 V320 M410 340 H460 M170 340 H230 M60 340 H120 M40 80 V140 M40 160 V205"/>
+<path class="fenetre-vitre" d="M60 40 H120 M160 40 H220 M360 40 H450 M480 60 V110 M480 185 V225 M480 265 V320 M410 340 H460 M170 340 H230 M60 340 H120 M40 80 V140 M40 160 V205"/>
+</g>
 <path class="cloison c1" d="M330 40 V122 M330 154 V165 H480" pathLength="1"/>
 <path class="cloison c2" d="M380 340 V280 M380 248 V240 H480" pathLength="1"/>
 <path class="cloison c3" d="M40 255 H105 M137 255 H205 M237 255 H300 V340" pathLength="1"/>
@@ -157,33 +172,37 @@
 <path class="porte-vantail" d="M330 154 H362 M380 248 H412"/>
 <path class="porte" d="M330 122 A32 32 0 0 1 362 154 M380 280 A32 32 0 0 0 412 248"/>
 </g>
-<!-- 4. Mobilier -->
-<g class="mobilier m1"><g class="plateau"><rect x="62" y="66" width="30" height="18"/><rect x="62" y="86" width="30" height="18"/><rect x="94" y="66" width="30" height="18"/><rect x="94" y="86" width="30" height="18"/></g><circle class="siege" cx="77" cy="58" r="5"/><circle class="siege" cx="77" cy="112" r="5"/><circle class="siege" cx="109" cy="58" r="5"/><circle class="siege" cx="109" cy="112" r="5"/></g>
-<g class="mobilier m2"><g class="plateau"><rect x="164" y="66" width="30" height="18"/><rect x="164" y="86" width="30" height="18"/><rect x="196" y="66" width="30" height="18"/><rect x="196" y="86" width="30" height="18"/></g><circle class="siege" cx="179" cy="58" r="5"/><circle class="siege" cx="179" cy="112" r="5"/><circle class="siege" cx="211" cy="58" r="5"/><circle class="siege" cx="211" cy="112" r="5"/></g>
-<g class="mobilier m3"><g class="plateau"><rect x="62" y="160" width="30" height="18"/><rect x="62" y="180" width="30" height="18"/><rect x="94" y="160" width="30" height="18"/><rect x="94" y="180" width="30" height="18"/></g><circle class="siege" cx="77" cy="152" r="5"/><circle class="siege" cx="77" cy="206" r="5"/><circle class="siege" cx="109" cy="152" r="5"/><circle class="siege" cx="109" cy="206" r="5"/></g>
-<g class="mobilier m4"><g class="plateau"><rect x="164" y="160" width="30" height="18"/><rect x="164" y="180" width="30" height="18"/><rect x="196" y="160" width="30" height="18"/><rect x="196" y="180" width="30" height="18"/></g><circle class="siege" cx="179" cy="152" r="5"/><circle class="siege" cx="179" cy="206" r="5"/><circle class="siege" cx="211" cy="152" r="5"/><circle class="siege" cx="211" cy="206" r="5"/></g>
-<g class="mobilier m5"><rect class="plateau" x="363" y="84" width="84" height="36" rx="2"/><circle class="siege" cx="377" cy="76" r="5"/><circle class="siege" cx="377" cy="128" r="5"/><circle class="siege" cx="405" cy="76" r="5"/><circle class="siege" cx="405" cy="128" r="5"/><circle class="siege" cx="433" cy="76" r="5"/><circle class="siege" cx="433" cy="128" r="5"/><circle class="siege" cx="355" cy="102" r="5"/><circle class="siege" cx="455" cy="102" r="5"/></g>
-<g class="mobilier m6"><circle class="plateau" cx="195" cy="310" r="12"/><circle class="siege" cx="195" cy="290" r="5"/><circle class="siege" cx="195" cy="330" r="5"/><circle class="siege" cx="175" cy="310" r="5"/><circle class="siege" cx="215" cy="310" r="5"/><circle class="plateau" cx="255" cy="310" r="12"/><circle class="siege" cx="255" cy="290" r="5"/><circle class="siege" cx="255" cy="330" r="5"/><circle class="siege" cx="235" cy="310" r="5"/><circle class="siege" cx="275" cy="310" r="5"/></g>
-<g class="mobilier m7"><rect class="plateau" x="56" y="298" width="52" height="16"/><circle class="siege" cx="82" cy="324" r="5"/></g>
-<g class="mobilier m8"><rect class="plateau" x="424" y="292" width="44" height="22"/><circle class="siege" cx="446" cy="284" r="5"/></g>
-<!-- Libellés -->
-<g class="libelles">
-<text class="zone-texte" x="266" y="126" text-anchor="middle"><tspan x="266">Open</tspan><tspan x="266" dy="16">space</tspan></text>
-<text class="zone-texte" x="405" y="60" text-anchor="middle">Réunion</text>
-<text class="zone-texte" x="95" y="280" text-anchor="middle">Accueil</text>
-<text class="zone-texte" x="225" y="276" text-anchor="middle">Café</text>
-<text class="zone-texte" x="430" y="334" text-anchor="middle">Bureau</text>
-<text class="zone-texte zone-texte--sombre" x="355" y="325" text-anchor="middle">LT</text>
-<!-- Cote de circulation -->
+<!-- 3. Mobilier, espace par espace -->
+<g class="mobilier m1" filter="url(#plan-ombre)"><use href="#plan-ilot" x="62" y="66"/></g>
+<g class="mobilier m2" filter="url(#plan-ombre)"><use href="#plan-ilot" x="164" y="66"/></g>
+<g class="mobilier m3" filter="url(#plan-ombre)"><use href="#plan-ilot" x="62" y="160"/></g>
+<g class="mobilier m4" filter="url(#plan-ombre)"><use href="#plan-ilot" x="164" y="160"/></g>
+<g class="mobilier p1"><use href="#plan-plante" x="288" y="212"/></g>
+<g class="mobilier m5" filter="url(#plan-ombre)"><rect class="plateau" x="363" y="84" width="84" height="36" rx="4"/><use href="#plan-chaise" transform="translate(377 75) rotate(180)"/><use href="#plan-chaise" transform="translate(405 75) rotate(180)"/><use href="#plan-chaise" transform="translate(433 75) rotate(180)"/><use href="#plan-chaise" transform="translate(377 129)"/><use href="#plan-chaise" transform="translate(405 129)"/><use href="#plan-chaise" transform="translate(433 129)"/><use href="#plan-chaise" transform="translate(353 102) rotate(90)"/><use href="#plan-chaise" transform="translate(457 102) rotate(-90)"/><rect class="ecran-mural" x="474" y="88" width="3" height="28"/></g>
+<g class="mobilier p2"><use href="#plan-plante" x="468" y="152"/></g>
+<g class="mobilier m8" filter="url(#plan-ombre)"><rect class="plateau" x="420" y="298" width="48" height="20" rx="1"/><rect class="ecran" x="436" y="301" width="16" height="2" rx=".5"/><rect class="clavier" x="438.5" y="308" width="11" height="3.5" rx=".5"/><use href="#plan-chaise" transform="translate(432 287) rotate(180)"/><use href="#plan-chaise" transform="translate(456 287) rotate(180)"/><use href="#plan-chaise" transform="translate(444 330)"/></g>
+<g class="mobilier m6" filter="url(#plan-ombre)"><use href="#plan-table-cafe" x="190" y="305"/><use href="#plan-table-cafe" x="245" y="305"/><rect class="plateau" x="282" y="262" width="16" height="72"/><rect class="evier" x="285" y="276" width="10" height="13" rx="2"/><circle class="evier-bonde" cx="290" cy="282.5" r="1.2"/></g>
+<g class="mobilier m7" filter="url(#plan-ombre)"><path class="plateau" d="M56 298 H108 V312 H66 V324 H56 Z"/><use href="#plan-chaise" transform="translate(84 326)"/><use href="#plan-fauteuil" transform="translate(134 300) rotate(-90)"/><use href="#plan-fauteuil" transform="translate(134 322) rotate(-90)"/></g>
+<g class="mobilier p3"><use href="#plan-plante" x="140" y="268"/></g>
+<g class="mobilier m9"><rect class="plateau" x="338" y="308" width="12" height="24"/></g>
+<!-- Libellés : nom et surface de chaque espace (surfaces mesurées sur le dessin, 27,5 px pour 1 m) -->
+<g class="libelle l1"><text class="zone-texte" x="266" y="122" text-anchor="middle"><tspan x="266">Open</tspan><tspan x="266" dy="16">space</tspan></text><text class="zone-surface" x="266" y="156" text-anchor="middle">63,6 m²</text></g>
+<g class="libelle l2"><text class="zone-texte" x="405" y="58" text-anchor="middle">Réunion<tspan class="zone-surface"> · 24,8 m²</tspan></text></g>
+<g class="libelle l5"><text class="zone-texte" x="444" y="259" text-anchor="middle">Bureau</text><text class="zone-surface" x="444" y="272" text-anchor="middle">13,2 m²</text></g>
+<g class="libelle l4"><text class="zone-texte" x="225" y="273" text-anchor="middle">Café<tspan class="zone-surface"> · 16,9 m²</tspan></text></g>
+<g class="libelle l3"><text class="zone-texte" x="78" y="273" text-anchor="middle">Accueil</text><text class="zone-surface" x="78" y="286" text-anchor="middle">12,4 m²</text></g>
+<g class="libelle l6"><text class="zone-texte zone-texte--sombre" x="365" y="325" text-anchor="middle">LT</text></g>
+<!-- Cote de circulation entre deux îlots -->
+<g class="libelle l-cote">
 <path class="cote-trait" d="M124 124 H164 M124 119 V129 M164 119 V129"/>
 <text class="cote-texte" x="144" y="143" text-anchor="middle">1,45 m</text>
 </g>
 </svg>
 <ul class="plan__legende">
-<li><span class="plan__pastille zone--travail" aria-hidden="true"></span>Travail</li>
-<li><span class="plan__pastille zone--collaboratif" aria-hidden="true"></span>Collaboratif</li>
-<li><span class="plan__pastille zone--convivialite" aria-hidden="true"></span>Convivialité</li>
-<li><span class="plan__pastille zone--support" aria-hidden="true"></span>Support</li>
+<li class="legende--travail"><span class="plan__pastille zone--travail" aria-hidden="true"></span>Travail</li>
+<li class="legende--collaboratif"><span class="plan__pastille zone--collaboratif" aria-hidden="true"></span>Collaboratif</li>
+<li class="legende--convivialite"><span class="plan__pastille zone--convivialite" aria-hidden="true"></span>Convivialité</li>
+<li class="legende--support"><span class="plan__pastille zone--support" aria-hidden="true"></span>Support</li>
 </ul>
 <figcaption><span>SIMULATION D'IMPLANTATION</span><span>176 m² · 17 POSTES</span></figcaption>
 </figure>
@@ -212,6 +231,11 @@
 <defs>
 <clipPath id="puzzle-clip-flight"><rect x="37.5" y="20.5" width="442" height="457" rx="116.5"/></clipPath>
 <clipPath id="puzzle-clip-hg"><rect x="40" y="23" width="437" height="452" rx="107"/></clipPath>
+<!-- Forme de chaque pièce : découpe des photos qui apparaissent au survol -->
+<clipPath id="puzzle-forme-hg"><path d="M 80 80 L 298 80 L 298 138 L 282 138 A 40 40 0 1 0 282 200 L 298 200 L 298 294 L 216 294 A 40 40 0 1 1 164 294 L 80 294 Z"/></clipPath>
+<clipPath id="puzzle-forme-hd"><path d="M 298 80 L 474 80 A 125 125 0 0 1 488 137 L 488 294 L 440 294 A 40 40 0 1 0 392 294 L 298 294 L 298 200 L 282 200 A 40 40 0 1 1 282 138 L 298 138 Z"/></clipPath>
+<clipPath id="puzzle-forme-bg"><path d="M 298 294 L 298 360 L 314 360 A 40 40 0 1 1 314 420 L 298 420 L 298 486 L 154 486 A 125 125 0 0 1 80 462 L 80 294 L 164 294 A 40 40 0 1 0 216 294 L 298 294 Z"/></clipPath>
+<clipPath id="puzzle-forme-bd"><path d="M 298 294 L 392 294 A 40 40 0 1 1 440 294 L 488 294 L 488 361 A 125 125 0 0 1 363 486 L 298 486 L 298 420 L 314 420 A 40 40 0 1 0 314 360 L 298 360 Z"/></clipPath>
 </defs>
 <g class="puzzle__cadre" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round" stroke-linejoin="round">
 <rect x="29" y="12" width="459" height="474" rx="125"/>
@@ -220,17 +244,21 @@
 <g clip-path="url(#puzzle-clip-hg)">
 <g class="puzzle__piece puzzle__piece--hg">
 <g transform="translate(122 104) rotate(22) scale(0.78) translate(-189 -187)">
+<image class="puzzle__photo" href="assets/img/metier-conception-480.webp" x="80" y="80" width="218" height="284" preserveAspectRatio="xMidYMid slice" clip-path="url(#puzzle-forme-hg)"/>
 <path d="M 80 80 L 298 80 L 298 138 L 282 138 A 40 40 0 1 0 282 200 L 298 200 L 298 294 L 216 294 A 40 40 0 1 1 164 294 L 80 294 Z"/>
 </g>
 </g>
 </g>
 <g class="puzzle__piece puzzle__piece--hd">
+<image class="puzzle__photo" href="assets/img/metier-travaux-480.webp" x="212" y="80" width="276" height="214" preserveAspectRatio="xMidYMid slice" clip-path="url(#puzzle-forme-hd)"/>
 <path d="M 298 80 L 474 80 A 125 125 0 0 1 488 137 L 488 294 L 440 294 A 40 40 0 1 0 392 294 L 298 294 L 298 200 L 282 200 A 40 40 0 1 1 282 138 L 298 138 Z"/>
 </g>
 <g class="puzzle__piece puzzle__piece--bg">
+<image class="puzzle__photo" href="assets/img/metier-mobilier-480.webp" x="80" y="294" width="304" height="192" preserveAspectRatio="xMidYMid slice" clip-path="url(#puzzle-forme-bg)"/>
 <path d="M 298 294 L 298 360 L 314 360 A 40 40 0 1 1 314 420 L 298 420 L 298 486 L 154 486 A 125 125 0 0 1 80 462 L 80 294 L 164 294 A 40 40 0 1 0 216 294 L 298 294 Z"/>
 </g>
 <g class="puzzle__piece puzzle__piece--bd">
+<image class="puzzle__photo" href="assets/img/metier-demenagement-480.webp" x="298" y="224" width="190" height="262" preserveAspectRatio="xMidYMid slice" clip-path="url(#puzzle-forme-bd)"/>
 <path d="M 298 294 L 392 294 A 40 40 0 1 1 440 294 L 488 294 L 488 361 A 125 125 0 0 1 363 486 L 298 486 L 298 420 L 314 420 A 40 40 0 1 0 314 360 L 298 360 Z"/>
 </g>
 </g>
@@ -316,30 +344,20 @@
 </section>
 -->
 
-<section class="section">
-<div class="cadre">
-<div class="sb-testfit sb-testfit--large">
-<div>
+<!-- Deux encarts de même format, côte à côte (retour de Redoine du 2026-10-28 : plus de rupture entre un grand bandeau bleu et un petit encadré vert) -->
+<section class="section section--serree">
+<div class="cadre duo-encarts">
+<div class="encart encart--simulation">
 <p class="sb-etiquette">Avant de vous engager</p>
 <h2>Vérifiez la faisabilité sur plan</h2>
 <p>Nous implantons vos espaces sur le plan du local, offert, sous 48 h : capacité, circulations, contraintes techniques.</p>
+<a class="sb-bouton sb-bouton--testfit" href="simulation-implantation.html">Demander ma simulation d'implantation <span aria-hidden="true">→</span></a>
 </div>
-<a class="sb-bouton sb-bouton--testfit testfit__cta" href="simulation-implantation.html">Demander ma simulation d'implantation <span aria-hidden="true">→</span></a>
-</div>
-</div>
-</section>
-
-<section class="section section--serree">
-<div class="cadre">
-<div class="encadre encadre--large encadre--reemploi">
-<div>
+<div class="encart encart--reemploi">
 <p class="sb-etiquette">Réemploi</p>
 <h2>Réemployer avant d'acheter</h2>
-</div>
-<div>
 <p>Mobilier d'abord, puis matériaux : cloisons, revêtements de sol, câblage électrique et réseau, lots techniques. Ce qui peut resservir est inventorié et réemployé : moins de déchets, moins de carbone, un budget mieux tenu.</p>
-<p><a href="rse-reemploi.html">Notre démarche de réemploi</a></p>
-</div>
+<p class="encart__lien"><a href="rse-reemploi.html">Notre démarche de réemploi</a></p>
 </div>
 </div>
 </section>
