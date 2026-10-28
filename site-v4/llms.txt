@@ -1,6 +1,6 @@
 # SOBIMA
 
-> SOBIMA est un contractant général en aménagement de bureaux et d'espaces commerciaux à Paris et en Île-de-France. Un seul interlocuteur prend en charge le projet de bout en bout : étude de faisabilité sur plan (test fit offert sous 48 h), conception architecturale et technique, démarches administratives et réglementaires (ERP, IGH), réalisation des travaux tous corps d'état, mobilier et réemploi, réception et coordination du déménagement.
+> SOBIMA est un contractant général en aménagement de bureaux et d'espaces commerciaux à Paris et en Île-de-France. Un seul interlocuteur prend en charge le projet de bout en bout : étude de faisabilité sur plan (simulation d'implantation offerte sous 48 h), conception architecturale et technique, démarches administratives et réglementaires (ERP, IGH), réalisation des travaux tous corps d'état, mobilier et réemploi, réception et coordination du déménagement.
 
 ## Identité et contact
 
@@ -14,10 +14,10 @@
 ## Pages principales
 
 - [Accueil](https://www.sobima.fr/) : présentation de l'accompagnement clés en main en aménagement de bureaux, engagements (budget tenu, délais respectés, qualité suivie, interlocuteur unique) et méthode en 6 étapes.
-- [Prestations d'aménagement de bureaux](https://www.sobima.fr/prestations) : détail des 7 volets pris en charge (définition du besoin, conception architecturale et technique, administratif/ERP/IGH, travaux tous corps d'état, mobilier et décoration, réception/DOE/DIUO/RFCT, déménagement) la méthode de contractant général (pilotage global, conception figée avant commandes, travaux en site occupé ou en horaires décalés, garanties décennale et de parfait achèvement), ainsi que l'intervention en entreprise générale avec l'architecte du client et la valorisation d'actifs pour propriétaires/investisseurs.
-- [Test fit offert sous 48 h](https://www.sobima.fr/test-fit-48h) : étude de faisabilité et plan d'implantation offert sous 48 h sur le plan du local avant signature de bail (capacité d'accueil, circulations, contraintes techniques ; ordre de grandeur moyen de 10 m² par poste, espaces communs compris).
+- [Approche SOBIMA : aménagement de bureaux](https://www.sobima.fr/approche) : détail des 7 volets pris en charge (définition du besoin, conception architecturale et technique, administratif/ERP/IGH, travaux tous corps d'état, mobilier et décoration, réception/DOE/DIUO/RFCT, déménagement) la méthode de contractant général (pilotage global, conception figée avant commandes, travaux en site occupé ou en horaires décalés, garanties décennale et de parfait achèvement), ainsi que l'intervention en entreprise générale avec l'architecte du client et la valorisation d'actifs pour propriétaires/investisseurs.
+- [Simulation d'implantation offerte sous 48 h](https://www.sobima.fr/simulation-implantation) : étude de faisabilité et plan d'implantation offert sous 48 h sur le plan du local avant signature de bail (capacité d'accueil, circulations, contraintes techniques ; ordre de grandeur moyen de 10 m² par poste, espaces communs compris).
 - [RSE et réemploi](https://www.sobima.fr/rse-reemploi) : inventaire et réemploi du mobilier, dépose/repose de cloisons et conservation des revêtements de sol pour réduire l'empreinte carbone, les délais et le budget.
 - [À propos](https://www.sobima.fr/a-propos) : histoire de SOBIMA, réseau de partenaires qualifiés (au moins trois entreprises par corps d'état) et valeurs (Réactivité, Solutions, Engagement).
 - [Questions fréquentes (FAQ)](https://www.sobima.fr/faq) : réponses directes sur le rôle du contractant général, la durée des travaux (2 à 3 mois en moyenne), le chiffrage sur mesure, le travail en site occupé, le bureau de contrôle/SPS, les livrables de fin de chantier et les garanties.
-- [Devis et contact](https://www.sobima.fr/devis-contact) : coordonnées directes et éléments utiles pour demander un devis gratuit ou un test fit sous 48 h.
+- [Devis et contact](https://www.sobima.fr/devis-contact) : coordonnées directes et éléments utiles pour demander un devis gratuit ou une simulation d'implantation sous 48 h.
 - [Mentions légales](https://www.sobima.fr/mentions-legales) : informations légales, hébergement et politique de confidentialité (aucun cookie ni traceur).

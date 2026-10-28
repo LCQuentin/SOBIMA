@@ -530,3 +530,8 @@ mark.a-confirmer { background: transparent; color: var(--caramel-texte); font-fa
   .frise__piece::before { background: Canvas; border: 1px solid CanvasText; -webkit-mask: none !important; mask: none !important; width: 100% !important; }
 }
 
+
+/* 2026-10-28 : texte justifié dans les étapes de l'Approche (demande de Redoine) */
+.etape .texte p {
+  text-align: justify;
+}
