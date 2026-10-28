@@ -99,7 +99,11 @@ p, li, dd { text-wrap: pretty; }
 @media (max-width: 720px) { .tete-page h1 { font-size: 2rem; line-height: 2.25rem; } }
 
 .ariane, .sb-hero .ariane { font-family: var(--font-cote); font-size: .75rem; line-height: 1rem; font-weight: 500; letter-spacing: .02em; color: var(--encre-douce); margin: 0 0 var(--space-6); max-width: none; }
-.ariane a { color: var(--encre-douce); }
+.ariane a { color: var(--encre-douce); display: inline-block; padding-block: 5px; }
+
+/* Site clair uniquement (audit du 2026-10-29) : le bloc [data-theme="dark"] de tokens.css n'est activé nulle part et ne couvre pas
+   les jetons ajoutés depuis ; color-scheme garde les contrôles natifs et les barres de défilement en clair. */
+:root { color-scheme: light; }
 
 /* Plan d'implantation (SVG) */
 /* Feuille posée sur le quadrillage : ombre portée plutôt que cadre noir.
@@ -113,7 +117,7 @@ p, li, dd { text-wrap: pretty; }
   --plan-convivialite: #e4cca8; --plan-convivialite-ombre: #cea66a;
   --plan-support: #928187; --plan-support-ombre: #4c3039;
   --plan-sanitaires: #e0f4f3; --plan-sanitaires-ombre: #bfe0dd;
-  color-scheme: light; color: var(--encre);
+  color-scheme: light; color: var(--encre); position: relative;
   margin: 0; background: var(--calque-releve); border-radius: var(--radius-trait); padding: var(--space-5); box-shadow: 0 0 0 var(--trait-fin) color-mix(in srgb, var(--trame) 70%, transparent), 0 24px 48px -28px color-mix(in srgb, var(--encre) 45%, transparent);
 }
 .plan figcaption { display: flex; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-3); font-family: var(--font-cote); font-size: .75rem; line-height: 1rem; letter-spacing: .02em; font-variant-numeric: tabular-nums; color: var(--encre-douce); }
@@ -316,7 +320,7 @@ p, li, dd { text-wrap: pretty; }
 .etapes__sommaire a:hover { color: var(--encre); }
 .etapes__liste { display: grid; gap: calc(var(--space-16) + var(--space-4)); }
 .etape { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: var(--space-6); scroll-margin-top: 104px; }
-.etape__num { margin: 0; font-family: var(--font-titre); font-size: 4rem; line-height: .9; font-weight: 700; letter-spacing: -.03em; color: var(--caramel); font-variant-numeric: tabular-nums; }
+.etape__num { margin: 0; font-family: var(--font-titre); font-size: 4rem; line-height: .9; font-weight: 700; letter-spacing: -.03em; color: color-mix(in srgb, var(--caramel) 45%, var(--caramel-texte)); font-variant-numeric: tabular-nums; }
 .etape h2 { margin: var(--space-2) 0 var(--space-5); font-family: var(--font-titre); font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.2; font-weight: 700; letter-spacing: -.015em; }
 @media (max-width: 960px) {
   .etapes { grid-template-columns: 1fr; gap: var(--space-12); }
@@ -430,15 +434,15 @@ a.valeur:hover { color: var(--bleu-plan); }
 .contact-grille { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--space-16); align-items: start; }
 .contact-aparte { position: sticky; top: 104px; display: grid; gap: var(--space-5); }
 .contact-aparte p { margin: 0; }
-@media (max-width: 960px) { .contact-grille { grid-template-columns: 1fr; gap: var(--space-12); } .contact-aparte { position: static; } }
+@media (max-width: 960px) { .contact-grille { grid-template-columns: minmax(0, 1fr); gap: var(--space-12); } .contact-aparte { position: static; } }
 
-.formulaire { display: grid; gap: var(--space-6); }
+.formulaire { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
 .formulaire .titre-section { margin-bottom: calc(var(--space-4) * -1); }
 .formulaire__aide { margin: 0; font-size: .875rem; color: var(--encre-douce); }
 .formulaire__ligne { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
-@media (max-width: 640px) { .formulaire__ligne { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .formulaire__ligne { grid-template-columns: minmax(0, 1fr); } }
 
-.champ { display: grid; gap: var(--space-2); align-content: start; position: relative; }
+.champ { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); align-content: start; position: relative; }
 .champ label { font-family: var(--font-titre); font-weight: 600; font-size: 1rem; line-height: 1.375rem; color: var(--encre); }
 .champ__requis { color: var(--caramel-texte); }
 .champ__aide { margin: 0; font-size: .875rem; line-height: 1.375rem; color: var(--encre-douce); }
@@ -451,7 +455,7 @@ a.valeur:hover { color: var(--bleu-plan); }
 .champ textarea { min-height: 128px; resize: vertical; }
 .champ input:hover, .champ textarea:hover { border-color: var(--encre-douce); border-bottom-color: var(--encre); }
 .champ input:focus-visible, .champ textarea:focus-visible { outline: 2px solid var(--bleu-plan); outline-offset: 1px; border-color: var(--bleu-plan); }
-.champ input[type="file"] { font: inherit; font-size: .9375rem; color: var(--encre-douce); max-width: 100%; }
+.champ input[type="file"] { font: inherit; font-size: .9375rem; color: var(--encre-douce); width: 100%; min-width: 0; }
 .champ input[type="file"]::file-selector-button {
   margin-right: var(--space-4); padding: 10px 16px; min-height: 44px; cursor: pointer;
   font-family: var(--font-texte); font-weight: 600; font-size: .9375rem; color: var(--encre);
@@ -547,13 +551,25 @@ mark.a-confirmer { background: transparent; color: var(--caramel-texte); font-fa
   .bandeau__voile { flex: 1; min-width: 0; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
   /* Couche graphique dédiée : sans elle, la pause au survol redessine le texte à une position fractionnaire et il « frise » (retour de Redoine du 2026-10-28) */
   .bandeau__piste { display: flex; width: max-content; animation: bandeau-defile 80s linear infinite; will-change: transform; backface-visibility: hidden; }
-  .bandeau:hover .bandeau__piste { animation-play-state: paused; }
+  .bandeau:hover .bandeau__piste, .bandeau:focus-within .bandeau__piste { animation-play-state: paused; }
 }
 .bandeau__piste ul { display: flex; align-items: center; flex: none; margin: 0; padding: 0; list-style: none; }
 .bandeau__piste li { flex: none; padding: var(--space-4) 0; font-family: var(--font-cote); font-size: .75rem; line-height: 1rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--encre); }
 /* Séparateur : pièce de puzzle caramel (masque assets/img/piece-bandeau.svg), 22 px, inclinée de 12°, espace de chaque côté supérieur à sa largeur */
 .bandeau__piste .bandeau__piece { width: 22px; height: 22px; padding: 0; margin: 0 32px; background: var(--caramel); -webkit-mask: url("img/piece-bandeau.svg") no-repeat center / contain; mask: url("img/piece-bandeau.svg") no-repeat center / contain; transform: rotate(-12deg); }
 @keyframes bandeau-defile { to { transform: translateX(-50%); } }
+/* Boutons Pause / Lecture / Rejouer des animations automatiques (assets/animations.js, RGAA 13.8 : audit du 2026-10-29).
+   32 px visibles, 44 px de zone de clic ; la pause fige toutes les animations du conteneur, contenu généré compris. */
+.anim-en-pause *, .anim-en-pause *::before, .anim-en-pause *::after { animation-play-state: paused !important; }
+.anim-bouton { position: relative; display: inline-grid; place-items: center; flex: none; width: 32px; height: 32px; padding: 0; border: var(--trait-fin) solid var(--trame); border-radius: 50%; background: var(--calque-releve); color: var(--encre); cursor: pointer; transition: border-color .15s ease-out; }
+.anim-bouton::after { content: ""; position: absolute; inset: -6px; }
+.anim-bouton:hover { border-color: var(--encre); }
+.anim-bouton:focus-visible { outline: 2px solid var(--bleu-plan); outline-offset: 2px; }
+.anim-bouton[hidden] { display: none; }
+.anim-bouton svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.anim-bouton[data-icone="lecture"] svg { fill: currentColor; }
+.plan__commandes { position: absolute; top: var(--space-2); right: var(--space-2); display: flex; gap: var(--space-3); }
+.bandeau .anim-bouton { margin-inline: var(--space-3); }
 
 /* Étiquettes et cotes : Schibsted Grotesk, capitales espacées, chiffres tabulaires */
 .sb-etiquette { font-weight: 600; letter-spacing: .08em; }
