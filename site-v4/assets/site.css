@@ -178,7 +178,7 @@ p, li, dd { text-wrap: pretty; }
 }
 /* Animation au chargement (moins de 5 s, sous le seuil RGAA 13.8) : 1. murs, fenêtres et circulations, 2. cloisons une à une puis portes,
    3. les espaces un à un, dans l'ordre demandé par Redoine (open space, réunion, bureau, café), puis l'accueil et le local technique.
-   Chaque espace arrive avec sa couleur, son libellé, son mobilier et sa pastille de légende.
+   Chaque espace arrive avec sa couleur, son libellé, son mobilier (tables et bureaux, puis chaises) et sa pastille de légende.
    Murs et cloisons ont pathLength="1" : le tracé va de 1 à 0 quelle que soit leur longueur. */
 .plan .mur, .plan .cloison { stroke-dasharray: 1; stroke-dashoffset: 0; }
 @media (prefers-reduced-motion: no-preference) {
@@ -192,16 +192,17 @@ p, li, dd { text-wrap: pretty; }
   .plan .mobilier { transform-box: fill-box; transform-origin: center; animation: meubler .4s cubic-bezier(.16, 1, .3, 1) both; }
   /* 1. Open space */
   .plan .z1 { animation-delay: 2s; } .plan .l1, .plan__legende .legende--travail { animation-delay: 2.1s; }
-  .plan .m1 { animation-delay: 2.15s; } .plan .m2 { animation-delay: 2.25s; } .plan .m3 { animation-delay: 2.35s; } .plan .m4 { animation-delay: 2.45s; }
+  .plan .m1 { animation-delay: 2.15s; } .plan .m2 { animation-delay: 2.2s; } .plan .m3 { animation-delay: 2.25s; } .plan .m4 { animation-delay: 2.3s; }
+  .plan .m1.chaises { animation-delay: 2.45s; } .plan .m2.chaises { animation-delay: 2.5s; } .plan .m3.chaises { animation-delay: 2.55s; } .plan .m4.chaises { animation-delay: 2.6s; }
   .plan .l-cote { animation-delay: 2.6s; }
   /* 2. Salle de réunion */
-  .plan .z2 { animation-delay: 2.75s; } .plan .l2, .plan__legende .legende--collaboratif { animation-delay: 2.85s; } .plan .m5 { animation-delay: 2.9s; }
+  .plan .z2 { animation-delay: 2.75s; } .plan .l2, .plan__legende .legende--collaboratif { animation-delay: 2.85s; } .plan .m5 { animation-delay: 2.9s; } .plan .m5.chaises { animation-delay: 3.1s; }
   /* 3. Bureau */
-  .plan .z5 { animation-delay: 3.3s; } .plan .l5 { animation-delay: 3.4s; } .plan .m8 { animation-delay: 3.45s; }
+  .plan .z5 { animation-delay: 3.3s; } .plan .l5 { animation-delay: 3.4s; } .plan .m8 { animation-delay: 3.45s; } .plan .m8.chaises { animation-delay: 3.65s; }
   /* 4. Café */
-  .plan .z4 { animation-delay: 3.85s; } .plan .l4, .plan__legende .legende--convivialite { animation-delay: 3.95s; } .plan .m6 { animation-delay: 4s; }
+  .plan .z4 { animation-delay: 3.85s; } .plan .l4, .plan__legende .legende--convivialite { animation-delay: 3.95s; } .plan .m6 { animation-delay: 4s; } .plan .m6.chaises { animation-delay: 4.2s; }
   /* 5. Accueil, 6. local technique */
-  .plan .z3 { animation-delay: 4.3s; } .plan .l3 { animation-delay: 4.4s; } .plan .m7 { animation-delay: 4.45s; }
+  .plan .z3 { animation-delay: 4.3s; } .plan .l3 { animation-delay: 4.4s; } .plan .m7 { animation-delay: 4.45s; } .plan .m7.chaises { animation-delay: 4.6s; }
   .plan .z6 { animation-delay: 4.65s; } .plan .l6, .plan .m9, .plan__legende .legende--support { animation-delay: 4.7s; }
 }
 @keyframes tracer { from { stroke-dashoffset: 1; } }

@@ -25,7 +25,7 @@
 <link rel="preload" href="assets/fonts/SchibstedGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/tokens.css?v=20261028b">
 <link rel="stylesheet" href="assets/bundle.css?v=20261028a">
-<link rel="stylesheet" href="assets/site.css?v=20261028c">
+<link rel="stylesheet" href="assets/site.css?v=20261028d">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -130,8 +130,9 @@
 <g id="plan-chaise-cafe"><path class="pl-pied" d="M-4.4 -4.4 l-1.8 -1.8 M4.4 -4.4 l1.8 -1.8 M-4.4 4.4 l-1.8 1.8 M4.4 4.4 l1.8 1.8"/><rect class="pl-siege" x="-4.8" y="-4.8" width="9.6" height="9.2" rx="2.6"/><path class="pl-dossier" d="M-5.2 2.6 Q0 6.6 5.2 2.6 L5.2 4.4 Q0 8.8 -5.2 4.4 Z"/><circle class="pl-pointe" cx="-1.6" cy="-.8" r=".45"/><circle class="pl-pointe" cx="1.6" cy="-.8" r=".45"/></g>
 <g id="plan-fauteuil"><path class="pl-siege" d="M-7.5 -6 L7.5 -6 C8.5 1 5.5 7.5 0 7.5 C-5.5 7.5 -8.5 1 -7.5 -6 Z"/><path class="pl-couture" d="M-4.6 -5 L4.6 -5 C5 0 3 3.6 0 3.6 C-3 3.6 -5 0 -4.6 -5 Z"/></g>
 <g id="plan-poste"><rect class="pl-plateau" width="30" height="18"/><rect class="pl-ecran" x="8" y="3" width="14" height="1.4" rx=".4"/><rect class="pl-clavier" x="9" y="8.5" width="12" height="3.6" rx=".4"/><ellipse class="pl-clavier" cx="24.5" cy="10.3" rx="1.1" ry="1.6"/></g>
-<g id="plan-ilot"><use href="#plan-poste" transform="translate(30 18) rotate(180)"/><use href="#plan-poste" transform="translate(62 18) rotate(180)"/><use href="#plan-poste" y="20"/><use href="#plan-poste" x="32" y="20"/><use href="#plan-chaise" transform="translate(15 -8) rotate(180)"/><use href="#plan-chaise" transform="translate(47 -8) rotate(180)"/><use href="#plan-chaise" transform="translate(15 46)"/><use href="#plan-chaise" transform="translate(47 46)"/></g>
-<g id="plan-table-cafe"><use href="#plan-chaise-cafe" transform="translate(-15 -15) rotate(135)"/><use href="#plan-chaise-cafe" transform="translate(15 -15) rotate(-135)"/><use href="#plan-chaise-cafe" transform="translate(-15 15) rotate(45)"/><use href="#plan-chaise-cafe" transform="translate(15 15) rotate(-45)"/><circle class="pl-plateau" r="12"/></g>
+<g id="plan-ilot-postes"><use href="#plan-poste" transform="translate(30 18) rotate(180)"/><use href="#plan-poste" transform="translate(62 18) rotate(180)"/><use href="#plan-poste" y="20"/><use href="#plan-poste" x="32" y="20"/></g>
+<g id="plan-ilot-chaises"><use href="#plan-chaise" transform="translate(15 -8) rotate(180)"/><use href="#plan-chaise" transform="translate(47 -8) rotate(180)"/><use href="#plan-chaise" transform="translate(15 46)"/><use href="#plan-chaise" transform="translate(47 46)"/></g>
+<g id="plan-chaises-cafe"><use href="#plan-chaise-cafe" transform="translate(-15 -15) rotate(135)"/><use href="#plan-chaise-cafe" transform="translate(15 -15) rotate(-135)"/><use href="#plan-chaise-cafe" transform="translate(-15 15) rotate(45)"/><use href="#plan-chaise-cafe" transform="translate(15 15) rotate(-45)"/></g>
 </defs>
 <!-- Cotes -->
 <path class="cote-trait" d="M40 20 V30 M480 20 V30 M40 25 H480"/>
@@ -168,15 +169,23 @@
 <path class="porte-vantail" d="M330 154 H362 M380 248 H412"/>
 <path class="porte" d="M330 122 A32 32 0 0 1 362 154 M380 280 A32 32 0 0 0 412 248"/>
 </g>
-<!-- 3. Mobilier, espace par espace -->
-<g class="mobilier m1" filter="url(#plan-ombre)"><use href="#plan-ilot" x="62" y="66"/></g>
-<g class="mobilier m2" filter="url(#plan-ombre)"><use href="#plan-ilot" x="164" y="66"/></g>
-<g class="mobilier m3" filter="url(#plan-ombre)"><use href="#plan-ilot" x="62" y="160"/></g>
-<g class="mobilier m4" filter="url(#plan-ombre)"><use href="#plan-ilot" x="164" y="160"/></g>
-<g class="mobilier m5" filter="url(#plan-ombre)"><use href="#plan-chaise" transform="translate(377 75) rotate(180)"/><use href="#plan-chaise" transform="translate(405 75) rotate(180)"/><use href="#plan-chaise" transform="translate(433 75) rotate(180)"/><use href="#plan-chaise" transform="translate(377 129)"/><use href="#plan-chaise" transform="translate(405 129)"/><use href="#plan-chaise" transform="translate(433 129)"/><use href="#plan-chaise" transform="translate(353 102) rotate(90)"/><use href="#plan-chaise" transform="translate(457 102) rotate(-90)"/><rect class="plateau" x="363" y="84" width="84" height="36"/><rect class="ecran-mural" x="474" y="88" width="3" height="28"/></g>
-<g class="mobilier m8" filter="url(#plan-ombre)"><use href="#plan-chaise" transform="translate(432 287) rotate(180)"/><use href="#plan-chaise" transform="translate(456 287) rotate(180)"/><use href="#plan-chaise" transform="translate(444 327)"/><rect class="plateau" x="420" y="298" width="48" height="20"/><rect class="ecran" x="436" y="301" width="16" height="1.4" rx=".4"/><rect class="clavier" x="438" y="307.5" width="12" height="3.6" rx=".4"/><ellipse class="clavier" cx="454" cy="309.3" rx="1.1" ry="1.6"/></g>
-<g class="mobilier m6" filter="url(#plan-ombre)"><use href="#plan-table-cafe" x="190" y="305"/><use href="#plan-table-cafe" x="245" y="305"/><rect class="plateau" x="282" y="262" width="16" height="72"/><rect class="evier" x="284" y="273" width="12" height="22" rx="1"/><rect class="evier" x="285.5" y="274.5" width="9" height="8.5" rx="1.2"/><rect class="evier" x="285.5" y="285" width="9" height="8.5" rx="1.2"/><circle class="evier-bonde" cx="290" cy="278.7" r=".9"/><circle class="evier-bonde" cx="290" cy="289.2" r=".9"/></g>
-<g class="mobilier m7" filter="url(#plan-ombre)"><use href="#plan-chaise" transform="translate(84 326)"/><path class="plateau" d="M56 298 H108 V312 H66 V324 H56 Z"/><use href="#plan-fauteuil" transform="translate(134 300) rotate(-90)"/><use href="#plan-fauteuil" transform="translate(134 322) rotate(-90)"/></g>
+<!-- 3. Mobilier, espace par espace : tables et bureaux d'abord, puis les chaises (groupes .chaises, placés dessous) -->
+<g class="mobilier m1 chaises" filter="url(#plan-ombre)"><use href="#plan-ilot-chaises" x="62" y="66"/></g>
+<g class="mobilier m1" filter="url(#plan-ombre)"><use href="#plan-ilot-postes" x="62" y="66"/></g>
+<g class="mobilier m2 chaises" filter="url(#plan-ombre)"><use href="#plan-ilot-chaises" x="164" y="66"/></g>
+<g class="mobilier m2" filter="url(#plan-ombre)"><use href="#plan-ilot-postes" x="164" y="66"/></g>
+<g class="mobilier m3 chaises" filter="url(#plan-ombre)"><use href="#plan-ilot-chaises" x="62" y="160"/></g>
+<g class="mobilier m3" filter="url(#plan-ombre)"><use href="#plan-ilot-postes" x="62" y="160"/></g>
+<g class="mobilier m4 chaises" filter="url(#plan-ombre)"><use href="#plan-ilot-chaises" x="164" y="160"/></g>
+<g class="mobilier m4" filter="url(#plan-ombre)"><use href="#plan-ilot-postes" x="164" y="160"/></g>
+<g class="mobilier m5 chaises" filter="url(#plan-ombre)"><use href="#plan-chaise" transform="translate(377 75) rotate(180)"/><use href="#plan-chaise" transform="translate(405 75) rotate(180)"/><use href="#plan-chaise" transform="translate(433 75) rotate(180)"/><use href="#plan-chaise" transform="translate(377 129)"/><use href="#plan-chaise" transform="translate(405 129)"/><use href="#plan-chaise" transform="translate(433 129)"/><use href="#plan-chaise" transform="translate(353 102) rotate(90)"/><use href="#plan-chaise" transform="translate(457 102) rotate(-90)"/></g>
+<g class="mobilier m5" filter="url(#plan-ombre)"><rect class="plateau" x="363" y="84" width="84" height="36"/><rect class="ecran-mural" x="474" y="88" width="3" height="28"/></g>
+<g class="mobilier m8 chaises" filter="url(#plan-ombre)"><use href="#plan-chaise" transform="translate(432 287) rotate(180)"/><use href="#plan-chaise" transform="translate(456 287) rotate(180)"/><use href="#plan-chaise" transform="translate(444 327)"/></g>
+<g class="mobilier m8" filter="url(#plan-ombre)"><rect class="plateau" x="420" y="298" width="48" height="20"/><rect class="ecran" x="436" y="301" width="16" height="1.4" rx=".4"/><rect class="clavier" x="438" y="307.5" width="12" height="3.6" rx=".4"/><ellipse class="clavier" cx="454" cy="309.3" rx="1.1" ry="1.6"/></g>
+<g class="mobilier m6 chaises" filter="url(#plan-ombre)"><use href="#plan-chaises-cafe" x="190" y="305"/><use href="#plan-chaises-cafe" x="245" y="305"/></g>
+<g class="mobilier m6" filter="url(#plan-ombre)"><circle class="plateau" cx="190" cy="305" r="12"/><circle class="plateau" cx="245" cy="305" r="12"/><rect class="plateau" x="282" y="262" width="16" height="72"/><rect class="evier" x="284" y="273" width="12" height="22" rx="1"/><rect class="evier" x="285.5" y="274.5" width="9" height="8.5" rx="1.2"/><rect class="evier" x="285.5" y="285" width="9" height="8.5" rx="1.2"/><circle class="evier-bonde" cx="290" cy="278.7" r=".9"/><circle class="evier-bonde" cx="290" cy="289.2" r=".9"/></g>
+<g class="mobilier m7 chaises" filter="url(#plan-ombre)"><use href="#plan-chaise" transform="translate(84 326)"/><use href="#plan-fauteuil" transform="translate(134 300) rotate(-90)"/><use href="#plan-fauteuil" transform="translate(134 322) rotate(-90)"/></g>
+<g class="mobilier m7" filter="url(#plan-ombre)"><path class="plateau" d="M56 298 H108 V312 H66 V324 H56 Z"/></g>
 <g class="mobilier m9"><rect class="plateau" x="338" y="308" width="12" height="24"/></g>
 <!-- Libellés : nom et surface de chaque espace (surfaces mesurées sur le dessin, 27,5 px pour 1 m) -->
 <g class="libelle l1"><text class="zone-texte" x="266" y="122" text-anchor="middle"><tspan x="266">Open</tspan><tspan x="266" dy="16">space</tspan></text><text class="zone-surface" x="266" y="156" text-anchor="middle">63,6 m²</text></g>
