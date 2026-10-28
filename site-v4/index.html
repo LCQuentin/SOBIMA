@@ -25,7 +25,7 @@
 <link rel="preload" href="assets/fonts/SchibstedGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/tokens.css?v=20261028b">
 <link rel="stylesheet" href="assets/bundle.css?v=20261028a">
-<link rel="stylesheet" href="assets/site.css?v=20261028b">
+<link rel="stylesheet" href="assets/site.css?v=20261028c">
 <script src="assets/puzzle.js?v=20261028" defer></script>
 <script type="application/ld+json">
 {
@@ -133,39 +133,47 @@
 <title id="plan-titre">Simulation d'implantation</title>
 <desc id="plan-desc">Plan illustratif d'un plateau de bureaux de 16 m sur 11 m : un open space de quatre îlots de quatre postes, une salle de réunion de huit places, un bureau fermé, un espace café avec kitchenette, un accueil avec deux fauteuils d'attente et un local technique.</desc>
 <defs>
-<filter id="plan-ombre" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="1.2" stdDeviation=".8"/></filter>
-<!-- Mobilier vu de dessus, orienté vers le haut (dossier en bas) -->
-<g id="plan-chaise"><rect class="pl-accoudoir" x="-7.5" y="-3" width="2" height="6" rx="1"/><rect class="pl-accoudoir" x="5.5" y="-3" width="2" height="6" rx="1"/><rect class="pl-siege" x="-5.5" y="-5" width="11" height="9.5" rx="3"/><rect class="pl-dossier" x="-6.5" y="3.5" width="13" height="3.5" rx="1.75"/></g>
-<g id="plan-chaise-cafe"><rect class="pl-siege" x="-4.5" y="-4.5" width="9" height="8.5" rx="2.5"/><path class="pl-dossier-trait" d="M-4.5 4.6 Q0 7.6 4.5 4.6"/></g>
-<g id="plan-fauteuil"><rect class="pl-siege" x="-6.5" y="-6" width="13" height="12" rx="3"/><rect class="pl-dossier" x="-6.5" y="3" width="13" height="4" rx="2"/><rect class="pl-dossier" x="-8" y="-5" width="3" height="11" rx="1.5"/><rect class="pl-dossier" x="5" y="-5" width="3" height="11" rx="1.5"/></g>
-<g id="plan-poste"><rect class="pl-plateau" width="30" height="18"/><rect class="pl-ecran" x="8" y="3" width="14" height="2" rx=".5"/><rect class="pl-clavier" x="9.5" y="9" width="11" height="3.5" rx=".5"/></g>
+<filter id="plan-ombre" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="-2.2" dy="2.2" stdDeviation=".3"/></filter>
+<pattern id="plan-hachure" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><path class="pl-hachure" d="M0 0 V8"/></pattern>
+<!-- Mobilier vu de dessus, orienté vers le haut (dossier en bas), dessiné comme sur un plan de space planning -->
+<g id="plan-chaise"><path class="pl-pietement" d="M0 1 V10.5 M0 1 L9 3.9 M0 1 L5.6 -6.7 M0 1 L-5.6 -6.7 M0 1 L-9 3.9"/><circle class="pl-roulette" cy="10.5" r=".9"/><circle class="pl-roulette" cx="9" cy="3.9" r=".9"/><circle class="pl-roulette" cx="5.6" cy="-6.7" r=".9"/><circle class="pl-roulette" cx="-5.6" cy="-6.7" r=".9"/><circle class="pl-roulette" cx="-9" cy="3.9" r=".9"/><rect class="pl-accoudoir" x="-7.8" y="-3.5" width="2.2" height="7.5" rx="1.1"/><rect class="pl-accoudoir" x="5.6" y="-3.5" width="2.2" height="7.5" rx="1.1"/><rect class="pl-siege" x="-5.8" y="-5.5" width="11.6" height="10.5" rx="3"/><path class="pl-couture" d="M-3.6 -3.2 Q0 -4.2 3.6 -3.2 L3.4 2.6 Q0 3.6 -3.4 2.6 Z"/><path class="pl-dossier" d="M-6.8 4 Q0 6.6 6.8 4 L6.4 7.4 Q0 10 -6.4 7.4 Z"/></g>
+<g id="plan-chaise-cafe"><path class="pl-pied" d="M-4.4 -4.4 l-1.8 -1.8 M4.4 -4.4 l1.8 -1.8 M-4.4 4.4 l-1.8 1.8 M4.4 4.4 l1.8 1.8"/><rect class="pl-siege" x="-4.8" y="-4.8" width="9.6" height="9.2" rx="2.6"/><path class="pl-dossier" d="M-5.2 2.6 Q0 6.6 5.2 2.6 L5.2 4.4 Q0 8.8 -5.2 4.4 Z"/><circle class="pl-pointe" cx="-1.6" cy="-.8" r=".45"/><circle class="pl-pointe" cx="1.6" cy="-.8" r=".45"/></g>
+<g id="plan-fauteuil"><path class="pl-siege" d="M-7.5 -6 L7.5 -6 C8.5 1 5.5 7.5 0 7.5 C-5.5 7.5 -8.5 1 -7.5 -6 Z"/><path class="pl-couture" d="M-4.6 -5 L4.6 -5 C5 0 3 3.6 0 3.6 C-3 3.6 -5 0 -4.6 -5 Z"/></g>
+<g id="plan-poste"><rect class="pl-plateau" width="30" height="18"/><rect class="pl-ecran" x="8" y="3" width="14" height="1.4" rx=".4"/><rect class="pl-clavier" x="9" y="8.5" width="12" height="3.6" rx=".4"/><ellipse class="pl-clavier" cx="24.5" cy="10.3" rx="1.1" ry="1.6"/></g>
 <g id="plan-ilot"><use href="#plan-poste" transform="translate(30 18) rotate(180)"/><use href="#plan-poste" transform="translate(62 18) rotate(180)"/><use href="#plan-poste" y="20"/><use href="#plan-poste" x="32" y="20"/><use href="#plan-chaise" transform="translate(15 -8) rotate(180)"/><use href="#plan-chaise" transform="translate(47 -8) rotate(180)"/><use href="#plan-chaise" transform="translate(15 46)"/><use href="#plan-chaise" transform="translate(47 46)"/></g>
-<g id="plan-table-cafe"><circle class="pl-plateau" r="12"/><use href="#plan-chaise-cafe" transform="translate(-15 -15) rotate(135)"/><use href="#plan-chaise-cafe" transform="translate(15 -15) rotate(-135)"/><use href="#plan-chaise-cafe" transform="translate(-15 15) rotate(45)"/><use href="#plan-chaise-cafe" transform="translate(15 15) rotate(-45)"/></g>
-<g id="plan-plante"><circle class="pl-pot" r="6"/><path class="pl-feuilles" d="M0 -5.5 Q3 -1.5 0 0 Q-3 -1.5 0 -5.5 M5.5 0 Q1.5 3 0 0 Q1.5 -3 5.5 0 M0 5.5 Q-3 1.5 0 0 Q3 1.5 0 5.5 M-5.5 0 Q-1.5 -3 0 0 Q-1.5 3 -5.5 0"/></g>
+<g id="plan-table-cafe"><use href="#plan-chaise-cafe" transform="translate(-15 -15) rotate(135)"/><use href="#plan-chaise-cafe" transform="translate(15 -15) rotate(-135)"/><use href="#plan-chaise-cafe" transform="translate(-15 15) rotate(45)"/><use href="#plan-chaise-cafe" transform="translate(15 15) rotate(-45)"/><circle class="pl-plateau" r="12"/></g>
 </defs>
 <!-- Cotes -->
 <path class="cote-trait" d="M40 20 V30 M480 20 V30 M40 25 H480"/>
 <text class="cote-texte" x="260" y="16" text-anchor="middle">16,00 m</text>
 <path class="cote-trait" d="M18 40 H28 M18 340 H28 M23 40 V340"/>
 <text class="cote-texte" x="12" y="190" text-anchor="middle" transform="rotate(-90 12 190)">11,00 m</text>
-<!-- Espaces colorés par fonction (sous les murs) -->
-<rect class="zone zone--travail z1" x="40" y="40" width="260" height="185"/>
-<rect class="zone zone--collaboratif z2" x="330" y="40" width="150" height="125"/>
-<rect class="zone zone--convivialite z3" x="40" y="255" width="110" height="85"/>
-<rect class="zone zone--convivialite z4" x="150" y="255" width="150" height="85"/>
-<rect class="zone zone--travail z5" x="380" y="240" width="100" height="100"/>
-<rect class="zone zone--support z6" x="330" y="300" width="50" height="40"/>
-<!-- 1. Murs et fenêtres, 2. cloisons et portes -->
+<!-- Circulations hachurées, puis espaces colorés par fonction ; la bande foncée en haut et à droite est l'ombre portée des murs -->
+<rect class="sol" x="40" y="40" width="440" height="300" fill="url(#plan-hachure)"/>
+<g class="zone zone--travail z1"><rect class="zone-ombre" x="40" y="40" width="260" height="185"/><rect x="40" y="45" width="255" height="180"/></g>
+<g class="zone zone--collaboratif z2"><rect class="zone-ombre" x="330" y="40" width="150" height="125"/><rect x="330" y="45" width="145" height="120"/></g>
+<g class="zone zone--convivialite z3"><rect class="zone-ombre" x="40" y="255" width="110" height="85"/><rect x="40" y="260" width="105" height="80"/></g>
+<g class="zone zone--convivialite z4"><rect class="zone-ombre" x="150" y="255" width="150" height="85"/><rect x="150" y="260" width="145" height="80"/></g>
+<g class="zone zone--travail z5"><rect class="zone-ombre" x="380" y="240" width="100" height="100"/><rect x="380" y="245" width="95" height="95"/></g>
+<g class="zone zone--support z6"><rect class="zone-ombre" x="330" y="300" width="50" height="40"/><rect x="333" y="305" width="42" height="32"/></g>
+<!-- 1. Murs (épaisseur pleine, double trait) et fenêtres dans l'épaisseur, 2. cloisons (double trait) et portes -->
+<path class="mur-fond" fill-rule="evenodd" d="M32 32 H488 V348 H32 Z M40 40 V340 H480 V40 Z"/>
+<rect class="mur" x="32" y="32" width="456" height="316" pathLength="1"/>
 <rect class="mur" x="40" y="40" width="440" height="300" pathLength="1"/>
 <g class="fenetres">
-<path class="fenetre" d="M60 40 H120 M160 40 H220 M360 40 H450 M480 60 V110 M480 185 V225 M480 265 V320 M410 340 H460 M170 340 H230 M60 340 H120 M40 80 V140 M40 160 V205"/>
-<path class="fenetre-vitre" d="M60 40 H120 M160 40 H220 M360 40 H450 M480 60 V110 M480 185 V225 M480 265 V320 M410 340 H460 M170 340 H230 M60 340 H120 M40 80 V140 M40 160 V205"/>
+<path class="fenetre" d="M60 32 H120 V40 H60 Z M160 32 H220 V40 H160 Z M360 32 H450 V40 H360 Z M480 60 H488 V110 H480 Z M480 185 H488 V225 H480 Z M480 265 H488 V320 H480 Z M410 340 H460 V348 H410 Z M170 340 H230 V348 H170 Z M60 340 H120 V348 H60 Z M32 80 H40 V140 H32 Z M32 160 H40 V205 H32 Z"/>
+<path class="fenetre-vitre" d="M60 38.4 H120 M160 38.4 H220 M360 38.4 H450 M481.6 60 V110 M481.6 185 V225 M481.6 265 V320 M410 341.6 H460 M170 341.6 H230 M60 341.6 H120 M38.4 80 V140 M38.4 160 V205"/>
 </g>
 <path class="cloison c1" d="M330 40 V122 M330 154 V165 H480" pathLength="1"/>
+<path class="cloison cloison-ame c1" d="M330 40 V122 M330 154 V165 H480" pathLength="1"/>
 <path class="cloison c2" d="M380 340 V280 M380 248 V240 H480" pathLength="1"/>
+<path class="cloison cloison-ame c2" d="M380 340 V280 M380 248 V240 H480" pathLength="1"/>
 <path class="cloison c3" d="M40 255 H105 M137 255 H205 M237 255 H300 V340" pathLength="1"/>
+<path class="cloison cloison-ame c3" d="M40 255 H105 M137 255 H205 M237 255 H300 V340" pathLength="1"/>
 <path class="cloison c4" d="M150 255 V340" pathLength="1"/>
+<path class="cloison cloison-ame c4" d="M150 255 V340" pathLength="1"/>
 <path class="cloison c5" d="M330 340 V300 H380" pathLength="1"/>
+<path class="cloison cloison-ame c5" d="M330 340 V300 H380" pathLength="1"/>
 <g class="portes">
 <path class="porte-vantail" d="M330 154 H362 M380 248 H412"/>
 <path class="porte" d="M330 122 A32 32 0 0 1 362 154 M380 280 A32 32 0 0 0 412 248"/>
@@ -175,13 +183,10 @@
 <g class="mobilier m2" filter="url(#plan-ombre)"><use href="#plan-ilot" x="164" y="66"/></g>
 <g class="mobilier m3" filter="url(#plan-ombre)"><use href="#plan-ilot" x="62" y="160"/></g>
 <g class="mobilier m4" filter="url(#plan-ombre)"><use href="#plan-ilot" x="164" y="160"/></g>
-<g class="mobilier p1"><use href="#plan-plante" x="288" y="212"/></g>
-<g class="mobilier m5" filter="url(#plan-ombre)"><rect class="plateau" x="363" y="84" width="84" height="36" rx="4"/><use href="#plan-chaise" transform="translate(377 75) rotate(180)"/><use href="#plan-chaise" transform="translate(405 75) rotate(180)"/><use href="#plan-chaise" transform="translate(433 75) rotate(180)"/><use href="#plan-chaise" transform="translate(377 129)"/><use href="#plan-chaise" transform="translate(405 129)"/><use href="#plan-chaise" transform="translate(433 129)"/><use href="#plan-chaise" transform="translate(353 102) rotate(90)"/><use href="#plan-chaise" transform="translate(457 102) rotate(-90)"/><rect class="ecran-mural" x="474" y="88" width="3" height="28"/></g>
-<g class="mobilier p2"><use href="#plan-plante" x="468" y="152"/></g>
-<g class="mobilier m8" filter="url(#plan-ombre)"><rect class="plateau" x="420" y="298" width="48" height="20" rx="1"/><rect class="ecran" x="436" y="301" width="16" height="2" rx=".5"/><rect class="clavier" x="438.5" y="308" width="11" height="3.5" rx=".5"/><use href="#plan-chaise" transform="translate(432 287) rotate(180)"/><use href="#plan-chaise" transform="translate(456 287) rotate(180)"/><use href="#plan-chaise" transform="translate(444 330)"/></g>
-<g class="mobilier m6" filter="url(#plan-ombre)"><use href="#plan-table-cafe" x="190" y="305"/><use href="#plan-table-cafe" x="245" y="305"/><rect class="plateau" x="282" y="262" width="16" height="72"/><rect class="evier" x="285" y="276" width="10" height="13" rx="2"/><circle class="evier-bonde" cx="290" cy="282.5" r="1.2"/></g>
-<g class="mobilier m7" filter="url(#plan-ombre)"><path class="plateau" d="M56 298 H108 V312 H66 V324 H56 Z"/><use href="#plan-chaise" transform="translate(84 326)"/><use href="#plan-fauteuil" transform="translate(134 300) rotate(-90)"/><use href="#plan-fauteuil" transform="translate(134 322) rotate(-90)"/></g>
-<g class="mobilier p3"><use href="#plan-plante" x="140" y="268"/></g>
+<g class="mobilier m5" filter="url(#plan-ombre)"><use href="#plan-chaise" transform="translate(377 75) rotate(180)"/><use href="#plan-chaise" transform="translate(405 75) rotate(180)"/><use href="#plan-chaise" transform="translate(433 75) rotate(180)"/><use href="#plan-chaise" transform="translate(377 129)"/><use href="#plan-chaise" transform="translate(405 129)"/><use href="#plan-chaise" transform="translate(433 129)"/><use href="#plan-chaise" transform="translate(353 102) rotate(90)"/><use href="#plan-chaise" transform="translate(457 102) rotate(-90)"/><rect class="plateau" x="363" y="84" width="84" height="36"/><rect class="ecran-mural" x="474" y="88" width="3" height="28"/></g>
+<g class="mobilier m8" filter="url(#plan-ombre)"><use href="#plan-chaise" transform="translate(432 287) rotate(180)"/><use href="#plan-chaise" transform="translate(456 287) rotate(180)"/><use href="#plan-chaise" transform="translate(444 327)"/><rect class="plateau" x="420" y="298" width="48" height="20"/><rect class="ecran" x="436" y="301" width="16" height="1.4" rx=".4"/><rect class="clavier" x="438" y="307.5" width="12" height="3.6" rx=".4"/><ellipse class="clavier" cx="454" cy="309.3" rx="1.1" ry="1.6"/></g>
+<g class="mobilier m6" filter="url(#plan-ombre)"><use href="#plan-table-cafe" x="190" y="305"/><use href="#plan-table-cafe" x="245" y="305"/><rect class="plateau" x="282" y="262" width="16" height="72"/><rect class="evier" x="284" y="273" width="12" height="22" rx="1"/><rect class="evier" x="285.5" y="274.5" width="9" height="8.5" rx="1.2"/><rect class="evier" x="285.5" y="285" width="9" height="8.5" rx="1.2"/><circle class="evier-bonde" cx="290" cy="278.7" r=".9"/><circle class="evier-bonde" cx="290" cy="289.2" r=".9"/></g>
+<g class="mobilier m7" filter="url(#plan-ombre)"><use href="#plan-chaise" transform="translate(84 326)"/><path class="plateau" d="M56 298 H108 V312 H66 V324 H56 Z"/><use href="#plan-fauteuil" transform="translate(134 300) rotate(-90)"/><use href="#plan-fauteuil" transform="translate(134 322) rotate(-90)"/></g>
 <g class="mobilier m9"><rect class="plateau" x="338" y="308" width="12" height="24"/></g>
 <!-- Libellés : nom et surface de chaque espace (surfaces mesurées sur le dessin, 27,5 px pour 1 m) -->
 <g class="libelle l1"><text class="zone-texte" x="266" y="122" text-anchor="middle"><tspan x="266">Open</tspan><tspan x="266" dy="16">space</tspan></text><text class="zone-surface" x="266" y="156" text-anchor="middle">63,6 m²</text></g>
@@ -190,6 +195,7 @@
 <g class="libelle l4"><text class="zone-texte" x="225" y="273" text-anchor="middle">Café<tspan class="zone-surface"> · 16,9 m²</tspan></text></g>
 <g class="libelle l3"><text class="zone-texte" x="78" y="273" text-anchor="middle">Accueil</text><text class="zone-surface" x="78" y="286" text-anchor="middle">12,4 m²</text></g>
 <g class="libelle l6"><text class="zone-texte zone-texte--sombre" x="365" y="325" text-anchor="middle">LT</text></g>
+<g class="libelle l7"><text class="zone-texte" x="405" y="207" text-anchor="middle">Circulation</text></g>
 <!-- Cote de circulation entre deux îlots -->
 <g class="libelle l-cote">
 <path class="cote-trait" d="M124 124 H164 M124 119 V129 M164 119 V129"/>
@@ -371,7 +377,6 @@
 <div class="contact-carte">
 <div class="ligne"><span class="sb-etiquette">Téléphone</span><a class="valeur" href="tel:+33658943697">+33 6 58 94 36 97</a></div>
 <div class="ligne"><span class="sb-etiquette">E-mail</span><a class="valeur" href="mailto:contact@sobima.fr">contact@sobima.fr</a></div>
-<a class="sb-bouton sb-bouton--testfit" href="simulation-implantation.html">Demander ma simulation d'implantation</a>
 </div>
 </div>
 </section>

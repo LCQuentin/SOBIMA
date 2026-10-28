@@ -102,20 +102,40 @@ p, li, dd { text-wrap: pretty; }
 .ariane a { color: var(--encre-douce); }
 
 /* Plan d'implantation (SVG) */
-/* Feuille posée sur le quadrillage : ombre portée plutôt que cadre noir */
-.plan { margin: 0; background: var(--calque-releve); border-radius: var(--radius-trait); padding: var(--space-5); box-shadow: 0 0 0 var(--trait-fin) color-mix(in srgb, var(--trame) 70%, transparent), 0 24px 48px -28px color-mix(in srgb, var(--encre) 45%, transparent); }
+/* Feuille posée sur le quadrillage : ombre portée plutôt que cadre noir.
+   Rendu d'après le plan de space planning de Redoine (Grenelle, 20/10/2026) : la feuille reste claire en thème sombre, comme un plan imprimé.
+   Couleurs des espaces relevées sur ce plan, hors charte (ajout 2026-10-28). */
+.plan {
+  --calque: #f2eee6; --calque-releve: #fbf9f5; --trame: #c9c2b5; --encre: #1f2328; --encre-douce: #5c5f63; --bleu-plan: #2c4a6e;
+  --plan-meuble: #ffffff; --plan-hachure: #cfccc6; --plan-vitrage: #1f2a7a;
+  --plan-travail: #f1e9de; --plan-travail-ombre: #e5d8c5;
+  --plan-collaboratif: #b8bba6; --plan-collaboratif-ombre: #878d6a;
+  --plan-convivialite: #e4cca8; --plan-convivialite-ombre: #cea66a;
+  --plan-support: #928187; --plan-support-ombre: #4c3039;
+  color-scheme: light; color: var(--encre);
+  margin: 0; background: var(--calque-releve); border-radius: var(--radius-trait); padding: var(--space-5); box-shadow: 0 0 0 var(--trait-fin) color-mix(in srgb, var(--trame) 70%, transparent), 0 24px 48px -28px color-mix(in srgb, var(--encre) 45%, transparent);
+}
 .plan figcaption { display: flex; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-3); font-family: var(--font-cote); font-size: .75rem; line-height: 1rem; letter-spacing: .02em; font-variant-numeric: tabular-nums; color: var(--encre-douce); }
-.plan .mur { stroke: var(--encre); fill: none; stroke-width: 4; }
-.plan .cloison { stroke: var(--encre); fill: none; stroke-width: 2; }
-.plan .porte { stroke: var(--encre); fill: none; stroke-width: 1; stroke-dasharray: 3 3; }
-.plan .porte-vantail { stroke: var(--encre); fill: none; stroke-width: 1.5; }
+/* Murs pleins à double trait, cloisons à double trait (trait noir puis âme blanche), portes au trait fin */
+.plan .mur-fond { fill: var(--plan-meuble); }
+.plan .mur { stroke: var(--encre); fill: none; stroke-width: 1.1; }
+.plan .cloison { stroke: var(--encre); fill: none; stroke-width: 3.2; }
+.plan .cloison-ame { stroke: var(--plan-meuble); stroke-width: 1.3; }
+.plan .porte { stroke: var(--encre); fill: none; stroke-width: .7; }
+.plan .porte-vantail { stroke: var(--encre); fill: none; stroke-width: 1.4; }
+.plan .sol { stroke: none; }
+.pl-hachure { stroke: var(--plan-hachure); stroke-width: .6; }
 /* Espaces colorés par fonction (légende sous le plan) */
-.zone--travail { fill: color-mix(in srgb, var(--caramel) 24%, var(--calque-releve)); background: color-mix(in srgb, var(--caramel) 24%, var(--calque-releve)); }
-.zone--collaboratif { fill: color-mix(in srgb, var(--vert-reemploi) 34%, var(--calque-releve)); background: color-mix(in srgb, var(--vert-reemploi) 34%, var(--calque-releve)); }
-.zone--convivialite { fill: color-mix(in srgb, var(--caramel) 62%, var(--calque-releve)); background: color-mix(in srgb, var(--caramel) 62%, var(--calque-releve)); }
-.zone--support { fill: color-mix(in srgb, var(--encre) 78%, var(--caramel)); background: color-mix(in srgb, var(--encre) 78%, var(--caramel)); }
-.plan .plateau, .plan .plateau rect, .pl-plateau { fill: var(--calque-releve); stroke: var(--encre); stroke-width: 1; }
-.plan .siege, .pl-siege { fill: var(--calque-releve); stroke: var(--encre-douce); stroke-width: 1; }
+.zone--travail { fill: var(--plan-travail); background: var(--plan-travail); }
+.zone--collaboratif { fill: var(--plan-collaboratif); background: var(--plan-collaboratif); }
+.zone--convivialite { fill: var(--plan-convivialite); background: var(--plan-convivialite); }
+.zone--support { fill: var(--plan-support); background: var(--plan-support); }
+.zone--travail .zone-ombre { fill: var(--plan-travail-ombre); }
+.zone--collaboratif .zone-ombre { fill: var(--plan-collaboratif-ombre); }
+.zone--convivialite .zone-ombre { fill: var(--plan-convivialite-ombre); }
+.zone--support .zone-ombre { fill: var(--plan-support-ombre); }
+.plan .plateau, .plan .plateau rect, .pl-plateau { fill: var(--plan-meuble); stroke: var(--encre); stroke-width: .7; }
+.plan .siege, .pl-siege { fill: var(--plan-meuble); stroke: var(--encre); stroke-width: .7; }
 .plan__legende { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin: var(--space-3) 0 0; padding: 0; list-style: none; font-family: var(--font-cote); font-size: .75rem; line-height: 1rem; letter-spacing: .02em; color: var(--encre-douce); }
 .plan__legende li { display: flex; align-items: center; gap: var(--space-2); }
 .plan__pastille { width: 12px; height: 12px; border: 1px solid color-mix(in srgb, var(--encre) 35%, transparent); }
@@ -123,7 +143,7 @@ p, li, dd { text-wrap: pretty; }
 /* Légendes du plan SVG : la taille est en unités du viewBox (520 de large), mises à l'échelle avec le dessin.
    Unités en px pour que l'agrandissement de police du navigateur ne fasse pas déborder les textes hors des pièces. */
 .plan .cote-texte { fill: var(--bleu-plan); font-family: var(--font-cote); font-size: 13px; letter-spacing: .02em; font-variant-numeric: tabular-nums; }
-.plan .zone-texte { fill: var(--encre-douce); font-family: var(--font-cote); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+.plan .zone-texte { fill: var(--encre); font-family: var(--font-cote); font-size: 13px; font-style: italic; letter-spacing: 0; }
 @media (max-width: 600px) {
   .plan { padding: var(--space-3); }
   .plan .cote-texte, .plan .zone-texte { font-size: 15px; }
@@ -132,22 +152,22 @@ p, li, dd { text-wrap: pretty; }
   .plan .cote-texte { font-size: 17px; }
   .plan .zone-texte { font-size: 15px; }
 }
-.plan .zone-texte--sombre { fill: var(--calque); }
-/* Mobilier dessiné (accueil), d'après le rendu de space planning transmis par Redoine le 2026-10-28.
+.plan .zone-texte--sombre { fill: var(--plan-meuble); }
+/* Mobilier dessiné (accueil) : blanc au trait fin, ombre portée nette vers le bas à gauche, comme sur le plan de Redoine.
    Classes pl-* sans ancêtre : le mobilier est cloné par <use>, et Chrome n'applique pas aux clones les sélecteurs qui passent par .plan. */
-.pl-accoudoir { fill: var(--calque-releve); stroke: var(--encre-douce); stroke-width: .8; }
-.pl-dossier { fill: color-mix(in srgb, var(--encre-douce) 45%, var(--calque-releve)); stroke: var(--encre-douce); stroke-width: .8; }
-.pl-dossier-trait { fill: none; stroke: var(--encre-douce); stroke-width: 1.6; stroke-linecap: round; }
+.pl-accoudoir, .pl-dossier { fill: var(--plan-meuble); stroke: var(--encre); stroke-width: .6; }
+.pl-couture { fill: none; stroke: var(--encre); stroke-width: .4; }
+.pl-pietement, .pl-pied { fill: none; stroke: var(--encre); stroke-width: .7; stroke-linecap: round; }
+.pl-roulette { fill: var(--plan-meuble); stroke: var(--encre); stroke-width: .5; }
+.pl-pointe { fill: var(--encre); }
 .plan .ecran, .plan .ecran-mural, .pl-ecran { fill: var(--encre); }
-.plan .clavier, .pl-clavier { fill: none; stroke: var(--encre-douce); stroke-width: .7; }
-.plan .evier { fill: none; stroke: var(--encre-douce); stroke-width: 1; }
-.plan .evier-bonde { fill: var(--encre-douce); }
-.pl-pot { fill: color-mix(in srgb, var(--vert-reemploi) 28%, var(--calque-releve)); }
-.pl-feuilles { fill: var(--vert-reemploi); }
-.plan .fenetre { fill: none; stroke: var(--bleu-plan); stroke-width: 4; }
-.plan .fenetre-vitre { fill: none; stroke: var(--calque-releve); stroke-width: 1.2; }
-.plan feDropShadow { flood-color: var(--encre); flood-opacity: .2; }
-.plan .zone-surface { fill: var(--encre-douce); font-family: var(--font-cote); font-size: 11px; letter-spacing: .02em; text-transform: none; font-variant-numeric: tabular-nums; }
+.plan .clavier, .pl-clavier { fill: none; stroke: var(--encre); stroke-width: .5; }
+.plan .evier { fill: none; stroke: var(--encre); stroke-width: .6; }
+.plan .evier-bonde { fill: var(--encre); }
+.plan .fenetre { fill: var(--plan-meuble); stroke: var(--encre); stroke-width: .6; }
+.plan .fenetre-vitre { fill: none; stroke: var(--plan-vitrage); stroke-width: 1.4; }
+.plan feDropShadow { flood-color: #5a4a30; flood-opacity: .38; }
+.plan .zone-surface { fill: var(--encre); font-family: var(--font-cote); font-size: 11px; font-style: italic; letter-spacing: 0; }
 /* Petits écrans : les libellés sont agrandis (règles plus haut), on retire les surfaces et la cote de circulation,
    et on décale les deux libellés qui toucheraient un mur ou une porte. */
 @media (max-width: 600px) {
@@ -156,31 +176,32 @@ p, li, dd { text-wrap: pretty; }
   .plan .l5 { transform: translate(0, 7px); }
   .plan .l5 .zone-texte { font-size: 13px; }
 }
-/* Animation au chargement (moins de 5 s, sous le seuil RGAA 13.8) : 1. murs et fenêtres, 2. cloisons une à une puis portes,
+/* Animation au chargement (moins de 5 s, sous le seuil RGAA 13.8) : 1. murs, fenêtres et circulations, 2. cloisons une à une puis portes,
    3. les espaces un à un, dans l'ordre demandé par Redoine (open space, réunion, bureau, café), puis l'accueil et le local technique.
    Chaque espace arrive avec sa couleur, son libellé, son mobilier et sa pastille de légende.
    Murs et cloisons ont pathLength="1" : le tracé va de 1 à 0 quelle que soit leur longueur. */
 .plan .mur, .plan .cloison { stroke-dasharray: 1; stroke-dashoffset: 0; }
 @media (prefers-reduced-motion: no-preference) {
   .plan .mur { animation: tracer .8s ease-out both; }
-  .plan .fenetres { animation: poser .3s ease-out .7s both; }
+  .plan .mur-fond, .plan .fenetres, .plan .sol { animation: poser .3s ease-out .7s both; }
   .plan .cloison { animation: tracer .5s ease-out both; }
   .plan .c1 { animation-delay: .8s; } .plan .c2 { animation-delay: .95s; } .plan .c3 { animation-delay: 1.1s; } .plan .c4 { animation-delay: 1.25s; } .plan .c5 { animation-delay: 1.4s; }
   .plan .portes { animation: poser .3s ease-out 1.8s both; }
   .plan .zone, .plan .libelle, .plan__legende li { animation: poser .5s ease-out both; }
+  .plan .l7 { animation-delay: 1.9s; }
   .plan .mobilier { transform-box: fill-box; transform-origin: center; animation: meubler .4s cubic-bezier(.16, 1, .3, 1) both; }
   /* 1. Open space */
   .plan .z1 { animation-delay: 2s; } .plan .l1, .plan__legende .legende--travail { animation-delay: 2.1s; }
   .plan .m1 { animation-delay: 2.15s; } .plan .m2 { animation-delay: 2.25s; } .plan .m3 { animation-delay: 2.35s; } .plan .m4 { animation-delay: 2.45s; }
-  .plan .l-cote, .plan .p1 { animation-delay: 2.6s; }
+  .plan .l-cote { animation-delay: 2.6s; }
   /* 2. Salle de réunion */
-  .plan .z2 { animation-delay: 2.75s; } .plan .l2, .plan__legende .legende--collaboratif { animation-delay: 2.85s; } .plan .m5 { animation-delay: 2.9s; } .plan .p2 { animation-delay: 3.1s; }
+  .plan .z2 { animation-delay: 2.75s; } .plan .l2, .plan__legende .legende--collaboratif { animation-delay: 2.85s; } .plan .m5 { animation-delay: 2.9s; }
   /* 3. Bureau */
   .plan .z5 { animation-delay: 3.3s; } .plan .l5 { animation-delay: 3.4s; } .plan .m8 { animation-delay: 3.45s; }
   /* 4. Café */
   .plan .z4 { animation-delay: 3.85s; } .plan .l4, .plan__legende .legende--convivialite { animation-delay: 3.95s; } .plan .m6 { animation-delay: 4s; }
   /* 5. Accueil, 6. local technique */
-  .plan .z3 { animation-delay: 4.3s; } .plan .l3 { animation-delay: 4.4s; } .plan .m7 { animation-delay: 4.45s; } .plan .p3 { animation-delay: 4.6s; }
+  .plan .z3 { animation-delay: 4.3s; } .plan .l3 { animation-delay: 4.4s; } .plan .m7 { animation-delay: 4.45s; }
   .plan .z6 { animation-delay: 4.65s; } .plan .l6, .plan .m9, .plan__legende .legende--support { animation-delay: 4.7s; }
 }
 @keyframes tracer { from { stroke-dashoffset: 1; } }
