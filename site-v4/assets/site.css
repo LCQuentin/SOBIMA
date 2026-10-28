@@ -368,8 +368,8 @@ p, li, dd { text-wrap: pretty; }
 @media (max-width: 720px) { .encadre--large { grid-template-columns: 1fr; gap: var(--space-2); } }
 @media (max-width: 640px) { .encadre { padding: var(--space-5); } }
 /* Accueil : deux encarts de même format côte à côte, simulation (bleu clair) et réemploi (vert) ; empilés sur mobile.
-   Le lien ou le bouton est poussé en bas de l'encart pour que les deux s'alignent. Sur mobile, le bouton de la simulation passe
-   avant le texte (titre, bouton, texte : retour de Redoine du 2026-10-28). */
+   Le lien est poussé en bas de l'encart pour que les deux s'alignent. Simulation : lien à la place du bouton (demande de Quentin,
+   2026-10-28), il reste donc après le texte sur mobile, comme celui du réemploi. */
 .duo-encarts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); align-items: stretch; }
 .encart { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); padding: var(--space-8); border-radius: var(--radius-trait); }
 .encart .sb-etiquette, .encart p { margin: 0; }
@@ -377,7 +377,7 @@ p, li, dd { text-wrap: pretty; }
 .encart h2 { margin: 0; font-family: var(--font-titre); font-size: clamp(1.375rem, 2.4vw, 1.75rem); line-height: 1.2; font-weight: 700; letter-spacing: -.01em; }
 .encart > :last-child { margin-top: auto; padding-top: var(--space-2); }
 .encart--simulation { background: var(--bleu-plan-clair); }
-.encart--simulation .sb-etiquette { color: var(--bleu-plan); }
+.encart--simulation .sb-etiquette, .encart--simulation a { color: var(--bleu-plan); }
 .encart--reemploi { background: var(--vert-reemploi-fond); }
 .encart--reemploi .sb-etiquette, .encart--reemploi a { color: var(--vert-reemploi); }
 .encart--reemploi a { text-decoration-color: var(--vert-reemploi); }
@@ -387,8 +387,6 @@ p, li, dd { text-wrap: pretty; }
   .duo-encarts { grid-template-columns: 1fr; gap: var(--space-4); }
   .encart { padding: var(--space-5); }
   .encart > :last-child { margin-top: 0; padding-top: 0; }
-  .encart--simulation .sb-bouton { order: 1; }
-  .encart--simulation p:not(.sb-etiquette) { order: 2; }
 }
 
 /* Valeurs (3 mots) */
