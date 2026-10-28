@@ -27,5 +27,5 @@ Ajoutées le 2026-10-28 (retours de Redoine du 28/10), licence vérifiée sur ch
 
 | Fichier | Page | Provenance |
 |---|---|---|
-| `ambiance-nuancier-*.webp` | Accueil (mosaïque, en bas à droite) | Image « Nuancier tactile terracotta et sauge » fournie par Quentin le 2026-10-27, convertie en WebP (800 et 1 536 px). [À CONFIRMER : origine et droits d'usage de l'image] |
-| `ambiance-bureau-vitre-*.webp` | Accueil (mosaïque, grande image) | Image « Bureau moderne avec salle de réunion vitrée » fournie par Quentin le 2026-10-27, convertie en WebP (800 et 1 536 px) ; remplace la photo Unsplash `ambiance-bureau-bois` (@___atmos). [À CONFIRMER : origine et droits d'usage de l'image] |
+| `ambiance-nuancier-*.webp` | Accueil (mosaïque, en bas à droite) | Image « Nuancier tactile terracotta et sauge » fournie par Quentin le 2026-10-27, générée avec ChatGPT (confirmé par Quentin le 2026-10-28), convertie en WebP (800 et 1 536 px). Gardée sans mention de l'IA sur le site (décision de Quentin du 2026-10-28) |
+| `ambiance-bureau-vitre-*.webp` | Accueil (mosaïque, grande image) | Image « Bureau moderne avec salle de réunion vitrée » fournie par Quentin le 2026-10-27, convertie en WebP (800 et 1 536 px) ; remplace la photo Unsplash `ambiance-bureau-bois` (@___atmos). Générée avec ChatGPT (confirmé par Quentin le 2026-10-28), gardée sans mention de l'IA sur le site (décision de Quentin du 2026-10-28) |
