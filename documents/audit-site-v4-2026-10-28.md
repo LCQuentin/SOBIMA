@@ -156,3 +156,9 @@ Audit Chrome refait après les corrections : 12 pages × 1 440, 375 et 320 px, a
 Le détecteur ne relève plus que les 11 faux positifs « padding trop serré » et les motifs de charte (étiquettes au-dessus des titres, fond crème, Montserrat, bandeau défilant).
 
 Note estimée après corrections : accessibilité 3 (la pause est disponible ; sans JavaScript, les mouvements restent sans contrôle), performance 3, thème 3, responsive 4, cohérence 3, soit **16/20**.
+
+### Mise à jour du 2026-10-29 : boutons pause retirés
+
+Quentin a retiré les boutons Pause / Lecture / Rejouer : « On est prêt à transiger là-dessus ». `assets/animations.js` et ses styles sont supprimés. Le bandeau s'arrête toujours au survol et au focus clavier, sans bouton.
+
+Les trois constats [P1] sur les mouvements (accroche, plan de 9 s, bandeau) redeviennent donc des écarts **assumés** au critère WCAG 2.2.2 / RGAA 13.8. Les autres corrections restent en place. Note estimée : accessibilité 2, soit **15/20**.
