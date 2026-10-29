@@ -1,7 +1,7 @@
 /* Contrôle des animations automatiques (RGAA 13.8 / WCAG 2.2.2, audit du 2026-10-29) :
    1. Premier écran avec le plan (accueil, Simulation d'implantation) : un bouton Pause / Lecture pour l'accroche et le plan,
       puis un bouton Rejouer quand le plan est terminé.
-   2. Bandeau des métiers (toutes les pages) : un bouton Pause / Lecture ; il s'arrête aussi au survol et au focus clavier.
+   2. Bandeau des métiers (accueil, Approche) : un bouton Pause / Lecture ; il s'arrête aussi au survol et au focus clavier.
    La pause passe par la classe anim-en-pause (animation-play-state dans site.css), pour ne pas entrer en conflit avec la pause au survol.
    Sans ce script, ou si le visiteur a demandé à réduire les mouvements, rien n'est ajouté : les animations ne jouent pas dans ce cas. */
 (function () {

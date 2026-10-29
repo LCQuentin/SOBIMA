@@ -57,7 +57,7 @@ Ce sont des choix de la charte, validés avec Redoine. Ce ne sont pas des défau
 - **Commande** : `/impeccable animate`.
 
 ### [P1] Le bandeau des métiers ne s'arrête qu'au survol de la souris
-- **Où** : `assets/site.css:549-550` (`.bandeau__piste`, 80 s, boucle infinie ; `animation-play-state: paused` seulement sur `:hover`). Présent sur les 12 pages.
+- **Où** : `assets/site.css:549-550` (`.bandeau__piste`, 80 s, boucle infinie ; `animation-play-state: paused` seulement sur `:hover`). Présent sur l'accueil et la page Approche.
 - **Catégorie** : accessibilité.
 - **Impact** : au clavier et sur écran tactile, rien n'arrête le défilement.
 - **Norme** : WCAG 2.2.2 (niveau A), RGAA 13.8.
