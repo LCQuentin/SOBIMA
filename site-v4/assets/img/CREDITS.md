@@ -7,7 +7,6 @@ Téléchargées le 2026-10-23 depuis images.unsplash.com, converties en WebP (80
 |---|---|---|---|
 | `ambiance-materiaux-*.webp` | Accueil (mosaïque) | https://unsplash.com/photos/bKbyJJkSlSc | @declansun |
 | `ambiance-plans-*.webp` | Méthode | https://unsplash.com/photos/Yn8D5B8C-eY | @lucaskphoto |
-| `ambiance-plateau-plantes-*.webp` | Approche (recadrée en 3:2) | https://unsplash.com/photos/xTmez98cqAM | @___atmos |
 
 Ajoutées le 2026-10-28 (retours de Redoine du 28/10), licence vérifiée sur chaque page photo (« Free to use under the Unsplash License »), recadrées et converties en WebP :
 
@@ -29,3 +28,4 @@ Ajoutées le 2026-10-28 (retours de Redoine du 28/10), licence vérifiée sur ch
 |---|---|---|
 | `ambiance-nuancier-*.webp` | Accueil (mosaïque, en bas à droite) | Image « Nuancier tactile terracotta et sauge » fournie par Quentin le 2026-10-27, générée avec ChatGPT (confirmé par Quentin le 2026-10-28), convertie en WebP (800 et 1 536 px). Gardée sans mention de l'IA sur le site (décision de Quentin du 2026-10-28) |
 | `ambiance-bureau-vitre-*.webp` | Accueil (mosaïque, grande image) | Image « Bureau moderne avec salle de réunion vitrée » fournie par Quentin le 2026-10-27, convertie en WebP (800 et 1 536 px) ; remplace la photo Unsplash `ambiance-bureau-bois` (@___atmos). Générée avec ChatGPT (confirmé par Quentin le 2026-10-28), gardée sans mention de l'IA sur le site (décision de Quentin du 2026-10-28) |
+| `ambiance-bureau-chaleureux-*.webp` | Approche | Image « Bureau chaleureux baigné de lumière naturelle » fournie par Quentin le 2026-10-30, convertie en WebP (800 et 1 536 px) ; remplace la photo Unsplash `ambiance-plateau-plantes` (@___atmos). Le portrait encadré au mur est celui de Quentin, en caméo voulu (confirmé par Quentin le 2026-10-30). [À CONFIRMER : origine et droits de l'image] |
