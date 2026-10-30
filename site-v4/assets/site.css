@@ -50,6 +50,8 @@ p, li, dd { text-wrap: pretty; }
 @media (max-width: 1080px) {
   .entete .sb-nav, .entete__actions > .sb-bouton { display: none; }
   .menu-mobile { display: block; }
+  /* En-tête non collant : avec la barre d'action du bas, il prenait 22 % d'un petit écran */
+  .entete { position: relative; }
 }
 .menu-mobile summary { list-style: none; cursor: pointer; font-family: var(--font-cote); font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; min-height: 44px; display: flex; align-items: center; padding: 10px 14px; border: var(--trait-plan) solid var(--encre); border-radius: var(--radius-bouton); color: var(--encre); }
 .menu-mobile summary::-webkit-details-marker { display: none; }
@@ -505,7 +507,7 @@ mark.a-confirmer { background: transparent; color: var(--caramel-texte); font-fa
 .sprites { position: absolute; width: 0; height: 0; overflow: hidden; }
 
 /* Puzzle du logo : les quatre pièces (les quatre métiers) s'assemblent quand la section entre à l'écran */
-.interlocuteur { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: var(--space-12); align-items: center; }
+.interlocuteur { display: grid; grid-template-columns: minmax(0, 1fr) 17.5rem; gap: var(--space-12); align-items: center; }
 .puzzle { margin: 0; color: var(--caramel); }
 .puzzle__ensemble { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-3); row-gap: var(--space-2); align-items: center; }
 .puzzle__logo { display: block; grid-column: 1 / -1; grid-row: 2; width: 100%; height: auto; }
@@ -645,12 +647,13 @@ mark.a-confirmer { background: transparent; color: var(--caramel-texte); font-fa
 /* Barre d'action mobile (zone du pouce) et cibles tactiles */
 .barre-mobile { display: none; }
 @media (max-width: 1080px) {
-  html { scroll-padding-bottom: 88px; }
+  html { scroll-padding-top: var(--space-4); scroll-padding-bottom: 88px; }
+  .etape { scroll-margin-top: var(--space-4); }
   .barre-mobile { display: grid; grid-template-columns: 1fr auto; gap: var(--space-3); position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; padding: var(--space-3) var(--space-4) calc(var(--space-3) + env(safe-area-inset-bottom)); background: var(--calque-releve); border-top: var(--trait-plan) solid var(--encre); }
   .barre-mobile .sb-bouton { justify-content: center; }
   body { padding-bottom: 72px; }
   .sb-marque { min-height: 44px; }
-  a.valeur { display: inline-block; padding: 8px 0; }
+  a.valeur { display: inline-block; padding: 12px 0; }
   .pied__legal a { display: inline-block; padding: 12px 0; }
 }
 

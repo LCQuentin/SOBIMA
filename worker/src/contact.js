@@ -78,6 +78,10 @@ function base64(octets) {
 export async function traiterContact(request, env) {
   if (request.method !== "POST") return new Response("Méthode non autorisée", { status: 405, headers: { ...ENTETES_SECURITE, Allow: "POST" } });
 
+  // Envoi depuis un autre site refusé. Un navigateur envoie toujours Origin sur un POST ; sans cet en-tête, la requête ne vient pas d'un formulaire tiers.
+  const origine = request.headers.get("Origin");
+  if (origine && origine !== new URL(request.url).origin) return erreur(request, 403, "Requête invalide.");
+
   // Taille vérifiée avant de lire le corps (formData() charge tout en mémoire)
   const longueur = Number(request.headers.get("Content-Length"));
   if (!longueur) return erreur(request, 411, "Requête invalide.");

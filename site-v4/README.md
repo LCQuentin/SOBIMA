@@ -55,6 +55,7 @@ npx wrangler deploy
 | `assets/img/piece.svg`, `piece-debut.svg` | pièce de puzzle de la frise des six étapes (accueil), utilisée comme masque CSS |
 | `assets/img/ambiance-*.webp` | photos d'ambiance Unsplash (800 et 1 600 px), provenance dans `assets/img/CREDITS.md` ; à remplacer par les rendus et photos de Redoine |
 | `favicon.svg`, `favicon.png`, `apple-touch-icon.png` | logo détouré en caramel, sans fond (l'icône Apple garde un fond beige `--calque`, iOS affichant sinon du noir) |
+| `assets/menu.js` | ferme le menu mobile à Échap et au clic en dehors (12 pages, facultatif) |
 | `llms.txt` | synthèse structurée du site et des pages canoniques pour les moteurs de recherche IA (GEO) |
 | `devis-contact.html`, `assets/contact.js` | page Contact avec le formulaire (voir « Formulaire ») ; le script ajoute les suggestions d'adresses et l'envoi sans rechargement |
 | `merci.html`, `envoi-impossible.html` | pages de retour du formulaire quand JavaScript est absent (`noindex`, hors sitemap) |
@@ -99,7 +100,7 @@ Formulaire de contact sur la page Contact (décision du 2026-10-27 : Worker + Re
 - **Envoi** : `POST /api/contact` (multipart). Avec JavaScript, réponse JSON et message par champ ; sans JavaScript, redirection 303 vers `/merci` ou `/envoi-impossible`. Le mail part en texte seul, de `CONTACT_EXPEDITEUR` vers `CONTACT_DESTINATAIRE`, avec l'e-mail du visiteur en adresse de réponse.
 - **Limites** : 5 envois et 60 recherches d'adresse par minute et par adresse IP (liaisons `ratelimits` de `worker/wrangler.jsonc`) ; corps refusé avant lecture au-delà de 2,25 Mo.
 - **Échec fermé** : sans clé Resend (et hors mode simulé), la réponse est une erreur qui renvoie au téléphone et à l'e-mail, jamais « envoyé ».
-- Code : `worker/src/contact.js`, `worker/src/fichiers.js`, `worker/src/adresse.js` ; tests : `worker/test/contact.test.js` (17 cas, dont exécutable renommé, PDF à script, PNG renommé en DWG, nom piégé, injection dans l'objet).
+- Code : `worker/src/contact.js`, `worker/src/fichiers.js`, `worker/src/adresse.js` ; tests : `worker/test/contact.test.js` (18 cas, dont exécutable renommé, PDF à script, PNG renommé en DWG, nom piégé, injection dans l'objet).
 
 ### Variables d'environnement (Worker)
 
@@ -218,3 +219,5 @@ Formulaire de contact sur la page Contact (décision du 2026-10-27 : Worker + Re
 - 2026-10-30 — Page Approche, étape Administratif et réglementaire (retour P09 de Redoine, 21:03 de la vidéo du 28/10, option A choisie par Quentin) : « SOBIMA intervient dans l'ensemble des déclarations… », bureau de contrôle et coordinateur SPS en deux puces après « Pour chaque projet, nous coordonnons et faisons intervenir », mission directe par le client et trois devis conservés. Données structurées alignées, FAQ inchangée.
 - 2026-10-30 — Page Approche, étape 07 Déménagement (retour P14 de Redoine, 23:34 de la vidéo du 28/10, réécouté) : titre et une seule puce, « Coordination du déménagement de vos espaces actuels vers vos futurs locaux. » ; phrases sur la signature avec le déménageur, les devis et l'installation retirées, données structurées alignées.
 - 2026-10-30 — Page Approche, étape 04 Travaux (retour P16 de Redoine, 24:23 de la vidéo du 28/10) : phrase « Nos équipes restent mobilisées du démarrage du chantier jusqu'à la réception. » ajoutée en fin d'étape, données structurées alignées ; elle avait disparu avec la section « Ce que piloté de bout en bout veut dire ».
+- 2026-10-30 — Démo redéployée (`sobima-demo`, version `d169554b-5cd3-46df-98e9-6b3598e2f8a7`, commit `7b19e22`) : retours P09, P14 et P16 sur l'Approche. 17 tests Worker réussis. Vérifié en ligne : pages 200, nouveaux textes présents, README non publié, `X-Robots-Tag: noindex` présent.
+- 2026-10-30 — Corrections de l'audit du 30/10 (note du vault, demande de Quentin ; les trois mouvements sans pause restent un choix assumé) : H1 avec le sujet sur Approche, Réemploi, FAQ et Devis (accueil inchangé), meta description de l'accueil à 148 caractères ; `/api/contact` refuse les `Origin` tiers (403, 18 tests) ; débordement de l'accueil à 200 % corrigé (colonne du puzzle en `rem`) ; `assets/menu.js` ajouté aux 12 pages ; téléphone et liens `.valeur` à 44 px de haut ou plus en mobile ; en-tête non collant sous 1 080 px (`scroll-padding-top` et `scroll-margin-top` adaptés).

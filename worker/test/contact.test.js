@@ -144,3 +144,20 @@ test("plan valide proche de la limite (1,9 Mo) : accepté", async () => {
   const r = await verifierPlan(fichier(contenu, "plan.pdf"));
   assert.equal(r.ok, true, r.message);
 });
+
+test("envoi depuis un autre site refusé, même site accepté", async () => {
+  const requete = (origine) => {
+    const donnees = new FormData();
+    for (const [nom, valeur] of Object.entries({ prenom: "Jeanne", nom: "Dupré", email: "jeanne@societe.fr", telephone: "06 12 34 56 78" })) donnees.set(nom, valeur);
+    const brouillon = new Request("https://www.sobima.fr/api/contact", { method: "POST", body: donnees });
+    return brouillon.arrayBuffer().then((corps) => new Request(brouillon.url, {
+      method: "POST",
+      body: corps,
+      headers: { "Content-Type": brouillon.headers.get("Content-Type"), "Content-Length": String(corps.byteLength), Accept: "application/json", ...(origine ? { Origin: origine } : {}) },
+    }));
+  };
+  const env = { ENVOI_SIMULE: "1" };
+  assert.equal((await traiterContact(await requete("https://evil.example"), env)).status, 403);
+  assert.equal((await traiterContact(await requete("https://www.sobima.fr"), env)).status, 200);
+  assert.equal((await traiterContact(await requete(null), env)).status, 200);
+});
