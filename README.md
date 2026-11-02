@@ -15,8 +15,9 @@ HTML et CSS statiques, sans outil de build. Un Worker Cloudflare sert les pages 
 | `site-v4/` | **Version courante** du site (design system « Plan d'implantation », textes v1, 10 pages) |
 | `worker/` | Worker Cloudflare : sert `site-v4/`, traite `/api/contact` (Resend) et `/api/adresse` (BAN) |
 | `documents/` | Charte, maquettes et documents de travail |
-| `site/`, `site-v2/`, `site-v3/` | Versions précédentes, conservées pour historique. `site-v3/` est gelé. |
 | `prototypes/` | Prototypes et essais |
+
+Les anciennes versions (`site/`, `site-v2/`, `site-v3/`) ont été retirées de `main` ; elles restent consultables dans l'historique Git.
 
 ## Démarrage rapide
 
@@ -54,5 +55,5 @@ Avant chaque mise en ligne qui touche aux styles, changer le numéro `?v=` de `t
 ## Repères
 
 - Les consignes pour les IA sont dans [`AGENTS.md`](AGENTS.md).
-- Les logos `site/assets/logo-sobima*.svg` sont reconstitués et **faux** ; le logo officiel est le puzzle en contour blanc sur caramel `#C49E5F`.
+- Le logo officiel est un puzzle en contour blanc sur caramel `#C49E5F`.
 - Les notes de projet (spec, contenus, glossaire, chiffres) vivent dans le vault Cortex, `02_Projets/SOBIMA/`.

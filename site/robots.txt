@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /assets/redoinesobiam.png
-
-Sitemap: https://www.sobima.fr/sitemap.xml
