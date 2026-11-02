@@ -16,7 +16,6 @@ Ajoutées le 2026-10-28 (retours de Redoine du 28/10), licence vérifiée sur ch
 | `metier-travaux-480.webp` | Accueil (puzzle, au survol) | https://unsplash.com/photos/biRt6RXejuk | Stefan Lehner (@st_lehner) |
 | `metier-demenagement-480.webp` | Accueil (puzzle, au survol) | https://unsplash.com/photos/7wvLXoF7JKc | Chloë Forbes-Kindlen (@chloeforbesk) |
 | `metier-mobilier-480.webp` | Accueil (puzzle, au survol) | https://unsplash.com/photos/zF-ysAeI7XU | Madeline Liu (@madeline_sd) |
-| `reemploi-mobilier-*.webp` | Réemploi | https://unsplash.com/photos/7T8vSHYXq4U | S O C I A L . C U T (@socialcut) |
 | `reemploi-cloison-640.webp` | Réemploi | https://unsplash.com/photos/NRamRy-l14c | Flipsnack (@flipsnack) |
 | `reemploi-sol-640.webp` | Réemploi | https://unsplash.com/photos/QLhqloXuSQw | IMEX Flooring Sweden (@imexflooring) |
 | `reemploi-cablage-640.webp` | Réemploi (recadrée pour écarter une étiquette de marque) | https://unsplash.com/photos/pl6My-v7gnE | Dimitri Karastelev (@dkfra19) |
@@ -29,3 +28,4 @@ Ajoutées le 2026-10-28 (retours de Redoine du 28/10), licence vérifiée sur ch
 | `ambiance-nuancier-*.webp` | Accueil (mosaïque, en bas à droite) | Image « Nuancier tactile terracotta et sauge » fournie par Quentin le 2026-10-27, générée avec ChatGPT (confirmé par Quentin le 2026-10-28), convertie en WebP (800 et 1 536 px). Gardée sans mention de l'IA sur le site (décision de Quentin du 2026-10-28) |
 | `ambiance-bureau-vitre-*.webp` | Accueil (mosaïque, grande image) | Image « Bureau moderne avec salle de réunion vitrée » fournie par Quentin le 2026-10-27, convertie en WebP (800 et 1 536 px) ; remplace la photo Unsplash `ambiance-bureau-bois` (@___atmos). Générée avec ChatGPT (confirmé par Quentin le 2026-10-28), gardée sans mention de l'IA sur le site (décision de Quentin du 2026-10-28) |
 | `ambiance-bureau-chaleureux-*.webp` | Approche | Image « Bureau chaleureux baigné de lumière naturelle » fournie par Quentin le 2026-10-30, convertie en WebP (800 et 1 536 px) ; remplace la photo Unsplash `ambiance-plateau-plantes` (@___atmos). Le portrait encadré au mur est celui de Quentin, en caméo voulu (confirmé par Quentin le 2026-10-30). [À CONFIRMER : origine et droits de l'image] |
+| `reemploi-bureau-parisien-*.webp` | Réemploi (mobilier) | Image « Bureau parisien baigné de lumière » fournie par Quentin le 2026-10-30, convertie en WebP (800 et 1 536 px) ; remplace la photo Unsplash `reemploi-mobilier` (S O C I A L . C U T). [À CONFIRMER : origine et droits de l'image] |
