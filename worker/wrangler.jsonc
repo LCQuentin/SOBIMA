@@ -4,6 +4,8 @@
   "name": "sobima",
   "main": "src/index.js",
   "compatibility_date": "2026-10-19",
+  // URL workers.dev activée pour tester avant la bascule des domaines.
+  "workers_dev": true,
   // Domaines de production. www est l'adresse canonique ; l'apex sert le même site.
   "routes": [
     { "pattern": "www.sobima.fr", "custom_domain": true },
