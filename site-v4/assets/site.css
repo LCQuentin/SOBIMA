@@ -710,6 +710,7 @@ mark.a-confirmer { background: transparent; color: var(--caramel-texte); font-fa
 .leviers h3::before { content: counter(levier, decimal-leading-zero) " "; color: var(--caramel-texte); font-family: var(--font-cote); font-size: .8125rem; letter-spacing: .04em; }
 .leviers p { margin: 0; font-size: .9375rem; line-height: 1.375rem; color: var(--encre-douce); }
 .reemploi-mobilier .texte { max-width: none; }
+.reemploi-icone { display: block; width: 56px; height: 56px; margin: var(--space-5) 0 0; fill: none; stroke: var(--vert-reemploi); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
 .materiaux { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-6); }
 .materiaux figure { margin: 0 0 var(--space-4); }
 .materiaux img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-trait); }
