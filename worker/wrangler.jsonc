@@ -1,7 +1,7 @@
 // Site SOBIMA : pages statiques (../site-v4) + formulaire de contact et suggestions d'adresses (/api/*).
 // Secret à poser hors du dépôt : RESEND_API_KEY (`npx wrangler secret put RESEND_API_KEY`, ou .dev.vars en local).
 {
-  "name": "sobima-site",
+  "name": "sobima",
   "main": "src/index.js",
   "compatibility_date": "2026-10-19",
   // Domaines de production. www est l'adresse canonique ; l'apex sert le même site.
