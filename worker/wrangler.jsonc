@@ -4,6 +4,11 @@
   "name": "sobima-site",
   "main": "src/index.js",
   "compatibility_date": "2026-10-19",
+  // Domaines de production. www est l'adresse canonique ; l'apex sert le même site.
+  "routes": [
+    { "pattern": "www.sobima.fr", "custom_domain": true },
+    { "pattern": "sobima.fr", "custom_domain": true }
+  ],
   "assets": {
     "directory": "../site-v4",
     "binding": "ASSETS",

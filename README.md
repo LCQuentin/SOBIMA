@@ -40,6 +40,8 @@ npx wrangler secret put RESEND_API_KEY   # une fois, sur le compte Cloudflare de
 npx wrangler deploy
 ```
 
+Les domaines `www.sobima.fr` et `sobima.fr` sont déclarés dans `worker/wrangler.jsonc` (`routes` avec `custom_domain`) : le déploiement les attache au Worker. La zone Cloudflare doit être active et les anciens `A`/`CNAME` Squarespace supprimés au préalable. `www` reste l'adresse canonique.
+
 Avant chaque mise en ligne qui touche aux styles, changer le numéro `?v=` de `tokens.css`, `bundle.css` et `site.css` dans toutes les pages (cache d'un jour sur `/assets/*`).
 
 ## Avant la mise en ligne définitive
