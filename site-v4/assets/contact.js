@@ -183,6 +183,7 @@
           envoye.innerHTML = "<h2>Merci, votre demande est envoyée</h2><p>Nous vous rappelons pour parler de votre projet. En attendant, vous pouvez nous joindre au <a href=\"tel:+33658943697\">+33 6 58 94 36 97</a>.</p>";
           formulaire.replaceWith(envoye);
           envoye.focus();
+          window.dispatchEvent(new CustomEvent("sobima:conversion", { detail: { type: "devis" } }));
           return;
         }
         afficherErreurs(reponse.erreurs || {}, reponse.message || "L'envoi a échoué. Appelez-nous ou écrivez à contact@sobima.fr.");

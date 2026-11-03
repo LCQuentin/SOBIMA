@@ -42,9 +42,9 @@ npx wrangler deploy
 
 | Fichier | Rôle |
 |---|---|
-| `*.html` (9 pages) | accueil, prestations (avec la méthode, ancre `#methode`), expérience (`references.html`, masquée), à propos, test fit, réemploi, FAQ (lien en pied de page seulement), contact, mentions légales |
-| `_redirects` | ancienne page Méthode (`/methode-contractant-general`) redirigée en 301 vers `/prestations#methode` |
-| `references/association-400-m2-4-semaines.html` | fiche référence modèle (SPEC §4 : lieu, m², délai, prestations, avant / après), servie à `/references/association-400-m2-4-semaines` ; chemins relatifs en `../`. Pour une nouvelle fiche : copier ce fichier, changer le slug, le contenu, la canonical, le JSON-LD `BreadcrumbList`, et ajouter l'URL au sitemap |
+| `*.html` | accueil, approche, simulation d'implantation, réemploi, FAQ, devis et contact, mentions légales, pages de retour du formulaire (les références sont hors ligne depuis le 2026-11-02) |
+| `_redirects` | ancienne page Méthode (`/methode-contractant-general`) redirigée en 301 vers `/approche` ; pages Références redirigées vers l'accueil |
+| `references.html`, `references/` | **Hors ligne depuis le 2026-11-02** (demande de Quentin) : conservés dans le dépôt, exclus des assets publiés et redirigés en 301 vers l'accueil |
 | `assets/tokens.css` | couleurs, polices, espacements du design system (piste A « Plan d'implantation »), copiés de `documents/charte/` ; le bloc `[data-theme="dark"]` de la charte reste présent mais n'est utilisé par aucune page |
 | `assets/bundle.css` | composants `sb-` du design system — même règle |
 | `assets/site.css` | mise en page du site, uniquement à partir des tokens |
@@ -56,10 +56,12 @@ npx wrangler deploy
 | `assets/img/ambiance-*.webp` | photos d'ambiance Unsplash (800 et 1 600 px), provenance dans `assets/img/CREDITS.md` ; à remplacer par les rendus et photos de Redoine |
 | `favicon.svg`, `favicon.png`, `apple-touch-icon.png` | logo détouré en caramel, sans fond (l'icône Apple garde un fond beige `--calque`, iOS affichant sinon du noir) |
 | `assets/menu.js` | ferme le menu mobile à Échap et au clic en dehors (12 pages, facultatif) |
+| `assets/conversions.js` | compteurs de conversions sans cookie : clics tél/e-mail et demandes envoyées, vers `/api/evenement` |
 | `llms.txt` | synthèse structurée du site et des pages canoniques pour les moteurs de recherche IA (GEO) |
 | `devis-contact.html`, `assets/contact.js` | page Contact avec le formulaire (voir « Formulaire ») ; le script ajoute les suggestions d'adresses et l'envoi sans rechargement |
+| `worker/src/evenements.js` | compteur `/api/evenement` pour Workers Analytics Engine (clics tél/e-mail, demandes envoyées) |
 | `merci.html`, `envoi-impossible.html` | pages de retour du formulaire quand JavaScript est absent (`noindex`, hors sitemap) |
-| `.assetsignore` | fichiers de ce dossier non publiés par le Worker (`README.md`) |
+| `.assetsignore` | fichiers de ce dossier non publiés par le Worker (`README.md`, `CREDITS.md`, pages Références) |
 | `404.html` | page d'erreur servie par Cloudflare Pages (`noindex`, chemins absolus `/...` pour fonctionner à toute profondeur d'URL sans casser le lien d'évitement `#contenu`) |
 | `_headers` | en-têtes Cloudflare : sécurité (CSP, COOP, X-Frame-Options), cache long des polices |
 | `assets/img/` | logo officiel (portrait de Redoine retiré le 2026-10-23) |
@@ -68,7 +70,7 @@ Le site n'a qu'un thème clair, quel que soit le réglage de l'appareil (`<meta 
 
 ## Avant la mise en ligne
 
-- **Supprimer tous les repères `<mark class="a-confirmer">`** (14 affichés au 2026-10-27, dont la durée de conservation des demandes dans les mentions légales, dont 2 sur la fiche référence, plus 1 dans la section « Votre interlocuteur » masquée en commentaire HTML dans `index.html`) : `grep -rc a-confirmer *.html references/`.
+- **Repères `a-confirmer`** : plus aucun dans les pages publiées au 2026-11-02 (le dernier, sur les transferts de données, a été remplacé dans les mentions légales).
 - Confirmer le domaine (`www.sobima.fr` partout).
 - Vérifier les mentions sensibles, y compris dans les `<title>` et meta descriptions : `grep -rn "CBRE\|Montreuil\|La Défense" *.html references/`.
 
@@ -117,6 +119,32 @@ Formulaire de contact sur la page Contact (décision du 2026-10-27 : Worker + Re
 - Poser le secret `RESEND_API_KEY`, envoyer une demande réelle avec un plan PDF et un DWG, vérifier la réception dans Gmail.
 - Trancher Pages ou Workers pour l'hébergement final : `traiterContact` et `traiterAdresse` sont des fonctions `(request, env)` réutilisables en Pages Functions.
 
+## Mesure des conversions
+
+Cloudflare Web Analytics ne sait pas tracer d'événements personnalisés (uniquement des pages vues). Les conversions sont donc comptées par un petit compteur first-party, sans cookie ni identifiant visiteur :
+
+- `assets/conversions.js` envoie `devis_envoye` (après un envoi réussi du formulaire), `clic_telephone` et `clic_email` à `POST /api/evenement`.
+- `worker/src/evenements.js` valide l'événement, l'origine et la taille, applique la limite `LIMITE_EVENEMENT` (30/min/IP) puis écrit dans Workers Analytics Engine, dataset `sobima_evenements` (binding `EVENEMENTS`). Le chemin de page est conservé sans query string.
+- Si le binding Analytics Engine est absent, l'événement est ignoré sans casser la navigation. Sans JavaScript, le formulaire redirige vers `/merci` mais l'événement n'est pas envoyé.
+
+Requêtes SQL utiles (Workers Analytics Engine → dataset `sobima_evenements`) :
+
+```sql
+SELECT blob1 AS evenement, count() AS total
+FROM sobima_evenements
+GROUP BY evenement
+ORDER BY total DESC;
+```
+
+```sql
+SELECT blob1 AS evenement, blob2 AS page, count() AS total
+FROM sobima_evenements
+GROUP BY evenement, page
+ORDER BY total DESC;
+```
+
+Les données sont conservées 3 mois. Pour les pages vues et les Core Web Vitals, activer Cloudflare Web Analytics dans le dashboard (Analytics & Logs → Web Analytics), puis mettre à jour la phrase « Cookies » des mentions légales pour mentionner cette mesure sans cookie.
+
 ## Problèmes connus
 
 - Logo en traits dans l'en-tête : variante monochrome de la charte, à faire valider par Redoine. Le badge caramel officiel est utilisé pour le favicon, l'image de partage et la vidéo de l'accueil.
@@ -125,9 +153,9 @@ Formulaire de contact sur la page Contact (décision du 2026-10-27 : Worker + Re
 - Liens internes en `.html` : Cloudflare Pages les redirige vers l'URL sans extension (une redirection par clic). Gardé volontairement pour que le site s'ouvre en local avec un simple serveur statique ; à revoir après le premier déploiement.
 - Les tailles de `bundle.css` (design system) restent en px ; `site.css` les surcharge en rem pour les composants utilisés. À reporter dans la charte si elle évolue.
 
-- Aucun repère `a-confirmer` à l'écran au 2026-10-27. Les citations de projets (CBRE et Montreuil, La Défense, centre d'examens) sont en ligne sans validation écrite de Redoine : à confirmer avant mise en ligne définitive.
+- Les pages Références (CBRE, Montreuil, La Défense, centre d'examens) sont hors ligne depuis le 2026-11-02 : plus de citation de projet publique.
 - Citer La Défense, l'immeuble haussmannien et le projet de Montreuil reste à valider par Redoine (« trois ans chez CBRE » validé le 2026-10-21 ; aucune référence de projet CBRE).
-- Formulaire : l'envoi réel par Resend n'a pas été testé (domaine non vérifié, pas de clé) ; seul le mode simulé l'a été.
+- Formulaire : envoi réel par Resend validé le 2026-11-02 (clé posée sur le Worker `sobima`).
 - Contrôle des PDF : un mot-clé actif caché dans un flux compressé (object stream) n'est pas détecté. Les DWG ne sont contrôlés que par leur signature (format binaire fermé). La protection repose aussi sur l'analyse des pièces jointes par Gmail.
 - Suggestions d'adresses : dépendent de la disponibilité de la Géoplateforme IGN ; en cas de panne, le champ reste en saisie libre.
 - Anti-spam limité au champ piège et aux limites de débit : pas de Turnstile (ce serait un script tiers, à ajouter à la CSP et aux mentions légales). À reconsidérer si du spam arrive.
@@ -228,3 +256,5 @@ Formulaire de contact sur la page Contact (décision du 2026-10-27 : Worker + Re
 - 2026-10-30 — Page Réemploi, bloc Mobilier : titre passé au-dessus des deux colonnes, le texte de droite s'aligne sur le haut de la photo.
 - 2026-11-02 — Démo redéployée (`sobima-demo`, version `cef7aac6-e9d6-4126-927b-d5aec7fc638d`, commit `57db239`) : README racine, CTA « Demander un devis » retiré de l'accueil, phrase sur le mobilier hétérogène remplacée par une icône de recyclage et bloc Partenaires retiré de la page Réemploi. 18 tests Worker réussis. Vérifié en ligne : pages 200, `site.css?v=20261102a`, nouvelle photo servie, ancienne en 404, README et CREDITS non publiés, `X-Robots-Tag: noindex, nofollow` présent, `/api/contact` sans corps redirigé (303).
 - 2026-11-02 — Page Approche : photo d'illustration remplacée par « Bureau moderne aux accents olive et végétaux » fournie par Quentin (`ambiance-bureau-olive-800/1536.webp`), anciens fichiers `ambiance-bureau-chaleureux-*` supprimés, provenance mise à jour dans `assets/img/CREDITS.md`.
+- 2026-11-02 — Mentions légales : repère « À CONFIRMER » remplacé par la formulation sur les transferts (Cloudflare et Resend en région Irlande lorsque disponible, Google Workspace selon le contrat du compte). Page Références hors ligne (retirée des assets, redirigée en 301 vers l'accueil). Images Approche et Réemploi créditées comme générées avec ChatGPT, sans licence tierce. `sobima.fr` redirigé en 301 vers `www.sobima.fr`. 20 tests Worker.
+- 2026-11-02 — Compteurs de conversions sans cookie (`assets/conversions.js` → `POST /api/evenement` → Workers Analytics Engine, dataset `sobima_evenements`) : `devis_envoye`, `clic_telephone`, `clic_email`. Mention « Cookies » des mentions légales mise à jour. 25 tests Worker.

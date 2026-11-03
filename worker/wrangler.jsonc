@@ -16,15 +16,20 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash",
-    "run_worker_first": ["/api/*"]
+    "run_worker_first": true
   },
   "vars": {
     "CONTACT_DESTINATAIRE": "contact@sobima.fr",
     "CONTACT_EXPEDITEUR": "Site SOBIMA <formulaire@sobima.fr>"
   },
+  // Compteurs de conversions (clics tél/e-mail, demandes envoyées), sans cookie.
+  "analytics_engine_datasets": [
+    { "binding": "EVENEMENTS", "dataset": "sobima_evenements" }
+  ],
   // Limites par adresse IP : 5 envois et 60 recherches d'adresse par minute
   "ratelimits": [
     { "name": "LIMITE_CONTACT", "namespace_id": "4101", "simple": { "limit": 5, "period": 60 } },
-    { "name": "LIMITE_ADRESSE", "namespace_id": "4102", "simple": { "limit": 60, "period": 60 } }
+    { "name": "LIMITE_ADRESSE", "namespace_id": "4102", "simple": { "limit": 60, "period": 60 } },
+    { "name": "LIMITE_EVENEMENT", "namespace_id": "4103", "simple": { "limit": 30, "period": 60 } }
   ]
 }
