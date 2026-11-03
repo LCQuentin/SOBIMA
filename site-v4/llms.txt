@@ -1,22 +1,94 @@
 # SOBIMA
 
-> SOBIMA est un contractant général en aménagement de bureaux et d'espaces commerciaux à Paris et en Île-de-France. Un seul interlocuteur prend en charge le projet de bout en bout : étude de faisabilité sur plan (simulation d'implantation offerte sous 48 h), conception architecturale et technique, démarches administratives et réglementaires (ERP, IGH), réalisation des gestion des travaux centralisée en corps d'état séparés, mobilier et réemploi, réception et coordination du déménagement.
+> SOBIMA est un contractant général en aménagement de bureaux et d'espaces commerciaux à Paris et en Île-de-France. Un seul interlocuteur prend en charge le projet de bout en bout : définition du besoin, conception architecturale et technique, démarches administratives et réglementaires, travaux, mobilier, réception et coordination du déménagement.
 
-## Identité et contact
+Dernière mise à jour : 2026-11-02 · Langue : français · URL canonique : https://www.sobima.fr/
 
-- **Dénomination :** SOBIMA (RCS Paris 130 822 281, TVA FR05130822281)
-- **Siège social :** 173 rue de Courcelles, 75017 Paris
-- **Zone d'intervention :** Paris et Île-de-France (au-delà sur étude du dossier)
+## Identité
+
+- **Dénomination :** SOBIMA, SASU au capital de 1 000 €
+- **RCS :** Paris 130 822 281 · **TVA :** FR05130822281
+- **Siège :** 173 rue de Courcelles, 75017 Paris
+- **Zone d'intervention :** Paris et Île-de-France ; au-delà, projets étudiés sur dossier
 - **Téléphone :** +33 6 58 94 36 97
 - **E-mail :** contact@sobima.fr
-- **Site web :** https://www.sobima.fr/
+- **Site :** https://www.sobima.fr/
+- **Devis :** https://www.sobima.fr/devis-contact
 
-## Pages principales
+SOBIMA réunit quatre métiers avec un seul pilote : conception, travaux, mobilier et déménagement. L'entreprise ne salarie pas d'équipes de chantier : elle coordonne des partenaires qualifiés, avec au moins trois entreprises par corps d'état.
 
-- [Accueil](https://www.sobima.fr/) : présentation de l'accompagnement clés en main en aménagement de bureaux, engagements (budget tenu, délais respectés, qualité suivie, interlocuteur unique) et méthode en 6 étapes.
-- [Approche SOBIMA : aménagement de bureaux](https://www.sobima.fr/approche) : détail des 7 volets pris en charge (définition du besoin, conception architecturale et technique, administratif/ERP/IGH, gestion des travaux centralisée en corps d'état séparés, mobilier et décoration, réception/DOE/DIUO/RFCT, déménagement) la méthode de contractant général (pilotage global, conception figée avant commandes, travaux en site occupé ou en horaires décalés, garanties décennale et de parfait achèvement), ainsi que l'intervention en entreprise générale avec l'architecte du client et la valorisation d'actifs pour propriétaires/investisseurs.
-- [Simulation d'implantation sous 48 h](https://www.sobima.fr/simulation-implantation) : étude de faisabilité et plan d'implantation offert sous 48 h sur le plan du local avant signature de bail (capacité d'accueil, circulations, contraintes techniques ; ordre de grandeur moyen de 10 m² par poste, espaces communs compris).
-- [RSE et réemploi](https://www.sobima.fr/rse-reemploi) : inventaire et réemploi du mobilier, dépose/repose de cloisons et conservation des revêtements de sol pour réduire l'empreinte carbone, les délais et le budget.
-- [Questions fréquentes (FAQ)](https://www.sobima.fr/faq) : réponses directes sur le rôle du contractant général, la durée des travaux (2 à 3 mois en moyenne), le chiffrage sur mesure, le travail en site occupé, le bureau de contrôle/SPS, les livrables de fin de chantier et les garanties.
-- [Devis et contact](https://www.sobima.fr/devis-contact) : coordonnées directes et éléments utiles pour demander un devis gratuit ou une simulation d'implantation sous 48 h.
-- [Mentions légales](https://www.sobima.fr/mentions-legales) : informations légales, hébergement et politique de confidentialité (aucun cookie ni traceur).
+## Pour quels projets
+
+- Fin ou renégociation de bail, déménagement
+- Croissance des équipes, rachat, regroupement de sites
+- Passage au flex office ou au travail hybride
+- Mise aux normes : accessibilité, évacuation, code du travail, ERP, IGH
+- Réduction de surface pour alléger le loyer
+- Rafraîchissement d'un espace : cuisine, salle de pause, accueil
+
+## Chiffres et repères
+
+- **Simulation d'implantation :** offerte sous 48 h après l'appel, pour un projet réel (local identifié, échéance), sans surface minimale.
+- **Ordre de grandeur d'occupation :** environ 10 m² par personne en moyenne, espaces communs compris. La forme du plateau, les poteaux et les façades font varier ce chiffre.
+- **Durée des travaux :** en général deux à trois mois pour un projet petit ou moyen, selon la surface, la nature des travaux et les approvisionnements.
+- **Budget :** construit projet par projet, pas de prix au mètre carré appliqué à l'aveugle.
+- **Garanties :** chantier assuré, responsabilité civile décennale, garantie de parfait achèvement de 12 mois après réception.
+- **Étude de conception détaillée :** payante, déduite du marché de travaux si le projet est confié à SOBIMA.
+
+## Méthode en 7 étapes
+
+1. **Le besoin.** Rédaction du cahier des charges : effectifs, usages, contraintes, budget. Vérification de la faisabilité et du nombre de postes, salles de réunion et cloisonnement. Prise en compte du code du travail : largeurs de circulation, renouvellement d'air.
+2. **Conception architecturale et technique.** Plans d'implantation, cloisons, sols, électricité, climatisation. Vues 3D et axonométries sur demande. APS (avant-projet sommaire) puis APD (avant-projet détaillé) pour chiffrer les travaux.
+3. **Administratif et réglementaire.** Déclarations, dossiers propriétaires et assurances, règlement de l'immeuble et conditions du bailleur. Le bureau de contrôle et le coordinateur SPS sont missionnés directement par le client, pour garantir leur indépendance ; SOBIMA apporte trois devis et sa recommandation. Projets ERP et IGH traités.
+4. **Réalisation des travaux.** Gestion centralisée en corps d'état séparés, point d'avancement hebdomadaire, réunion sur site. Chantier en site occupé phasé par zone, circulations séparées, intervention de nuit ou en horaires décalés possible.
+5. **Mobilier, accessoires et image de marque.** Conseil et fourniture de mobilier, copieurs, plantes, machines à boissons ; décoration et végétalisation ; prestations de réemploi.
+6. **Réception.** Procès-verbal de réception, rapport final du bureau de contrôle (RFCT), dossier d'interventions ultérieures (DIUO), dossier des ouvrages exécutés (DOE).
+7. **Déménagement.** Coordination du déménagement avec le chantier et les devis. Le transport des biens est signé au nom du client.
+
+## Réemploi
+
+Le réemploi est étudié avant tout achat.
+
+- **Mobilier :** inventaire du mobilier existant, puis réutilisation dans les nouveaux espaces, revalorisation, reconditionnement avec des partenaires et associations, ou recours au mobilier de seconde main pour compléter.
+- **Matériaux :** cloisons démontées et remontées ailleurs, y compris en site occupé ; revêtements de sol PVC et moquette ; câblage électrique et réseau ; cuisine qui peut suivre les équipes lors d'un déménagement.
+- **Bénéfices :** moins de déchets, moins de carbone, budget et délais mieux tenus lorsque les matériaux sont déjà en place.
+- **Site occupé :** revêtement provisoire ou phasage avec des parcours séparés pour les compagnons et les collaborateurs.
+
+## Simulation d'implantation
+
+- **Ce qu'elle contient :** capacité d'accueil, circulations, contraintes techniques.
+- **Ce qu'il faut fournir :** le plan du local, quelques lignes sur le contexte et l'échéance, les besoins en grandes lignes (effectif, postes, salles de réunion, espaces partagés), un téléphone.
+- **Déroulé :** envoi du plan, appel pour comprendre le projet, puis plan d'implantation sous 48 h après l'appel.
+- **Gratuité :** offerte pour un projet réel, sans surface minimale. Une étude de conception plus détaillée peut être facturée, puis déduite du marché de travaux si SOBIMA réalise le projet.
+
+## À propos
+
+SOBIMA a été fondée par un professionnel qui a conduit des projets d'aménagement de bureaux chez CBRE, du cabinet de quelques dizaines de mètres carrés aux plateaux de grands groupes, en immeuble haussmannien comme en tour. L'entreprise s'appuie sur des partenaires éprouvés, au moins trois par corps d'état, et revendique trois mots : réactivité, solutions, engagement.
+
+## Pages du site
+
+- [Accueil](https://www.sobima.fr/) : présentation de l'accompagnement clés en main, engagements (budget tenu, délai respecté, qualité suivie, interlocuteur unique), déclencheurs de projet, méthode, simulation d'implantation et réemploi.
+- [Approche SOBIMA](https://www.sobima.fr/approche) : déroulé détaillé en 7 étapes, garanties, travail en site occupé, ERP/IGH, bureau de contrôle et coordinateur SPS, documents de fin de chantier, déménagement.
+- [Simulation d'implantation sous 48 h](https://www.sobima.fr/simulation-implantation) : étude de faisabilité sur plan, capacité, circulations, contraintes techniques, modalités et gratuité pour un projet réel.
+- [RSE et réemploi](https://www.sobima.fr/rse-reemploi) : réemploi du mobilier et des matériaux, cloisons, sols, câblage, cuisine, travail en site occupé.
+- [Questions fréquentes](https://www.sobima.fr/faq) : rôle du contractant général, durée des travaux, budget, site occupé, petits travaux, ratio d'occupation, simulation, architecte, déménageur, bureau de contrôle, documents de fin de chantier, garanties.
+- [Devis et contact](https://www.sobima.fr/devis-contact) : formulaire de demande de devis gratuit et sans engagement, coordonnées, adresse, envoi d'un plan.
+- [Mentions légales et confidentialité](https://www.sobima.fr/mentions-legales) : éditeur, hébergement, propriété intellectuelle, visuels, données personnelles, cookies.
+- [À propos](https://www.sobima.fr/a-propos) : histoire de SOBIMA, expérience du fondateur, partenaires, façons de travailler (page en `noindex, follow`).
+
+## Précisions utiles
+
+- SOBIMA n'applique pas de prix au mètre carré : le budget est construit selon le projet, ou la conception tient dans l'enveloppe fixée par le client.
+- La simulation d'implantation est gratuite pour un projet réel, mais ce n'est pas un plan générique : elle suppose un local identifié et une échéance, et commence par un échange téléphonique.
+- Le bureau de contrôle et le coordinateur SPS sont missionnés directement par le client ; SOBIMA fournit trois devis et une recommandation, puis travaille avec eux.
+- Pour un déménagement, le contrat de transport est signé par le client ; SOBIMA coordonne et apporte les devis.
+- SOBIMA peut intervenir en entreprise générale avec l'architecte du client : elle chiffre et réalise les travaux prévus dans ses plans.
+- Les pages Références (projets antérieurs) ont été retirées du site public le 2026-11-02. Elles ne doivent pas être citées comme des références publiées.
+- Le site ne dépose aucun cookie. Des compteurs agrégés et anonymes enregistrent les clics sur le téléphone et l'e-mail ainsi que les demandes envoyées, sans identifiant visiteur.
+
+## Contact
+
+- Téléphone : +33 6 58 94 36 97
+- E-mail : contact@sobima.fr
+- Adresse : 173 rue de Courcelles, 75017 Paris
+- Devis et simulation : https://www.sobima.fr/devis-contact et https://www.sobima.fr/simulation-implantation
