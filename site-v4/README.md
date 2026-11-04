@@ -30,6 +30,43 @@ npx wrangler deploy
 - Avant chaque mise en ligne qui touche aux styles, changer le numéro `?v=` de `tokens.css`, `bundle.css` et `site.css` dans toutes les pages (cache d'un jour sur `/assets/*`).
 - Si l'hébergement final est Pages : `traiterContact` et `traiterAdresse` se branchent en Pages Functions sans réécriture.
 
+## Durcissement du domaine (compte Cloudflare de SOBIMA)
+
+Ces réglages ne se font pas depuis le dépôt : ils demandent un accès au compte Cloudflare de SOBIMA. État constaté le 2026-11-04.
+
+**Déjà dans le dépôt, actif au prochain `wrangler deploy` :**
+
+- HSTS (`Strict-Transport-Security: max-age=31536000; includeSubDomains`) sur les pages (`_headers`) et sur les réponses `/api` (`ENTETES_SECURITE`).
+- `/.well-known/security.txt` servi par le Worker (Contact, Expires, Preferred-Languages, Canonical).
+
+**À faire dans le tableau de bord Cloudflare, zone `sobima.fr` :**
+
+1. **SSL/TLS → Edge Certificates → Always Use HTTPS : activé.** Aujourd'hui `http://www.sobima.fr` répond 200 sans redirection (l'apex, lui, redirige déjà).
+2. **SSL/TLS → Edge Certificates → Minimum TLS Version : TLS 1.2.** Aujourd'hui TLS 1.0 et 1.1 sont encore acceptés.
+3. **DNS → DNSSEC : activer**, puis poser l'enregistrement DS chez le registraire (KEY-SYSTEMS).
+4. **DNS → ajouter ces enregistrements :**
+
+   | Nom | Type | Contenu |
+   |---|---|---|
+   | `_dmarc` | TXT | `v=DMARC1; p=none; rua=mailto:dmarc@sobima.fr; adkim=s; aspf=r; pct=100` |
+
+   Créer au préalable l'alias `dmarc@sobima.fr` (les rapports sont volumineux) ; sinon retirer `rua=…`, mais on perd la visibilité. `aspf=r` est volontaire : l'expéditeur Resend est `send.sobima.fr` (sous-domaine aligné), et Google Workspace envoie depuis le domaine racine.
+
+   | Nom | Type | Contenu |
+   |---|---|---|
+   | `@` | CAA | `0 issue "letsencrypt.org"` |
+   | `@` | CAA | `0 issue "pki.goog; cansignhttpexchanges=yes"` |
+   | `@` | CAA | `0 issuewild "letsencrypt.org"` |
+   | `@` | CAA | `0 issuewild "pki.goog; cansignhttpexchanges=yes"` |
+   | `@` | CAA | `0 iodef "mailto:contact@sobima.fr"` |
+
+   Cloudflare ajoute de lui-même les CAA nécessaires à Universal SSL dès qu'il en existe au moins une ; ces valeurs correspondent aux AC qu'il utilise.
+
+5. **Ne pas toucher** au MX racine (`smtp.google.com`, Google Workspace) ni aux enregistrements `send.*` de Resend (SPF, MX, DKIM). L'e-mail est déjà authentifié ; il ne manque que DMARC.
+6. **Après 2 à 4 semaines de rapports DMARC sans échec légitime** : passer `p=quarantine`, puis `p=reject`, et ajouter `sp=reject`. Option : faire passer le SPF racine de `~all` à `-all` (le domaine n'envoie que par Google Workspace ; Resend utilise le sous-domaine `send`).
+
+**Démo publique** : `sobima-demo.bonjour-cf3.workers.dev` (compte de Quentin) reste accessible. La supprimer après la recette, ou la protéger par Cloudflare Access.
+
 ## Démo en ligne
 
 - Adresse : https://sobima-demo.bonjour-cf3.workers.dev (non indexée : `X-Robots-Tag: noindex` ajouté à la copie de démo).
@@ -63,7 +100,7 @@ npx wrangler deploy
 | `merci.html`, `envoi-impossible.html` | pages de retour du formulaire quand JavaScript est absent (`noindex`, hors sitemap) |
 | `.assetsignore` | fichiers de ce dossier non publiés par le Worker (`README.md`, `CREDITS.md`, pages Références) |
 | `404.html` | page d'erreur servie par Cloudflare Pages (`noindex`, chemins absolus `/...` pour fonctionner à toute profondeur d'URL sans casser le lien d'évitement `#contenu`) |
-| `_headers` | en-têtes Cloudflare : sécurité (CSP, COOP, X-Frame-Options), cache long des polices |
+| `_headers` | en-têtes Cloudflare : sécurité (HSTS, CSP, COOP, X-Frame-Options), cache long des polices |
 | `assets/img/` | logo officiel (portrait de Redoine retiré le 2026-10-23) |
 
 Le site n'a qu'un thème clair, quel que soit le réglage de l'appareil (`<meta name="color-scheme" content="light">`, mode nuit retiré le 2026-10-26). Les tailles de texte de `site.css` sont en rem (elles suivent la taille de police choisie par le visiteur) ; `site.css` surcharge en rem les tailles en px des composants de `bundle.css`.

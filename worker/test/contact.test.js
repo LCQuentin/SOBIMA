@@ -161,3 +161,9 @@ test("envoi depuis un autre site refusé, même site accepté", async () => {
   assert.equal((await traiterContact(await requete("https://www.sobima.fr"), env)).status, 200);
   assert.equal((await traiterContact(await requete(null), env)).status, 200);
 });
+
+test("les réponses /api portent HSTS", async () => {
+  const r = await traiterContact(new Request("https://www.sobima.fr/api/contact"), {});
+  assert.equal(r.status, 405);
+  assert.match(r.headers.get("strict-transport-security"), /max-age=31536000/);
+});

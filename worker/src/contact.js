@@ -7,7 +7,10 @@ import { verifierPlan, TAILLE_MAX_FICHIER, MESSAGE_TROP_GROS } from "./fichiers.
 const TAILLE_MAX_REQUETE = TAILLE_MAX_FICHIER + 256 * 1024; // plan + champs texte
 const LONGUEURS = { prenom: 80, nom: 80, societe: 120, email: 254, telephone: 30, adresse: 200, adresse_ban: 80, message: 3000 };
 
+export const HSTS = "max-age=31536000; includeSubDomains";
+
 export const ENTETES_SECURITE = {
+  "Strict-Transport-Security": HSTS,
   "X-Content-Type-Options": "nosniff",
   "X-Frame-Options": "DENY",
   "Referrer-Policy": "strict-origin-when-cross-origin",
